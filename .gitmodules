@@ -1,0 +1,3 @@
+[submodule "themes/neoflux"]
+	path = themes/neoflux
+	url = https://github.com/NhProGamer/neoflux
