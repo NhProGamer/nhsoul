@@ -1,0 +1,28 @@
+baseURL = 'https://nhsoul.fr'
+languageCode = 'fr-FR'
+title = 'NнPro | Développeur Backend'
+theme = "neoflux"
+
+[permalinks]
+blog = "/blog/:slug/"
+
+[params]
+first_name = "Néo"
+last_name = "Huyghe"
+pseudo = "NнPro"
+age = 19
+description = "Développeur backend passionné"
+bio = "Je construis des systèmes robustes et performants avec Node.js, Python et Go. J'aime résoudre des problèmes complexes et partager mes connaissances."
+languages = ["Java", "Node.js", "C#", "Python", "Golang"]
+chip = "Développeur Backend"
+
+[params.term]
+user = "nhpro"
+host = "t480"
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.highlight]
+style = "github-dark"
+lineNos = true
