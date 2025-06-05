@@ -1,6 +1,6 @@
 +++
 date = '2025-06-02T15:06:34+02:00'
-draft = true
+draft = false
 author = "NнPro"
 title = 'Création du thème NeoFlux'
 featured_image = "neoflux.png"

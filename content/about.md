@@ -2,7 +2,7 @@
 title: "Mon Parcours"
 subtitle: "Découvrez mon parcours, mes passions et ce qui me motive dans le développement backend."
 badge: "À Propos"
-date: 2024-01-15
+date: 2025-06-05
 draft: false
 
 profile:
