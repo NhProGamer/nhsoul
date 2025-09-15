@@ -21,6 +21,8 @@ skills:
     level: 80
   - name: "Golang"
     level: 85
+  - name: "C#"
+    level: 25
 
 technologies:
   - "Node.js"
@@ -56,12 +58,11 @@ Développeur backend autodidacte avec **7 ans d'expérience** (depuis mes 12 ans
 
 **Launcher Minecraft personnalisé** (En cours)
 - Migration complète de **Electron** vers **Go/Wails**
-- Développement from scratch sans dépendances externes
-- Performance optimisée et interface native
+- Performances optimisées et interface native
 
 **Plateforme de formation BaggyDessine**
 - Architecture backend et frontend complète
-- Système de code pour accéder a la formation
+- Système de code pour accéder à la formation
 
 **Jeu de Loup Garou en ligne** (En cours)
 - Architecture hexagonale (port & adapters)
@@ -76,10 +77,4 @@ Développeur backend autodidacte avec **7 ans d'expérience** (depuis mes 12 ans
 
 ## Philosophie de développement
 
-*"La simplicité est la sophistication ultime"* - Je privilégie un code lisible, documenté et performant. Mon approche c'est de comprendre le problème, concevoir la solution optimale, livrer du code de qualité. C'est ce qui me motive.
-
----
-
-&nbsp;
-
-**Prêt à relever de nouveaux défis techniques ? Discutons de votre projet !**
+*"La simplicité est la sophistication ultime"* - Je privilégie un code lisible, documenté et performant. Mon approche c'est de comprendre le problème, concevoir la solution optimale, livrer du code de qualité. C'est cette part de créativité qui me motive.
