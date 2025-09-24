@@ -6,9 +6,7 @@ date: 2025-06-05
 draft: false
 
 profile:
-  name: "Néo Huyghe"
   title: "Développeur Backend"
-  birthdate: "2006-02-05"
   location: "Lens, France"
   experience: "Etudiant"
 
