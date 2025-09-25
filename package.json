@@ -1,6 +1,24 @@
 {
+  "name": "hugo-site",
+  "version": "1.0.0",
+  "description": "Hugo static site with PDF generation",
+  "scripts": {
+    "dev": "hugo server -D",
+    "build": "hugo --minify",
+    "build:pdf": "npm run build && npm run generate:pdf",
+    "generate:pdf": "node scripts/generate-pdf.js",
+    "pdf:about": "node scripts/generate-pdf.js --page=about",
+    "pdf:all": "node scripts/generate-pdf.js --all"
+  },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.13",
-    "tailwindcss": "^4.1.13"
+    "tailwindcss": "^4.1.13",
+    "puppeteer": "^21.6.1",
+    "yargs": "^17.7.2",
+    "chalk": "^4.1.2",
+    "ora": "^5.4.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
