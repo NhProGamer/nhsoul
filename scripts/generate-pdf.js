@@ -147,7 +147,8 @@ class PDFGenerator {
 
             const screenshotBuffer = await page.screenshot({
                 fullPage: true,
-                type: 'png'
+                type: 'png',
+                preferCSSPageSize: true
             });
 
             const outputPath = path.join(CONFIG.outputDir, pageConfig.filename);
@@ -169,12 +170,96 @@ class PDFGenerator {
         }
     }
 
+    async generatePDF(pageKey, pageConfig) {
+        const page = await this.browser.newPage();
+
+        try {
+            this.spinner = ora(`Génération PDF de ${pageConfig.title}...`).start();
+
+            // Viewport correspondant à A4 à 96 DPI
+            await page.setViewport({
+                width: 794,
+                height: 1123,
+                deviceScaleFactor: 1
+            });
+
+            const url = `${CONFIG.baseUrl}${pageConfig.url}`;
+            await page.goto(url, {
+                waitUntil: 'networkidle0',
+                timeout: CONFIG.timeout
+            });
+
+            await page.waitForSelector('body', { timeout: 5000 });
+
+            // Injection CSS pour impression
+            await page.addStyleTag({
+                content: `
+                .no-print {
+                    display: none !important;
+                    visibility: hidden !important;
+                }
+
+                html, body {
+                    height: 297mm;
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                }
+
+                :root {
+                    --color-background: #ffffff;
+                    --color-surface: #f1f5f9;
+                    --color-primary: #0ea5e9;
+                    --color-primary-dark: #0369a1;
+                    --color-secondary: #6366f1;
+                    --color-accent: #d946ef;
+                    --color-text-primary: #1e293b;
+                    --color-text-secondary: #475569;
+                }
+
+                body {
+                    background: var(--color-background);
+                    color: var(--color-text-primary);
+                }
+            `
+            });
+
+            // Génération PDF
+            const outputPath = path.join(CONFIG.outputDir, pageConfig.filename.replace(/\.png$/, '.pdf'));
+            await page.pdf({
+                path: outputPath,
+                format: 'A4',
+                printBackground: true,
+                preferCSSPageSize: true,
+                scale: 0.90,
+                margin: { top: 0, right: 0, bottom: 0, left: 0 }
+            });
+
+            const publicPath = path.join(CONFIG.publicDir, 'pdf', pageConfig.filename.replace(/\.png$/, '.pdf'));
+            await fs.copyFile(outputPath, publicPath);
+
+            this.spinner.succeed(`✓ PDF généré: ${pageConfig.filename.replace(/\.png$/, '.pdf')}`);
+            console.log(chalk.blue(`  📁 Sauvegardé dans: ${outputPath}`));
+            console.log(chalk.blue(`  🌐 Disponible sur: ${CONFIG.baseUrl}/pdf/${pageConfig.filename.replace(/\.png$/, '.pdf')}`));
+
+        } catch (error) {
+            this.spinner.fail(`❌ Erreur pour ${pageConfig.title}`);
+            console.error(chalk.red(error.message));
+            throw error;
+        } finally {
+            await page.close();
+        }
+    }
+
+
+
     async generateAll() {
         const pageKeys = Object.keys(CONFIG.pages);
         console.log(chalk.cyan(`\n📄 Génération de ${pageKeys.length} capture(s)...\n`));
 
         for (const [key, config] of Object.entries(CONFIG.pages)) {
             await this.generateScreenshot(key, config);
+            await this.generatePDF(key, config);
         }
     }
 
@@ -185,7 +270,8 @@ class PDFGenerator {
         }
 
         console.log(chalk.cyan(`\n📄 Génération pour: ${pageConfig.title}\n`));
-        await this.generateScreenshot(pageKey, pageConfig);
+        //await this.generateScreenshot(pageKey, pageConfig);
+        await this.generatePDF(pageKey, pageConfig);
     }
 
     async cleanup() {
