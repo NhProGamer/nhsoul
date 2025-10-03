@@ -12,14 +12,14 @@ const ora = require('ora');
 const CONFIG = {
     hugoPort: 1313,
     baseUrl: 'http://localhost:1313',
-    outputDir: 'static/cv',
+    outputDir: 'static/images',
     publicDir: 'public',
     timeout: 30000,
 
     // Pages à capturer
     pages: {
         about: {
-            url: '/about',
+            url: '/cv',
             filename: 'cv.png',
             title: 'À Propos - Mon Parcours'
         },
@@ -106,8 +106,8 @@ class PDFGenerator {
             this.spinner = ora(`Capture de ${pageConfig.title}...`).start();
 
             await page.setViewport({
-                width: 1024,
-                height: 1080,
+                width: 794,
+                height: 1123,
                 deviceScaleFactor: 1
             });
 

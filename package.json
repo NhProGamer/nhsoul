@@ -4,11 +4,9 @@
   "description": "Hugo static site with PDF generation",
   "scripts": {
     "dev": "hugo server -D",
-    "build": "hugo --minify",
-    "build:pdf": "npm run build && npm run generate:pdf",
-    "generate:pdf": "node scripts/generate-pdf.js",
-    "pdf:about": "node scripts/generate-pdf.js --page=about",
-    "pdf:all": "node scripts/generate-pdf.js --all"
+    "build:html": "hugo --minify",
+    "build:cv": "node scripts/generate-pdf.js",
+    "build": "npm run build:html && npm run build:cv"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.13",
