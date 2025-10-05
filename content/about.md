@@ -1,7 +1,7 @@
 ---
-title: "CV - Développeur Backend"
+title: "A Propos"
 subtitle: "Découvrez mon parcours, mes compétences et mes réalisations dans le développement backend."
-badge: "CV"
+badge: "A propos"
 date: 2025-09-25
 draft: false
 
