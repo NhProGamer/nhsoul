@@ -6,7 +6,7 @@
     "dev": "hugo server -D",
     "build:html": "hugo --minify",
     "build:cv": "node scripts/generate-pdf.js",
-    "build": "npm run build:html && npm run build:cv"
+    "build": "npm run build:html && npm run build:cv && npm run build:html"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.13",
