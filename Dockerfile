@@ -1,41 +1,48 @@
 # Étape 1 : Build du site Hugo + PDF
 FROM node:20-alpine AS builder
 
-# Installer Hugo + dépendances Puppeteer
+# Installer Hugo + dépendances Puppeteer + pnpm
 RUN apk add --no-cache hugo \
     chromium \
     nss \
     freetype \
     harfbuzz \
     ca-certificates \
-    ttf-freefont
+    ttf-freefont \
+    bash \
+    curl \
+    git \
+  && corepack enable \
+  && corepack prepare pnpm@latest --activate
 
 WORKDIR /app
 
-# Copier d’abord les fichiers de dépendances
-COPY package*.json ./
-RUN npm i
+# Copier uniquement package.json pour le cache
+COPY package.json ./
 
-# Copier tout le projet
+# Installer les dépendances avec pnpm
+RUN pnpm install
+
+# Copier tout le projet (Hugo + scripts + contenu)
 COPY . .
 
 # Configurer Puppeteer pour utiliser Chromium installé
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
-# Build Hugo + PDF
-RUN npm run build
+# Build du site + PDF
+RUN pnpm run build
 
-# Étape 2 : Image finale (serveur web)
+# Étape 2 : Image finale légère avec Nginx
 FROM nginx:alpine
 
-# Ajouter un label d’auteur conforme OCI
+# Label auteur
 LABEL authors="nhpro"
 
-# Copier le site statique généré vers le dossier web de Nginx
+# Copier le site généré
 COPY --from=builder /app/public /usr/share/nginx/html
 
-# Exposer le port 80
+# Exposer le port HTTP
 EXPOSE 80
 
-# Lancer Nginx en mode premier plan
+# Lancer Nginx
 CMD ["nginx", "-g", "daemon off;"]
