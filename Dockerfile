@@ -14,7 +14,7 @@ WORKDIR /app
 
 # Copier d’abord les fichiers de dépendances
 COPY package*.json ./
-RUN npm ci
+RUN npm i
 
 # Copier tout le projet
 COPY . .
