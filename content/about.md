@@ -10,7 +10,7 @@ profile:
   location: "Lens, France"
   experience: "BUT Informatique 2e année"
   email: "votre.email@exemple.com"
-  linkedin: "https://linkedin.com/in/neo.huyghe"
+  linkedin: "https://linkedin.com/in/neo-huyghe"
   github: "https://github.com/NhProGamer"
   phone: ""
 
