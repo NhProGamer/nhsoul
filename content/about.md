@@ -108,7 +108,6 @@ Actuellement en **BUT Informatique 2e année** à Lens, je combine formation aca
 - Architecture **backend et frontend** complète
 - Système de **codes d'accès** pour la formation
 - Gestion des utilisateurs et progression
-- Interface d'administration avancée
 
 #### 🐺 Jeu de Loup Garou en Ligne *(En cours)*
 **Technologies:** Architecture hexagonale, WebSockets
@@ -116,6 +115,12 @@ Actuellement en **BUT Informatique 2e année** à Lens, je combine formation aca
 - Gestion temps réel avec **WebSockets**
 - Système de salles multijoueurs
 - Logique de jeu complexe et états synchronisés
+
+#### 📚 Site E-Commerce pour BaggyDessine
+**Technologies:** Backend complet en golang
+- Architecture **backend et frontend** complète
+- Automatisation des achats d'articles avec Stripe
+- Gestion des produits avec Stripe
 
 ## Compétences transversales
 
@@ -132,20 +137,15 @@ Actuellement en **BUT Informatique 2e année** à Lens, je combine formation aca
 
 ## Ma valeur ajoutée
 
-✅ **Expérience précoce** - 7 ans de pratique depuis l'adolescence  
-✅ **Passion authentique** - Projets personnels ambitieux aboutis  
-✅ **Polyvalence technique** - Adaptation rapide aux nouvelles technologies  
-✅ **Vision produit** - Focus sur l'expérience utilisateur et l'impact réel  
-✅ **Mentalité d'ingénieur** - Approche méthodique et créative des problèmes
+✅ **Expérience précoce** : 7 ans de pratique depuis l'adolescence  
+✅ **Passion authentique** : Projets personnels ambitieux aboutis  
+✅ **Polyvalence technique** : Adaptation rapide aux nouvelles technologies  
+✅ **Vision produit** : Focus sur l'expérience utilisateur et l'impact réel  
+✅ **Mentalité d'ingénieur** : Approche méthodique et créative des problèmes
 
 ## Philosophie de développement
 
 *"La simplicité est la sophistication ultime"*
-
-Mon approche se base sur trois piliers :
-1. **Comprendre** le problème dans sa globalité
-2. **Concevoir** la solution la plus élégante possible
-3. **Livrer** du code de qualité, lisible et performant
 
 C'est cette combinaison entre ingénierie rigoureuse et créativité technique qui me motive le plus dans le développement backend.
 
@@ -155,4 +155,4 @@ C'est cette combinaison entre ingénierie rigoureuse et créativité technique q
 
 ---
 
-*Disponible pour une alternance - Contactez-moi pour discuter de vos projets !*
+*Disponible pour une alternance*

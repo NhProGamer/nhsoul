@@ -81,6 +81,8 @@ projects:
     description: "Développement complet backend/frontend, système d'authentification et codes d'accès, gestion des utilisateurs et progression."
   - title: "Jeu de Loup Garou en Ligne (En cours)"
     description: "Architecture port & adapters avec WebSockets, gestion temps réel de salles multijoueurs et logique de jeu complexe."
+  - title: "Site E-Commerce BaggyDessine"
+    description: "Site E-Commerce simple automatisé avec Stripe, backend golang, frontend html, css, js. shop.baggydessine.fr"
 ---
 
 Développeur backend autodidacte avec **7 ans d'expérience** (depuis mes 12 ans), spécialisé dans la création de systèmes robustes et performants.
@@ -88,11 +90,13 @@ Je travaille principalement avec **Golang** et **Node.js**, et j'ai conçu de no
 Actuellement en **BUT Informatique 2e année** à Lens, je combine formation académique et expérience pratique.
 
 **Ma valeur ajoutée**
-Expérience précoce - 7 ans de pratique depuis l'adolescence
-Passion authentique - Projets personnels ambitieux
-Veille technologique - Adaptation rapide aux nouvelles technologies
-Vision produit - Focus sur l'expérience utilisateur et l'impact réel
-Mentalité d'ingénieur - Approche méthodique et créative des problèmes
+Expérience précoce : 7 ans de pratique depuis l'adolescence
+Passion authentique : Projets personnels ambitieux
+Veille technologique : Adaptation rapide aux nouvelles technologies
+Vision produit : Focus sur l'expérience utilisateur et l'impact réel
+Mentalité d'ingénieur : Approche méthodique et créative des problèmes
 
 Ma philosophie de développement
 *La simplicité est la sophistication ultime*
+
+Pour plus de détails, passez voir mon site portfolio [nhsoul.fr](https://nhsoul.fr)
