@@ -10,9 +10,9 @@ profile:
   location: "Lens, France"
   experience: "BUT Informatique 2e année"
   email: "votre.email@exemple.com"
-  linkedin: "https://linkedin.com/in/votre-profil"
-  github: "https://github.com/votre-username"
-  phone: "+33 X XX XX XX XX"
+  linkedin: "https://linkedin.com/in/neo.huyghe"
+  github: "https://github.com/NhProGamer"
+  phone: ""
 
 skills:
   - name: "Golang"
