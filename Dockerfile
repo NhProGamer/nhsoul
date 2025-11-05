@@ -9,6 +9,7 @@ RUN apk add --no-cache hugo \
     harfbuzz \
     ca-certificates \
     ttf-freefont \
+    font-noto-emoji \
     bash \
     curl \
     git \
