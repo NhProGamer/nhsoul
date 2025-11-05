@@ -68,33 +68,35 @@ education:
     year: "2024"
     mention: "Mention Bien"
 
-experience:
-  - title: "Développeur Backend Autodidacte"
-    company: "Projets personnels"
-    duration: "2018 - Présent"
-    description: "7 ans d'expérience pratique en développement backend"
+#experience:
+#  - title: "Développeur Backend Autodidacte"
+#    company: "Projets personnels"
+#    duration: "2018 - Présent"
+#    description: "7 ans d'expérience pratique en développement backend"
 
-projects:
+projects_perso:
   - title: "Launcher Minecraft Personnalisé (En cours)"
     description: "Migration complète d'Electron vers Go/Wails, interface native multiplateforme, gestion des profils et modpacks."
-  - title: "Plateforme de Formation BaggyDessine"
-    description: "Développement complet backend/frontend, système d'authentification et codes d'accès, gestion des utilisateurs et progression."
   - title: "Jeu de Loup Garou en Ligne (En cours)"
     description: "Architecture port & adapters avec WebSockets, gestion temps réel de salles multijoueurs et logique de jeu complexe."
+
+projects_pro:
+  - title: "Plateforme de Formation BaggyDessine"
+    description: "Développement complet backend/frontend, système d'authentification et codes d'accès, gestion des utilisateurs et progression."
   - title: "Site E-Commerce BaggyDessine"
     description: "Site E-Commerce simple automatisé avec Stripe, backend golang, frontend html, css, js. shop.baggydessine.fr"
+
+
 ---
 
 Développeur backend autodidacte avec **7 ans d'expérience** (depuis mes 12 ans), spécialisé dans la création de systèmes robustes et performants.
-Je travaille principalement avec **Golang** et **Node.js**, et j'ai conçu de nombreux projets personnels ambitieux.
+Je travaille principalement avec **Golang** et **Node.js**, et j'ai conçu de nombreux projets personnels.
 Actuellement en **BUT Informatique 2e année** à Lens, je combine formation académique et expérience pratique.
 
 **Ma valeur ajoutée**
-Expérience précoce : 7 ans de pratique depuis l'adolescence
-Passion authentique : Projets personnels ambitieux
+Expérience précoce : **7 ans de pratique** depuis l'adolescence
 Veille technologique : Adaptation rapide aux nouvelles technologies
-Vision produit : Focus sur l'expérience utilisateur et l'impact réel
-Mentalité d'ingénieur : Approche méthodique et créative des problèmes
+Autodidacte : depuis mes 12 ans, je ne cesse de me renseigner sur des sujets de l'IT
 
 Ma philosophie de développement
 *La simplicité est la sophistication ultime*
