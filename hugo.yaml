@@ -13,7 +13,7 @@ params:
   birthdate: "2006-02-05"
   description: "Développeur backend passionné"
   bio: "Je construis des systèmes robustes et performants avec Node.js, Python et Go. J'aime résoudre des problèmes complexes et partager mes connaissances."
-  languages: ["Java", "Node.js", "C#", "Python", "Golang"]
+  languages: ["Java", "JavaScript", "HTML", "CSS", "Python", "C#", "Go"]
   chip: "Développeur Backend"
 
   term:
