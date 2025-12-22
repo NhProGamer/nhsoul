@@ -6,15 +6,18 @@
     "dev": "hugo server -D",
     "build:html": "hugo --minify",
     "build:cv": "node scripts/generate-pdf.js",
-    "build": "npm run build:html && npm run build:cv && npm run build:html"
+    "build:js": "node scripts/build-js.js",
+    "build": "npm run build:js && npm run build:html && npm run build:cv && npm run build:html"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.13",
-    "tailwindcss": "^4.1.13",
-    "puppeteer": "^21.6.1",
-    "yargs": "^17.7.2",
     "chalk": "^4.1.2",
-    "ora": "^5.4.1"
+    "esbuild": "^0.27.2",
+    "ora": "^5.4.1",
+    "particles.js": "^2.0.0",
+    "puppeteer": "^21.6.1",
+    "tailwindcss": "^4.1.13",
+    "yargs": "^17.7.2"
   },
   "engines": {
     "node": ">=16.0.0"
