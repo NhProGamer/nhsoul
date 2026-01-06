@@ -18,10 +18,15 @@ const CONFIG = {
 
     // Pages à capturer
     pages: {
-        about: {
+        cv: {
             url: '/cv',
             filename: 'cv.png',
-            title: 'À Propos - Mon Parcours'
+            title: 'CV - Néo Huyghe'
+        },
+        cv_en: {
+            url: '/en/cv',
+            filename: 'cv-en.png',
+            title: 'CV - Néo Huyghe'
         },
     },
 };
