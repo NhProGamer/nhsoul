@@ -57,6 +57,7 @@ technologies:
     - "Express.js"
     - "Wails"
     - "FastAPI"
+    - "Vue.js"
 
 education:
   - degree: "BUT Informatique"
@@ -79,6 +80,8 @@ projects_perso:
     description: "Migration complète d'Electron vers Go/Wails, interface native multiplateforme, gestion des profils et modpacks."
   - title: "Jeu de Loup Garou en Ligne (En cours)"
     description: "Architecture port & adapters avec WebSockets, gestion temps réel de salles multijoueurs et logique de jeu complexe."
+  - title: "NatsBridge"
+    description: "Plugin Minecraft et librarie servant pour l'utilisation de NATS simplifié dans l'ecosystème minecraft"
 
 projects_pro:
   - title: "Plateforme de Formation BaggyDessine"
