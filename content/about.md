@@ -12,6 +12,7 @@ profile:
   email: "contact@nhsoul.fr"
   linkedin: "https://linkedin.com/in/neo-huyghe"
   github: "https://github.com/NhProGamer"
+  profile_picture: "https://avatars.githubusercontent.com/u/44909803"
   phone: ""
 
 skills:
