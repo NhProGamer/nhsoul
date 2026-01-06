@@ -82,9 +82,11 @@ projects_perso:
 
 projects_pro:
   - title: "Plateforme de Formation BaggyDessine"
-    description: "Développement complet backend/frontend, système d'authentification et codes d'accès, gestion des utilisateurs et progression."
+    description: "Développement complet backend/frontend, système d'authentification et codes d'accès, gestion des utilisateurs et progression. clown.school"
   - title: "Site E-Commerce BaggyDessine"
     description: "Site E-Commerce simple automatisé avec Stripe, backend golang, frontend html, css, js. shop.baggydessine.fr"
+  - title: "Site E-Commerce Bleitsan"
+    description: "Site E-Commerce simple automatisé avec Stripe, backend golang, frontend vue.js. bleitsan.fr"
 
 
 ---
