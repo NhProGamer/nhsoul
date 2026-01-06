@@ -9,7 +9,7 @@ profile:
   title: "Développeur Backend"
   location: "Lens, France"
   experience: "BUT Informatique 2e année"
-  email: "votre.email@exemple.com"
+  email: "contact@nhsoul.fr"
   linkedin: "https://linkedin.com/in/neo-huyghe"
   github: "https://github.com/NhProGamer"
   phone: ""
