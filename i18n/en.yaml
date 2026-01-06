@@ -1,0 +1,98 @@
+- id: nav_home
+  translation: "Home"
+- id: nav_expertise
+  translation: "Expertise"
+- id: nav_blog
+  translation: "Blog"
+- id: nav_tools
+  translation: "Tools"
+- id: nav_about
+  translation: "About"
+
+# Hero Section
+- id: hero_chip
+  translation: "Backend Developer"
+- id: hero_title_suffix
+  translation: "Passionate Backend Developer"
+- id: hero_description
+  translation: "I build robust and performant systems with Node.js, Python and Go. I love solving complex problems and sharing my knowledge."
+- id: hero_years_experience
+  translation: "Years of experience"
+- id: hero_languages
+  translation: "Languages"
+- id: hero_cta_projects
+  translation: "See my work"
+- id: hero_cta_cv
+  translation: "My CV"
+- id: hero_terminal_age
+  translation: "age"
+- id: hero_terminal_languages
+  translation: "languages"
+
+# Expertise Section
+- id: expertise_badge
+  translation: "Expertise"
+- id: expertise_title
+  translation: "My Areas of Expertise"
+- id: expertise_description
+  translation: "Discover the technologies and methodologies I master to create robust and performant backend solutions."
+
+# Footer
+- id: footer_rights
+  translation: "All rights reserved."
+
+# Blog Section
+- id: blog_badge
+  translation: "Blog"
+- id: blog_latest_title
+  translation: "My latest posts"
+- id: blog_description
+  translation: "I write about backend development, my personal and professional projects, my learnings and technical discoveries."
+- id: blog_read_more
+  translation: "Read post"
+- id: blog_view_all
+  translation: "See all posts"
+
+# About Sidebar
+- id: about_age
+  translation: "Age"
+- id: about_location
+  translation: "Location"
+- id: about_exp_label
+  translation: "Exp"
+- id: about_experience_title
+  translation: "Experience"
+- id: about_education_title
+  translation: "Education"
+- id: about_skills_title
+  translation: "Skills"
+- id: about_soft_skills_title
+  translation: "Soft Skills"
+- id: about_technologies_title
+  translation: "Technologies"
+- id: about_contact_title
+  translation: "Need to talk?"
+- id: about_contact_button
+  translation: "Contact me"
+
+# CV Section
+- id: cv_job_status
+  translation: "Looking for work-study"
+- id: cv_skills_title
+  translation: "Skills 🛠️"
+- id: cv_soft_skills_title
+  translation: "Soft Skills 🎈"
+- id: cv_education_title
+  translation: "Education 🎓"
+- id: cv_technologies_title
+  translation: "Technologies 💻"
+- id: cv_profile_title
+  translation: "Profile 👤"
+- id: cv_experience_title
+  translation: "Experience 💼"
+- id: cv_personal_projects_title
+  translation: "Personal Projects 🛠️"
+- id: cv_professional_projects_title
+  translation: "Professional Projects 🏢"
+- id: cv_download_button
+  translation: "Download CV"

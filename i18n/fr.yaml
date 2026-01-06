@@ -1,0 +1,98 @@
+- id: nav_home
+  translation: "Accueil"
+- id: nav_expertise
+  translation: "Expertise"
+- id: nav_blog
+  translation: "Blog"
+- id: nav_tools
+  translation: "Outils"
+- id: nav_about
+  translation: "A Propos"
+
+# Hero Section
+- id: hero_chip
+  translation: "Développeur Backend"
+- id: hero_title_suffix
+  translation: "Développeur backend passionné"
+- id: hero_description
+  translation: "Je construis des systèmes robustes et performants avec Node.js, Python et Go. J'aime résoudre des problèmes complexes et partager mes connaissances."
+- id: hero_years_experience
+  translation: "Ans d'expérience"
+- id: hero_languages
+  translation: "Langages"
+- id: hero_cta_projects
+  translation: "Voir mes réalisations"
+- id: hero_cta_cv
+  translation: "Mon CV"
+- id: hero_terminal_age
+  translation: "age"
+- id: hero_terminal_languages
+  translation: "langages"
+
+# Expertise Section
+- id: expertise_badge
+  translation: "Expertise"
+- id: expertise_title
+  translation: "Mes domaines d'expertise"
+- id: expertise_description
+  translation: "Découvrez les technologies et méthodologies que je maîtrise pour créer des solutions backend robustes et performantes."
+
+# Footer
+- id: footer_rights
+  translation: "Tous droits réservés."
+
+# Blog Section
+- id: blog_badge
+  translation: "Blog"
+- id: blog_latest_title
+  translation: "Mes derniers articles"
+- id: blog_description
+  translation: "J'écris sur le développement backend, mes projets personnels et professionnels, mes apprentissages et mes découvertes techniques."
+- id: blog_read_more
+  translation: "Lire l'article"
+- id: blog_view_all
+  translation: "Voir tous les articles"
+
+# About Sidebar
+- id: about_age
+  translation: "Âge"
+- id: about_location
+  translation: "Lieu"
+- id: about_exp_label
+  translation: "Exp"
+- id: about_experience_title
+  translation: "Expérience"
+- id: about_education_title
+  translation: "Formation"
+- id: about_skills_title
+  translation: "Compétences"
+- id: about_soft_skills_title
+  translation: "Soft Skills"
+- id: about_technologies_title
+  translation: "Technologies"
+- id: about_contact_title
+  translation: "Besoin de parler ?"
+- id: about_contact_button
+  translation: "Contactez moi"
+
+# CV Section
+- id: cv_job_status
+  translation: "En recherche d'alternance"
+- id: cv_skills_title
+  translation: "Compétences 🛠️"
+- id: cv_soft_skills_title
+  translation: "Soft Skills 🎈"
+- id: cv_education_title
+  translation: "Formation 🎓"
+- id: cv_technologies_title
+  translation: "Technologies 💻"
+- id: cv_profile_title
+  translation: "Profil 👤"
+- id: cv_experience_title
+  translation: "Expérience 💼"
+- id: cv_personal_projects_title
+  translation: "Projets Personnels 🛠️"
+- id: cv_professional_projects_title
+  translation: "Projets Profesionnels 🏢"
+- id: cv_download_button
+  translation: "Télécharger le CV"
