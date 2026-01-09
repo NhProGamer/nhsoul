@@ -79,20 +79,18 @@
 - id: cv_job_status
   translation: "Looking for work-study"
 - id: cv_skills_title
-  translation: "Skills 🛠️"
+  translation: "Skills"
 - id: cv_soft_skills_title
-  translation: "Soft Skills 🎈"
+  translation: "Soft Skills"
 - id: cv_education_title
-  translation: "Education 🎓"
+  translation: "Education"
 - id: cv_technologies_title
-  translation: "Technologies 💻"
+  translation: "Technologies"
 - id: cv_profile_title
-  translation: "Profile 👤"
+  translation: "Profile"
 - id: cv_experience_title
-  translation: "Experience 💼"
-- id: cv_personal_projects_title
-  translation: "Personal Projects 🛠️"
-- id: cv_professional_projects_title
-  translation: "Professional Projects 🏢"
+  translation: "Experience"
+- id: cv_projects_title
+  translation: "Projects"
 - id: cv_download_button
   translation: "Download CV"
