@@ -77,7 +77,7 @@
 
 # CV Section
 - id: cv_job_status
-  translation: "En recherche d'alternance"
+  translation: "En recherche de stage / alternance"
 - id: cv_skills_title
   translation: "Compétences 🛠️"
 - id: cv_soft_skills_title
