@@ -38,10 +38,12 @@ soft_skills:
 
 technologies:
   backend:
-    - "Node.js"
-    - "Python"
-    - "Golang"
-    - "Java"
+    - "REST APIs"
+    - "Protobuf"
+    - "Microservices"
+    - "NATS Messaging"
+    - "JWT Auth"
+    - "OAuth2 / OIDC"
   databases:
     - "PostgreSQL"
     - "MySQL"
@@ -49,15 +51,17 @@ technologies:
     - "MongoDB"
   tools:
     - "Docker"
+    - "Docker Compose"
     - "Git"
     - "Linux"
     - "NATS"
   frameworks:
     - "Gin (Go)"
     - "Express.js"
-    - "Wails"
+    - "Wails (GO)"
     - "FastAPI"
     - "Vue.js"
+    - "Flask"
 
 education:
   - degree: "BUT Informatique"
@@ -87,23 +91,23 @@ projects_pro:
   - title: "Plateforme de Formation BaggyDessine"
     description: "Développement complet backend/frontend, système d'authentification et codes d'accès, gestion des utilisateurs et progression. clown.school"
   - title: "Site E-Commerce BaggyDessine"
-    description: "Site E-Commerce simple automatisé avec Stripe, backend golang, frontend html, css, js. shop.baggydessine.fr"
+    description: "Site E-Commerce simple automatisé avec Stripe, backend golang, frontend HTML, CSS, Js. shop.baggydessine.fr"
   - title: "Site E-Commerce Bleitsan"
-    description: "Site E-Commerce simple automatisé avec Stripe, backend golang, frontend vue.js. bleitsan.fr"
+    description: "Site E-Commerce simple automatisé avec Stripe, backend Golang, frontend vue.js. bleitsan.fr"
 
 
 ---
 
-Développeur backend autodidacte avec **7 ans d'expérience** (depuis mes 12 ans), spécialisé dans la création de systèmes robustes et performants.
-Je travaille principalement avec **Golang** et **Node.js**, et j'ai conçu de nombreux projets personnels.
-Actuellement en **BUT Informatique 2e année** à Lens, je combine formation académique et expérience pratique.
+Développeur backend autodidacte avec **7 ans d'expérience** (depuis mes 12 ans), spécialisé dans la création de systèmes robustes et performants en **Golang** et **Node.js**.
+
+J'ai réalisé de nombreux **projets professionnels rémunérés** via ma micro-entreprise, entièrement sur mon temps libre. Actuellement sans contrat, je suis en **BUT Informatique 2e année** à Lens ; pendant mes stages ou alternances, je n'accepte aucun contrat freelance.
 
 **Ma valeur ajoutée**
-Expérience précoce : **7 ans de pratique** depuis l'adolescence
-Veille technologique : Adaptation rapide aux nouvelles technologies
-Autodidacte : depuis mes 12 ans, je ne cesse de me renseigner sur des sujets de l'IT
+_Expérience précoce_ : **7 ans de pratique** intensive depuis l'adolescence.
+_Veille technologique_ : Adaptation rapide aux nouveautés IT.
+_Autodidacte_ : Apprentissage continu depuis mes 12 ans.
 
-Ma philosophie de développement
-*La simplicité est la sophistication ultime*
+**Ma philosophie de développement**
+_La simplicité est la sophistication ultime_
 
-Pour plus de détails, passez voir mon site portfolio [nhsoul.fr](https://nhsoul.fr)
+Découvrez mes projets sur **[nhsoul.fr](https://nhsoul.fr)**.
