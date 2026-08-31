@@ -1,1 +1,10 @@
 /public/
+node_modules/
+hugo_stats.json
+.hugo_build.lock
+
+# Artefacts generes par build:cv (scripts/generate-pdf.js -> static/images)
+/static/images/cv.png
+/static/images/cv.pdf
+/static/images/cv-en.png
+/static/images/cv-en.pdf

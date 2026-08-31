@@ -45,7 +45,7 @@ class PDFGenerator {
 
         this.spinner = ora('Initialisation du navigateur...').start();
         this.browser = await puppeteer.launch({
-            headless: 'new',
+            headless: true,
             args: ['--no-sandbox', '--disable-setuid-sandbox']
         });
         this.spinner.succeed('Navigateur initialisé');
@@ -150,6 +150,11 @@ class PDFGenerator {
     `
             });
 
+            // Les webfonts (Inter) doivent etre chargees AVANT la capture : avec la
+            // police de repli, le texte se rompt differemment et deborde de l'A4.
+            // networkidle0 ne suffit pas, il peut se declencher polices non pretes.
+            await page.evaluate(() => document.fonts.ready);
+
             const screenshotBuffer = await page.screenshot({
                 fullPage: true,
                 type: 'png',
@@ -228,6 +233,9 @@ class PDFGenerator {
                 }
             `
             });
+
+            // Idem capture : sans polices pretes, la mise en page deborde sur 2 pages.
+            await page.evaluate(() => document.fonts.ready);
 
             // Génération PDF
             const outputPath = path.join(CONFIG.outputDir, pageConfig.filename.replace(/\.png$/, '.pdf'));
