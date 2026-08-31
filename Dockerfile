@@ -14,7 +14,7 @@ RUN apk add --no-cache hugo \
     curl \
     git \
   && corepack enable \
-  && corepack prepare pnpm@latest --activate
+  && corepack prepare pnpm@10.21.0 --activate
 
 WORKDIR /app
 
