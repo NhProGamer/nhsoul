@@ -69,11 +69,11 @@ education:
     year: "2024"
     mention: "Mention Bien"
 
-#experience:
-#  - title: "Self-taught Backend Developer"
-#    company: "Personal Projects"
-#    duration: "2018 - Present"
-#    description: "7 years of practical experience in backend development"
+experience:
+  - title: "Developer Internship — Odoo & Generative AI"
+    company: "Groupe Elosi (IT services) — Villeneuve-d'Ascq, France"
+    duration: "Apr. - Jun. 2026"
+    description: "Sole developer of two Odoo 19 modules: a portal page builder (exposing any model with no code, auto-generating ir.rule / ACL security) and a multi-sheet Excel importer handling relational dependencies, with SQL savepoint dry-run mode and unit tests. Also built a local generative AI POC on NVIDIA DGX Spark (vLLM, NVFP4 quantization, OpenAI-compatible API) and assessed AI-related tender feasibility."
 
 projects_perso:
   - title: "Custom Minecraft Launcher (In progress)"

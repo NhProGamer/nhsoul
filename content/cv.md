@@ -73,11 +73,11 @@ education:
     year: "2024"
     mention: "Mention Bien"
 
-#experience:
-#  - title: "Développeur Backend Autodidacte"
-#    company: "Projets personnels"
-#    duration: "2018 - Présent"
-#    description: "7 ans d'expérience pratique en développement backend"
+experience:
+  - title: "Stage Développeur — Odoo & IA générative"
+    company: "Groupe Elosi (ESN) — Centre de Services, Villeneuve-d'Ascq"
+    duration: "Avr. - Juin 2026"
+    description: "Développement seul de deux modules Odoo 19 : un générateur de pages portail (exposition de n'importe quel modèle sans code, avec génération automatique des ir.rule / ACL) et un importeur Excel multi-feuilles gérant les dépendances relationnelles, avec mode simulation par savepoint SQL et tests unitaires. En parallèle, POC d'IA générative locale sur NVIDIA DGX Spark (vLLM, quantification NVFP4, API compatible OpenAI) et analyse de faisabilité d'appels d'offres orientés IA."
 
 projects_perso:
   - title: "Launcher Minecraft Personnalisé (En cours)"
