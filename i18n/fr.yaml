@@ -90,6 +90,8 @@
   translation: "Profil 👤"
 - id: cv_experience_title
   translation: "Expérience 💼"
+- id: cv_projects_title
+  translation: "Projets Réalisés 📁"
 - id: cv_personal_projects_title
   translation: "Projets Personnels 🛠️"
 - id: cv_professional_projects_title
