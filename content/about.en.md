@@ -62,9 +62,9 @@ technologies:
 education:
   - degree: "BUT Computer Science"
     school: "IUT de Lens"
-    year: "2024-2026"
-    status: "2nd year in progress"
-  - degree: "Baccalaureate"
+    year: "2024-2027"
+    status: "3rd year in progress"
+  - degree: "Baccalaureate General"
     school: "Lycée Wingles"
     year: "2024"
     mention: "Mention Bien"
