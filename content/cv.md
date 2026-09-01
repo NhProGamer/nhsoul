@@ -66,9 +66,9 @@ technologies:
 education:
   - degree: "BUT Informatique"
     school: "IUT de Lens"
-    year: "2024-2026"
-    status: "2e année en cours"
-  - degree: "Baccalauréat"
+    year: "2024-2027"
+    status: "3e année en cours"
+  - degree: "Baccalauréat Général"
     school: "Lycée Wingles"
     year: "2024"
     mention: "Mention Bien"
