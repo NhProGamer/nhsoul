@@ -1,0 +1,119 @@
+# orion — traductions par défaut (français).
+# Le site peut surcharger n'importe quelle clé via son propre i18n/fr.yaml.
+
+# ── Navigation ──
+nav_home: "Accueil"
+nav_expertise: "Expertise"
+nav_blog: "Blog"
+nav_tools: "Outils"
+nav_about: "À propos"
+nav_cv: "CV"
+nav_projects: "Projets"
+nav_main: "Navigation principale"
+nav_menu: "Ouvrir le menu"
+nav_language: "Langue"
+nav_toggle_theme: "Basculer le thème clair / sombre"
+
+# ── Accueil ──
+availability_open: "Disponible"
+availability_soon: "Bientôt disponible"
+availability_closed: "Indisponible"
+hero_title_suffix: "Développeur backend"
+hero_description: "Je construis des systèmes robustes et performants."
+hero_years_experience: "Ans d'expérience"
+hero_languages: "Langages"
+hero_cta_projects: "Voir mes réalisations"
+hero_cta_cv: "Mon CV"
+hero_terminal_age: "age"
+hero_terminal_languages: "langages"
+
+# ── Expertise ──
+expertise_badge: "Expertise"
+expertise_title: "Mes domaines d'expertise"
+expertise_description: "Les technologies et méthodologies que je maîtrise."
+
+# ── Blog ──
+blog_badge: "Blog"
+blog_latest_title: "Mes derniers articles"
+blog_description: "J'écris sur le développement backend, mes projets et mes apprentissages."
+blog_read_more: "Lire l'article"
+blog_view_all: "Voir tous les articles"
+
+# ── Article ──
+post_tags_title: "Tags"
+post_nav_label: "Navigation entre articles"
+post_prev: "Article précédent"
+post_next: "Article suivant"
+reading_time_unit: "min"
+
+# ── Pagination ──
+pagination_label: "Pagination"
+pagination_prev: "Précédent"
+pagination_next: "Suivant"
+
+# ── Formats de date ──
+date_format_short: "2 Jan 2006"
+date_format_long: "2 January 2006"
+
+# ── Projets ──
+projects_badge: "Projets"
+projects_title: "Mes réalisations récentes"
+projects_description: "Quelques projets sur lesquels j'ai travaillé."
+projects_read_more: "Voir le projet"
+projects_view_all: "Voir tous les projets"
+projects_repo: "Code source"
+
+# ── Contact ──
+contact_badge: "Contact"
+contact_title: "Travaillons ensemble"
+contact_description: "Un projet backend ou une question technique ? Écris-moi."
+contact_field_name: "Nom"
+contact_field_email: "Email"
+contact_field_subject: "Sujet"
+contact_field_message: "Message"
+contact_submit: "Envoyer le message"
+contact_direct_lead: "Le plus simple reste le mail direct."
+
+# ── À propos ──
+about_badge: "À propos"
+about_age: "Âge"
+about_age_value:
+  one: "{{ .Count }} an"
+  other: "{{ .Count }} ans"
+about_location: "Lieu"
+about_exp_label: "Exp"
+about_experience_title: "Expérience"
+about_education_title: "Formation"
+about_skills_title: "Compétences"
+about_soft_skills_title: "Soft skills"
+about_technologies_title: "Technologies"
+about_contact_title: "Besoin de parler ?"
+about_contact_button: "Me contacter"
+
+# ── Outils ──
+tools_badge: "Mes outils"
+tools_stat_tools: "Outils"
+tools_stat_categories: "Catégories"
+tools_empty_title: "Aucune catégorie d'outils configurée."
+tools_empty_sub: "Ajoute des catégories dans le front matter de la page."
+
+# ── 404 ──
+notfound_title: "Page introuvable"
+notfound_lead: "Cette page n'existe pas, ou plus. Le lien est peut-être obsolète."
+notfound_cta: "Retour à l'accueil"
+
+# ── Pied de page ──
+footer_rights: "Tous droits réservés."
+
+# ── CV ──
+cv_job_status: "En recherche de stage / alternance"
+cv_profile_title: "Profil"
+cv_experience_title: "Expérience"
+cv_projects_title: "Projets réalisés"
+cv_personal_projects_title: "Projets personnels"
+cv_professional_projects_title: "Projets professionnels"
+cv_skills_title: "Compétences"
+cv_soft_skills_title: "Soft skills"
+cv_education_title: "Formation"
+cv_technologies_title: "Technologies"
+cv_download_button: "Télécharger le CV"

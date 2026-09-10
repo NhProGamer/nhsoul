@@ -1,0 +1,22 @@
+{{/* Définitions SVG partagées — incluses une seule fois par page (baseof).
+     Un seul dégradé pour toutes les instances de la marque : pas d'ID dupliqué,
+     même quand la page affiche dix étoiles. */}}
+<svg width="0" height="0" aria-hidden="true" focusable="false"
+     style="position:absolute;overflow:hidden">
+    <defs>
+        {{/* Dégradé officiel : accent-hi → accent-lo, 135° (règle 03) */}}
+        <linearGradient id="or-mark-grad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="var(--or-accent-hi)" />
+            <stop offset="100%" stop-color="var(--or-accent-lo)" />
+        </linearGradient>
+        {{/* Lueur — la charte interdit d'aplatir le halo en ombre dure (§2.5) */}}
+        <filter id="or-mark-glow" x="-70%" y="-70%" width="240%" height="240%">
+            <feGaussianBlur stdDeviation="0.9" result="b" />
+            <feMerge>
+                <feMergeNode in="b" />
+                <feMergeNode in="b" />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter>
+    </defs>
+</svg>

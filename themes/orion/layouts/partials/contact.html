@@ -1,0 +1,55 @@
+{{/* Contact — le formulaire n'est rendu que si params.contact.action est défini
+     (sinon il n'irait nulle part). Repli : lien mail direct. */}}
+{{ $contact := .Site.Params.contact | default dict }}
+{{ $action := $contact.action }}
+{{ $email := $contact.email | default (printf "contact@%s" (replaceRE "^https?://(www\\.)?" "" (trim .Site.BaseURL "/"))) }}
+<section id="contact" class="container mx-auto px-6 py-16">
+    {{ partial "section-head.html" (dict
+        "eyebrow" (i18n "contact_badge")
+        "title" (i18n "contact_title")
+        "lead" (i18n "contact_description")
+    ) }}
+
+    {{ if $action }}
+    <div class="max-w-2xl mx-auto or-card p-8">
+        <form action="{{ $action }}" method="POST">
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label for="contact-name" class="block mb-2 text-sm text-text-muted">{{ i18n "contact_field_name" }}</label>
+                    <input type="text" id="contact-name" name="name" required
+                        class="w-full bg-inset border border-border rounded-md px-4 py-3 text-text-primary focus:outline-none focus:border-primary focus:ring-3 focus:ring-primary/20 transition-colors">
+                </div>
+                <div>
+                    <label for="contact-email" class="block mb-2 text-sm text-text-muted">{{ i18n "contact_field_email" }}</label>
+                    <input type="email" id="contact-email" name="email" required
+                        class="w-full bg-inset border border-border rounded-md px-4 py-3 text-text-primary focus:outline-none focus:border-primary focus:ring-3 focus:ring-primary/20 transition-colors">
+                </div>
+            </div>
+            <div class="mb-6">
+                <label for="contact-subject" class="block mb-2 text-sm text-text-muted">{{ i18n "contact_field_subject" }}</label>
+                <input type="text" id="contact-subject" name="subject"
+                    class="w-full bg-inset border border-border rounded-md px-4 py-3 text-text-primary focus:outline-none focus:border-primary focus:ring-3 focus:ring-primary/20 transition-colors">
+            </div>
+            <div class="mb-6">
+                <label for="contact-message" class="block mb-2 text-sm text-text-muted">{{ i18n "contact_field_message" }}</label>
+                <textarea id="contact-message" name="message" rows="5" required
+                    class="w-full bg-inset border border-border rounded-md px-4 py-3 text-text-primary focus:outline-none focus:border-primary focus:ring-3 focus:ring-primary/20 transition-colors"></textarea>
+            </div>
+            <button type="submit" class="or-cta w-full px-6 py-3 rounded-md bg-primary hover:bg-primary-dark font-medium transition-all duration-200">
+                {{ i18n "contact_submit" }}
+            </button>
+        </form>
+    </div>
+    {{ else }}
+    <div class="max-w-xl mx-auto or-card p-8 text-center">
+        <p class="text-text-secondary mb-6">{{ i18n "contact_direct_lead" }}</p>
+        <a href="mailto:{{ $email }}"
+            class="or-cta inline-flex items-center gap-2 px-6 py-3 rounded-md bg-primary hover:bg-primary-dark font-medium transition-all duration-200">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <span class="font-mono text-sm">{{ $email }}</span>
+        </a>
+    </div>
+    {{ end }}
+</section>

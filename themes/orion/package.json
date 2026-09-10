@@ -1,0 +1,16 @@
+{
+  "name": "orion-theme",
+  "version": "1.0.0",
+  "description": "orion \u2014 Hugo theme built on the OrionAuth \"Nebula\" design system",
+  "license": "GPL-3.0-only",
+  "scripts": {
+    "build:js": "node scripts/build-js.js",
+    "build": "npm run build:js",
+    "build:og": "node scripts/build-og.js"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.13",
+    "esbuild": "^0.27.2",
+    "tailwindcss": "^4.1.13"
+  }
+}

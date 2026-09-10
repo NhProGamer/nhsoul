@@ -1,0 +1,17 @@
+{{/* Liste de langues à plat (menu mobile) — même résolution d'URL que le
+     sélecteur desktop, la langue courante étant simplement mise en avant. */}}
+<div class="flex space-x-4">
+    {{ range hugo.Sites }}
+    {{ $target := . }}
+    {{ $url := $target.Home.RelPermalink }}
+    {{ range $.Page.AllTranslations }}
+    {{ if eq .Language.Lang $target.Language.Lang }}{{ $url = .RelPermalink }}{{ end }}
+    {{ end }}
+    {{ $current := eq $target.Language.Lang $.Site.Language.Lang }}
+    <a href="{{ $url }}"
+        class="text-sm {{ if $current }}text-primary font-bold{{ else }}text-text-secondary hover:text-primary{{ end }}"
+        {{ if $current }}aria-current="true"{{ end }}>
+        {{ .Language.Label | default .Language.Lang }}
+    </a>
+    {{ end }}
+</div>

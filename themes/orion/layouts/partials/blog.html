@@ -1,0 +1,50 @@
+<section id="blog" class="container mx-auto px-6 py-16">
+    {{ partial "section-head.html" (dict
+        "eyebrow" (i18n "blog_badge")
+        "title" (i18n "blog_latest_title")
+        "lead" (i18n "blog_description")
+    ) }}
+
+    <div class="grid md:grid-cols-2 gap-8">
+        {{ range first 2 (where .Site.RegularPages "Section" "blog") }}
+        {{ $page := . }}
+        <a href="{{ $page.RelPermalink }}" class="or-card group block overflow-hidden">
+            {{ with $page.Params.featured_image }}
+            {{ with $page.Resources.GetMatch . }}
+            <img src="{{ .RelPermalink }}" alt="{{ $page.Title }}" class="w-full h-48 object-cover" loading="lazy">
+            {{ end }}
+            {{ end }}
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-4 gap-3">
+                    {{ with index $page.Params.tags 0 }}
+                    <span class="or-badge or-badge-accent">{{ . }}</span>
+                    {{ end }}
+                    <time class="text-xs font-mono text-text-faint" datetime="{{ $page.Date.Format "2006-01-02" }}">
+                        {{ $page.Date.Format (i18n "date_format_short") }}
+                    </time>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">{{ $page.Title }}</h3>
+                <p class="text-text-secondary mb-6 leading-relaxed">{{ $page.Summary }}</p>
+                <span class="inline-flex items-center text-primary font-medium group-hover:translate-x-1 transition-transform">
+                    {{ i18n "blog_read_more" }}
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7" />
+                    </svg>
+                </span>
+            </div>
+        </a>
+        {{ end }}
+    </div>
+
+    <div class="text-center mt-12">
+        <a href="{{ "/blog" | relLangURL }}"
+            class="inline-flex items-center px-6 py-3 rounded-md bg-surface hover:bg-raised border border-border hover:border-border-strong text-text-primary font-medium transition-colors group">
+            {{ i18n "blog_view_all" }}
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7" />
+            </svg>
+        </a>
+    </div>
+</section>

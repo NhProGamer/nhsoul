@@ -1,0 +1,29 @@
+{{/*
+  orion — étoile cardinale. La signature de la marque.
+
+  Étoile à 4 branches concaves : étoile cardinale (référence à Orion),
+  bouclier stylisé, point d'ancrage sur une grille. Proportions fixes,
+  jamais étirées (charte §2.5).
+
+  Appel :
+    {{ partial "mark.html" (dict "size" 22) }}
+    {{ partial "mark.html" (dict "size" 48 "variant" "grad" "glow" true) }}
+
+  Paramètres — tous optionnels :
+    size    px, appliqué en largeur ET hauteur (défaut 20)
+    variant "flat" (currentColor, défaut) ou "grad" (dégradé officiel)
+    glow    true pour la lueur — réservé aux usages signature ≥ 20 px
+    class   classes CSS supplémentaires
+    title   texte accessible ; sans lui, la marque est décorative
+*/}}
+{{- $size := .size | default 20 -}}
+{{- $variant := .variant | default "flat" -}}
+{{- $glow := .glow | default false -}}
+{{- $class := .class | default "" -}}
+{{- $title := .title -}}
+{{- $fill := cond (eq $variant "grad") "url(#or-mark-grad)" "currentColor" -}}
+<svg class="or-mark {{ $class }}" width="{{ $size }}" height="{{ $size }}" viewBox="0 0 32 32"
+    {{ if $title }}role="img" aria-label="{{ $title }}"{{ else }}aria-hidden="true" focusable="false"{{ end }}>
+    <path d="M16 .8C17.3 8.9 23.1 14.7 31.2 16 23.1 17.3 17.3 23.1 16 31.2 14.7 23.1 8.9 17.3 .8 16 8.9 14.7 14.7 8.9 16 .8Z"
+        fill="{{ $fill }}"{{ if $glow }} filter="url(#or-mark-glow)"{{ end }} />
+</svg>

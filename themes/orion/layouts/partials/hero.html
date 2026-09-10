@@ -1,0 +1,83 @@
+<section id="home" class="container mx-auto px-6 py-16 md:py-24 flex flex-col md:flex-row items-center gap-12">
+    <div class="md:w-1/2">
+        {{/* Pas de chip décoratif : le H1 dit déjà le métier. Cette pastille ne
+             sort que si le site déclare une disponibilité réelle. */}}
+        {{ with partial "availability.html" . }}
+        <div class="mb-6">{{ . }}</div>
+        {{ end }}
+
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
+            <span class="text-gradient">{{ .Site.Params.first_name }} {{ .Site.Params.last_name }}</span>
+            <br>
+            <span class="text-text-primary">{{ i18n "hero_title_suffix" }}</span>
+        </h1>
+
+        <p class="text-lg text-text-secondary mb-8 max-w-lg">
+            {{ .Site.Params.bio | default .Site.Params.description | default (i18n "hero_description") }}
+        </p>
+
+        <!-- Chiffres clés — monospace, comme tout identifiant technique (règle 08) -->
+        <div class="flex gap-10 mb-8 pt-6 border-t border-border">
+            <div class="text-left">
+                <div class="text-3xl font-mono font-semibold text-primary tracking-tight">{{ .Site.Params.experience_years | default 7 }}+</div>
+                <div class="mt-1 text-[11px] font-mono uppercase tracking-[0.12em] text-text-muted">{{ i18n "hero_years_experience" }}</div>
+            </div>
+            <div class="text-left">
+                <div class="text-3xl font-mono font-semibold text-accent tracking-tight">{{ len .Site.Params.languages }}</div>
+                <div class="mt-1 text-[11px] font-mono uppercase tracking-[0.12em] text-text-muted">{{ i18n "hero_languages" }}</div>
+            </div>
+        </div>
+
+        <!-- Un seul CTA primaire par vue (règle 02) -->
+        <div class="flex flex-wrap gap-4">
+            <a href="#blog"
+                class="or-cta inline-flex items-center gap-2 px-6 py-3 rounded-md bg-primary hover:bg-primary-dark font-medium transition-all duration-200">
+                {{ i18n "hero_cta_projects" }}
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
+            <a href="{{ "/cv" | relLangURL }}"
+                class="px-6 py-3 rounded-md bg-surface hover:bg-raised border border-border hover:border-border-strong text-text-primary font-medium transition-colors">
+                {{ i18n "hero_cta_cv" }}
+            </a>
+        </div>
+    </div>
+
+    <div class="md:w-1/2 relative">
+        <div class="relative">
+            <!-- Carte terminal -->
+            <div class="hidden md:block code-block max-w-md mx-auto transform rotate-2 hover:rotate-0 transition-transform duration-300">
+                <div class="flex items-center mb-4">
+                    <div class="flex space-x-2 mr-4" aria-hidden="true">
+                        <div class="w-3 h-3 rounded-full bg-danger"></div>
+                        <div class="w-3 h-3 rounded-full bg-warn"></div>
+                        <div class="w-3 h-3 rounded-full bg-success"></div>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <p><span class="code-keyword">$ </span><span class="text-text-primary">cat profile.js</span></p>
+                    <p><span class="code-keyword">let</span> moi = {</p>
+                    <p class="pl-4"><span class="text-text-primary">name</span>: <span class="code-string">'{{ .Site.Params.first_name }} {{ .Site.Params.last_name }}'</span>,</p>
+                    <p class="pl-4"><span class="text-text-primary">pseudo</span>: <span class="code-string">'{{ .Site.Params.pseudo }}'</span>,</p>
+                    {{ with .Site.Params.birthdate }}
+                    {{ $birthdate := time . }}
+                    {{ $age := div (sub now.Unix $birthdate.Unix) 31556952 }}
+                    <p class="pl-4"><span class="text-text-primary">{{ i18n "hero_terminal_age" }}</span>: <span class="code-number">{{ $age }}</span>,</p>
+                    {{ end }}
+                    <p class="pl-4"><span class="text-text-primary">{{ i18n "hero_terminal_languages" }}</span>: [</p>
+                    {{ range .Site.Params.languages }}
+                    <p class="pl-8"><span class="code-string">'{{ . }}'</span><span class="text-text-primary">,</span></p>
+                    {{ end }}
+                    <p class="pl-4">]</p>
+                    <p>};</p>
+                    <div class="pt-4 flex items-center">
+                        <span class="terminal-line text-primary"></span>
+                        <span class="animate-terminal-cursor" aria-hidden="true">|</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

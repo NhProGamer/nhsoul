@@ -8,3 +8,6 @@ hugo_stats.json
 /static/images/cv.pdf
 /static/images/cv-en.png
 /static/images/cv-en.pdf
+
+# Bundle des particules : regenere par `pnpm run build:theme-js`
+/themes/orion/static/js/

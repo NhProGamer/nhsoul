@@ -1,0 +1,25 @@
+{{ define "main" }}
+<section class="container mx-auto px-6 py-16">
+    {{ partial "section-head.html" (dict
+        "eyebrow" (i18n "projects_badge")
+        "title" (.Title | default (i18n "projects_title"))
+        "lead" (.Params.subtitle | default (i18n "projects_description"))
+        "tight" true
+    ) }}
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {{ range .Pages }}
+        {{ $p := . }}
+        <a href="{{ $p.RelPermalink }}" class="or-card group p-6 flex flex-col">
+            {{ with $p.Params.stack }}
+            <div class="flex flex-wrap gap-2 mb-4">
+                {{ range . }}<span class="or-badge">{{ . }}</span>{{ end }}
+            </div>
+            {{ end }}
+            <h2 class="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">{{ $p.Title }}</h2>
+            <p class="text-sm text-text-secondary">{{ $p.Params.description | default $p.Summary }}</p>
+        </a>
+        {{ end }}
+    </div>
+</section>
+{{ end }}

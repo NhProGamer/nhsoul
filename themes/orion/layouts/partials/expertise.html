@@ -1,0 +1,24 @@
+<section id="expertise" class="container mx-auto px-6 py-16">
+    {{ partial "section-head.html" (dict
+        "eyebrow" (i18n "expertise_badge")
+        "title" ((.Site.Params.expertise | default dict).title | default (i18n "expertise_title"))
+        "lead" ((.Site.Params.expertise | default dict).description | default (i18n "expertise_description"))
+    ) }}
+
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {{ range (.Site.Params.expertise | default dict).items }}
+        <div class="or-card p-8 group">
+            {{ with .icon }}
+            <div class="w-14 h-14 rounded-xl bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center mb-6 transition-colors">
+                {{ . | safeHTML }}
+            </div>
+            {{ end }}
+            <h3 class="text-xl font-semibold mb-4 group-hover:text-primary transition-colors">{{ .title }}</h3>
+            <p class="text-text-secondary leading-relaxed">{{ .description }}</p>
+            {{ with .badge }}
+            <div class="mt-6"><span class="or-badge or-badge-accent">{{ . }}</span></div>
+            {{ end }}
+        </div>
+        {{ end }}
+    </div>
+</section>

@@ -1,0 +1,55 @@
+# orion — paramètres d'exemple.
+# Copier dans hugo.yaml / hugo.toml du site et adapter.
+
+[params]
+first_name = ""
+last_name = ""
+pseudo = ""
+birthdate = "2000-01-01"
+description = ""
+bio = ""
+languages = []
+chip = ""
+# Chiffre affiché dans le hero ("<n>+ ans d'expérience")
+experience_years = 7
+
+# Pastille de disponibilité du hero.
+# Sans `label`, rien ne s'affiche — le thème ne pose pas de chip décoratif
+# qui répéterait l'intitulé de poste déjà présent dans le titre.
+# state : open (recherche active, point pulsant) | soon | closed
+[params.availability]
+label = ""
+state = "open"
+
+# Ciel étoilé Nebula
+[params.animation]
+enable_particles = true   # active / désactive l'animation
+particle_count = 120      # nombre d'étoiles
+particle_speed = 0.15     # vitesse de déplacement (0.01–1.0)
+
+# Prompt de la carte terminal du hero
+[params.term]
+user = ""
+host = ""
+
+# Section contact du partial contact.html
+[params.contact]
+email = ""
+# Laisser vide pour afficher un simple lien mail plutôt qu'un formulaire
+# qui n'irait nulle part.
+action = ""
+
+[[params.social]]
+name = "GitHub"
+icon = '''<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>'''
+weight = 1
+url = "https://github.com/octocat/"
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.highlight]
+style = "github-dark"
+lineNos = true

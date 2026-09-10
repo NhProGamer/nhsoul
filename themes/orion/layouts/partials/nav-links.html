@@ -1,0 +1,9 @@
+{{/* Liens de navigation — un seul jeu, rendu en ligne (desktop) ou en colonne (mobile).
+     Appelé avec  (dict "ctx" . "class" "...") */}}
+{{ $ctx := .ctx }}
+{{ $class := .class }}
+<a href="/#home" class="{{ $class }}">{{ i18n "nav_home" }}</a>
+<a href="/#expertise" class="{{ $class }}">{{ i18n "nav_expertise" }}</a>
+<a href="{{ "/blog" | relLangURL }}" class="{{ $class }}">{{ i18n "nav_blog" }}</a>
+<a href="{{ "/tools" | relLangURL }}" class="{{ $class }}">{{ i18n "nav_tools" }}</a>
+<a href="{{ "/about" | relLangURL }}" class="{{ $class }}">{{ i18n "nav_about" }}</a>

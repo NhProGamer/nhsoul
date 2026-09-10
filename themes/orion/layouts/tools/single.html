@@ -1,0 +1,74 @@
+{{ define "main" }}
+<!-- Hero -->
+<section class="container mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <div class="max-w-4xl mx-auto text-center">
+        <span class="or-eyebrow mb-6">
+            {{ partial "mark.html" (dict "size" 9) }}{{ .Params.badge | default (i18n "tools_badge") }}
+        </span>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
+            <span class="text-gradient">{{ .Title }}</span>
+        </h1>
+        {{ with .Params.subtitle }}
+        <p class="text-base sm:text-lg text-text-secondary max-w-3xl mx-auto mb-8">{{ . }}</p>
+        {{ end }}
+
+        {{/* Chiffres dérivés des données — aucun nom de catégorie codé en dur,
+             donc valides quelle que soit la langue du contenu. */}}
+        {{ $categories := .Params.categories }}
+        {{ $total := 0 }}
+        {{ range $categories }}{{ $total = add $total (len .tools) }}{{ end }}
+        {{ with $categories }}
+        <div class="flex justify-center gap-10 mt-8 pt-6 border-t border-border max-w-sm mx-auto">
+            <div class="text-left">
+                <div class="text-3xl font-mono font-semibold text-primary tracking-tight">{{ $total }}</div>
+                <div class="mt-1 text-[11px] font-mono uppercase tracking-[0.12em] text-text-muted">{{ i18n "tools_stat_tools" }}</div>
+            </div>
+            <div class="text-left">
+                <div class="text-3xl font-mono font-semibold text-accent tracking-tight">{{ len . }}</div>
+                <div class="mt-1 text-[11px] font-mono uppercase tracking-[0.12em] text-text-muted">{{ i18n "tools_stat_categories" }}</div>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</section>
+
+<!-- Catégories -->
+<section class="container mx-auto px-4 sm:px-6 pb-16">
+    <div class="max-w-6xl mx-auto space-y-16">
+        {{ with .Params.categories }}
+        {{ range . }}
+        <div>
+            <div class="flex items-center gap-3 mb-8 pb-3 border-b border-border">
+                {{ partial "mark.html" (dict "size" 13) }}
+                <h2 class="or-display text-2xl sm:text-3xl">{{ .name }}</h2>
+                <span class="ml-auto font-mono text-xs text-text-faint">{{ len .tools }}</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {{ range .tools }}
+                <div class="or-card p-6 flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 mb-4 flex items-center justify-center rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                        {{ with .icon }}
+                        <img src="{{ . }}" alt="" class="w-8 h-8 object-contain" loading="lazy" aria-hidden="true">
+                        {{ else }}
+                        {{ partial "mark.html" (dict "size" 18 "variant" "grad") }}
+                        {{ end }}
+                    </div>
+                    <h3 class="text-base sm:text-lg font-semibold mb-3 group-hover:text-primary transition-colors">{{ .name }}</h3>
+                    {{ with .desc }}
+                    <p class="text-sm text-text-secondary leading-relaxed">{{ . }}</p>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </div>
+        </div>
+        {{ end }}
+        {{ else }}
+        <div class="or-card p-8 text-center">
+            <p class="text-text-secondary mb-2">{{ i18n "tools_empty_title" }}</p>
+            <p class="text-sm text-text-faint">{{ i18n "tools_empty_sub" }}</p>
+        </div>
+        {{ end }}
+    </div>
+</section>
+{{ end }}

@@ -1,0 +1,20 @@
+{{/*
+Intégration particles.js — ciel étoilé Nebula.
+Les étoiles suivent la couleur du thème actif (--or-particle) et sont
+reconstruites à chaque bascule clair / sombre.
+*/}}
+{{ $anim := .Site.Params.animation | default dict }}
+{{ if $anim.enable_particles }}
+
+{{/* Réglages exposés au bundle : le JS les lit depuis window.orionParticles */}}
+<script>
+    window.orionParticles = {
+        count: {{ $anim.particle_count | default 120 }},
+        speed: {{ $anim.particle_speed | default 0.15 }}
+    };
+</script>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="/js/particles-bundle.js" type="module"></script>
+
+{{ end }}

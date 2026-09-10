@@ -1,0 +1,200 @@
+{{ define "main" }}
+<!-- Points flottants — décor discret, purement ornemental -->
+<div class="fixed inset-0 overflow-hidden -z-10 pointer-events-none no-print" aria-hidden="true">
+    <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-primary rounded-full opacity-20 animate-float"></div>
+    <div class="absolute top-1/3 right-1/3 w-3 h-3 bg-secondary rounded-full opacity-20 animate-float animation-delay-2000"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-1 h-1 bg-accent rounded-full opacity-20 animate-float animation-delay-3000"></div>
+</div>
+
+<section class="container mx-auto px-6 py-16 md:py-24 no-print">
+    <div class="max-w-4xl mx-auto text-center">
+        <span class="or-eyebrow mb-4">
+            {{ partial "mark.html" (dict "size" 9) }}{{ .Params.badge | default (i18n "about_badge") }}
+        </span>
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
+            <span class="text-gradient">{{ .Title }}</span>
+        </h1>
+        {{ with .Params.subtitle }}
+        <p class="text-lg text-text-secondary max-w-2xl mx-auto">{{ . }}</p>
+        {{ end }}
+    </div>
+</section>
+
+<section class="container mx-auto px-6 pb-16">
+    <div class="max-w-4xl mx-auto">
+        <div class="grid lg:grid-cols-3 gap-12">
+            <!-- Corps -->
+            <div class="lg:col-span-2">
+                <div class="content-markdown mb-12">
+                    {{ $content := .RawContent }}
+                    {{ if in $content "<!--more-->" }}
+                    {{ $parts := split $content "<!--more-->" }}
+                    {{ if gt (len $parts) 1 }}{{ index $parts 1 | markdownify }}{{ end }}
+                    {{ else }}
+                    {{ .Content }}
+                    {{ end }}
+                </div>
+            </div>
+
+            <!-- Colonne latérale -->
+            <div class="lg:col-span-1">
+                <div class="sticky top-24 space-y-8">
+
+                    <!-- Carte profil -->
+                    <div class="or-card p-6">
+                        <div class="text-center mb-6">
+                            {{ with .Params.profile.profile_picture }}
+                            <img src="{{ . }}" alt="{{ $.Site.Params.first_name }} {{ $.Site.Params.last_name }}"
+                                class="w-20 h-20 rounded-full border-2 border-primary/20 object-cover mx-auto mb-4">
+                            {{ end }}
+                            <h2 class="text-xl font-semibold mb-2">{{ .Site.Params.first_name }} {{ .Site.Params.last_name }}</h2>
+                            <p class="text-text-muted text-sm">{{ .Params.profile.title | default .Site.Params.chip }}</p>
+                        </div>
+                        <dl class="space-y-3 text-sm">
+                            {{ with .Site.Params.birthdate }}
+                            {{ $birthdate := time . }}
+                            {{ $age := div (sub now.Unix $birthdate.Unix) 31556952 }}
+                            <div class="flex items-baseline gap-3">
+                                <dt class="w-20 shrink-0 text-text-muted">{{ i18n "about_age" }}</dt>
+                                <dd class="font-mono text-xs">{{ i18n "about_age_value" $age }}</dd>
+                            </div>
+                            {{ end }}
+                            {{ with .Params.profile.location }}
+                            <div class="flex items-baseline gap-3">
+                                <dt class="w-20 shrink-0 text-text-muted">{{ i18n "about_location" }}</dt>
+                                <dd>{{ . }}</dd>
+                            </div>
+                            {{ end }}
+                            {{ with .Params.profile.experience }}
+                            <div class="flex items-baseline gap-3">
+                                <dt class="w-20 shrink-0 text-text-muted">{{ i18n "about_exp_label" }}</dt>
+                                <dd>{{ . }}</dd>
+                            </div>
+                            {{ end }}
+                        </dl>
+                    </div>
+
+                    <!-- Expérience -->
+                    {{ with .Params.experience }}
+                    <div class="or-card p-6">
+                        <span class="or-eyebrow mb-4">{{ partial "mark.html" (dict "size" 9) }}{{ i18n "about_experience_title" }}</span>
+                        <div class="space-y-4">
+                            {{ range . }}
+                            <div class="border-l-2 border-primary/30 pl-4">
+                                <h3 class="font-medium text-sm">{{ .title }}</h3>
+                                <p class="text-xs text-text-muted mb-1">
+                                    {{ .company }} <span class="font-mono">· {{ .duration }}</span>
+                                </p>
+                                {{ with .description }}<p class="text-xs text-text-secondary">{{ . }}</p>{{ end }}
+                            </div>
+                            {{ end }}
+                        </div>
+                    </div>
+                    {{ end }}
+
+                    <!-- Formation -->
+                    {{ with .Params.education }}
+                    <div class="or-card p-6">
+                        <span class="or-eyebrow mb-4">{{ partial "mark.html" (dict "size" 9) }}{{ i18n "about_education_title" }}</span>
+                        <div class="space-y-4">
+                            {{ range . }}
+                            <div class="border-l-2 border-primary/30 pl-4">
+                                <h3 class="font-medium text-sm">{{ .degree }}</h3>
+                                <p class="text-xs text-text-muted mb-1">
+                                    {{ .school }} <span class="font-mono">· {{ .year }}</span>
+                                </p>
+                                {{ with .status }}<p class="text-xs text-primary">{{ . }}</p>{{ end }}
+                                {{ with .mention }}<p class="text-xs text-text-secondary">{{ . }}</p>{{ end }}
+                            </div>
+                            {{ end }}
+                        </div>
+                    </div>
+                    {{ end }}
+
+                    <!-- Compétences -->
+                    {{ with .Params.skills }}
+                    <div class="or-card p-6">
+                        <span class="or-eyebrow mb-4">{{ partial "mark.html" (dict "size" 9) }}{{ i18n "about_skills_title" }}</span>
+                        <div class="space-y-3">
+                            {{ range . }}
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium">{{ .name }}</span>
+                                    <span class="text-xs font-mono text-text-faint">{{ .level }}%</span>
+                                </div>
+                                <div class="w-full bg-inset rounded-full h-2" role="meter"
+                                    aria-valuenow="{{ .level }}" aria-valuemin="0" aria-valuemax="100" aria-label="{{ .name }}">
+                                    <div class="rounded-full h-2" style="width: {{ .level }}%; background: linear-gradient(135deg, var(--or-accent-hi), var(--or-accent-lo));"></div>
+                                </div>
+                            </div>
+                            {{ end }}
+                        </div>
+                    </div>
+                    {{ end }}
+
+                    <!-- Soft skills -->
+                    {{ with .Params.soft_skills }}
+                    <div class="or-card p-6">
+                        <span class="or-eyebrow mb-4">{{ partial "mark.html" (dict "size" 9) }}{{ i18n "about_soft_skills_title" }}</span>
+                        <ul class="space-y-2">
+                            {{ range . }}
+                            <li class="flex items-center text-sm">
+                                <span class="w-1.5 h-1.5 rounded-full bg-primary mr-3 shrink-0" aria-hidden="true"></span>
+                                <span>{{ . }}</span>
+                            </li>
+                            {{ end }}
+                        </ul>
+                    </div>
+                    {{ end }}
+
+                    <!-- Technologies : dict catégorisé, ou liste simple -->
+                    {{ with .Params.technologies }}
+                    <div class="or-card p-6">
+                        <span class="or-eyebrow mb-4">{{ partial "mark.html" (dict "size" 9) }}{{ i18n "about_technologies_title" }}</span>
+                        {{ if reflect.IsMap . }}
+                        <div class="space-y-4">
+                            {{ range $category, $techs := . }}
+                            <div>
+                                <h3 class="text-xs font-mono uppercase tracking-widest text-text-faint mb-2">{{ $category }}</h3>
+                                <div class="flex flex-wrap gap-2">
+                                    {{ range $techs }}<span class="or-badge">{{ . }}</span>{{ end }}
+                                </div>
+                            </div>
+                            {{ end }}
+                        </div>
+                        {{ else }}
+                        <div class="flex flex-wrap gap-2">
+                            {{ range . }}<span class="or-badge">{{ . }}</span>{{ end }}
+                        </div>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+
+                    <!-- Contact -->
+                    {{ $contact := .Site.Params.contact | default dict }}
+                    {{ $email := .Params.profile.email | default $contact.email | default (printf "contact@%s" (replaceRE "^https?://(www\\.)?" "" (trim .Site.BaseURL "/"))) }}
+                    <div class="or-card p-6 no-print">
+                        <span class="or-eyebrow mb-3">{{ partial "mark.html" (dict "size" 9) }}{{ i18n "about_contact_title" }}</span>
+                        <a href="mailto:{{ $email }}"
+                            class="or-cta block w-full px-4 py-2 rounded-md bg-primary hover:bg-primary-dark font-medium text-center transition-all duration-200 mb-3">
+                            {{ i18n "about_contact_button" }}
+                        </a>
+                        {{ if or .Params.profile.linkedin .Params.profile.github }}
+                        <div class="flex gap-2 pt-3 border-t border-border">
+                            {{ with .Params.profile.linkedin }}
+                            <a href="{{ . }}" target="_blank" rel="noopener"
+                                class="flex-1 px-3 py-2 rounded-md bg-inset hover:bg-raised text-text-muted hover:text-primary text-center text-sm transition-colors">LinkedIn</a>
+                            {{ end }}
+                            {{ with .Params.profile.github }}
+                            <a href="{{ . }}" target="_blank" rel="noopener"
+                                class="flex-1 px-3 py-2 rounded-md bg-inset hover:bg-raised text-text-muted hover:text-primary text-center text-sm transition-colors">GitHub</a>
+                            {{ end }}
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}

@@ -1,0 +1,12 @@
+{{ define "main" }}
+<section class="container mx-auto px-6 py-24 flex flex-col items-center text-center gap-6">
+    {{ partial "mark.html" (dict "size" 64 "variant" "grad" "glow" true) }}
+    <p class="font-mono text-sm tracking-[0.2em] text-text-faint">404</p>
+    <h1 class="or-display text-3xl md:text-5xl">{{ i18n "notfound_title" }}</h1>
+    <p class="text-text-secondary max-w-md">{{ i18n "notfound_lead" }}</p>
+    <a href="{{ "/" | relLangURL }}"
+        class="or-cta inline-flex items-center gap-2 px-6 py-3 rounded-md bg-primary hover:bg-primary-dark font-medium transition-all duration-200">
+        {{ i18n "notfound_cta" }}
+    </a>
+</section>
+{{ end }}

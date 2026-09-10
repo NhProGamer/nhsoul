@@ -10,6 +10,8 @@ languages:
     params:
       description: "Développeur backend passionné"
       bio: "Je construis des systèmes robustes et performants avec Node.js, Python et Go. J'aime résoudre des problèmes complexes et partager mes connaissances."
+      availability:
+        label: "Développeur backend"
   en:
     languageName: "English"
     languageCode: "en-US"
@@ -19,6 +21,8 @@ languages:
       description: "Passionate Backend Developer"
       bio: "I build robust and performant systems with Node.js, Python and Go. I love solving complex problems and sharing my knowledge."
       chip: "Backend Developer"
+      availability:
+        label: "Backend developer"
       expertise:
         title: "My Areas of Expertise"
         description: "Discover the technologies and methodologies I master to create robust and performant backend solutions."
@@ -41,7 +45,7 @@ languages:
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
                   </svg>
-theme: "neoflux"
+theme: "orion"
 
 permalinks:
   blog: "/blog/:slug/"
@@ -56,9 +60,29 @@ params:
   languages: ["Java", "JavaScript", "HTML", "CSS", "Python", "C#", "Go"]
   chip: "Développeur Backend"
 
+  # Chiffre affiche dans le hero ("<n>+ ans d'experience")
+  experience_years: 7
+
+  # Pastille de disponibilite du hero. Le libelle est par langue (voir languages:).
+  # state: open (recherche active, point vert pulsant) | soon | closed
+  # Retirer le libelle fait disparaitre la pastille entierement.
+  availability:
+    state: "open"
+
   term:
     user: "nhpro"
     host: "t480"
+
+  # Ciel etoile Nebula
+  animation:
+    enable_particles: true
+    particle_count: 120
+    particle_speed: 0.15
+
+  contact:
+    email: "contact@nhsoul.fr"
+    # Vide => lien mail direct plutot qu'un formulaire sans destination.
+    action: ""
 
   expertise:
     title: "Ce que je fais"

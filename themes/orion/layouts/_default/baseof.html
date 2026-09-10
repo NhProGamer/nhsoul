@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Locale | default .Site.Language.Lang }}">
+{{ partial "head.html" . }}
+{{/* Le prompt du terminal vient de params.term — pas de valeur codée en dur en CSS. */}}
+{{ $term := .Site.Params.term | default dict }}
+{{ $user := $term.user | default "user" }}
+{{ $host := $term.host | default "localhost" }}
+<body class="bg-background text-text-primary font-sans min-h-screen flex flex-col"
+      style="--or-term-prompt: '[{{ $user }}@{{ $host }} ~/] $ '">
+{{ partial "mark-defs.html" . }}
+{{ partial "particles-container.html" . }}
+{{ partial "header.html" . }}
+
+<main class="flex-1">
+    {{ block "main" . }}{{ end }}
+</main>
+
+{{ partial "footer.html" . }}
+</body>
+</html>
