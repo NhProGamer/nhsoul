@@ -77,24 +77,24 @@
 
 # CV Section
 - id: cv_job_status
-  translation: "En recherche de stage / alternance"
+  translation: "En alternance chez Elosi"
 - id: cv_skills_title
-  translation: "Compétences 🛠️"
+  translation: "Compétences"
 - id: cv_soft_skills_title
-  translation: "Soft Skills 🎈"
+  translation: "Soft Skills"
 - id: cv_education_title
-  translation: "Formation 🎓"
+  translation: "Formation"
 - id: cv_technologies_title
-  translation: "Technologies 💻"
+  translation: "Technologies"
 - id: cv_profile_title
-  translation: "Profil 👤"
+  translation: "Profil"
 - id: cv_experience_title
-  translation: "Expérience 💼"
+  translation: "Expérience"
 - id: cv_projects_title
-  translation: "Projets Réalisés 📁"
+  translation: "Projets Réalisés"
 - id: cv_personal_projects_title
-  translation: "Projets Personnels 🛠️"
+  translation: "Projets Personnels"
 - id: cv_professional_projects_title
-  translation: "Projets Profesionnels 🏢"
+  translation: "Projets Profesionnels"
 - id: cv_download_button
   translation: "Télécharger le CV"

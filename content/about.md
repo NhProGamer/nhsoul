@@ -8,7 +8,7 @@ draft: false
 profile:
   title: "Développeur Backend"
   location: "Lens, France"
-  experience: "BUT Informatique 2e année"
+  experience: "BUT Informatique 3e année"
   email: "contact@nhsoul.fr"
   linkedin: "https://linkedin.com/in/neo-huyghe"
   github: "https://github.com/NhProGamer"
@@ -62,8 +62,8 @@ technologies:
 education:
   - degree: "BUT Informatique"
     school: "IUT de Lens"
-    year: "2024-2026"
-    status: "2e année en cours"
+    year: "2024-2027"
+    status: "3e année en cours"
   - degree: "Baccalauréat"
     school: "Lycée Wingles"
     year: "2024"
@@ -80,7 +80,7 @@ experience:
 
 Développeur backend autodidacte avec **7 ans d'expérience** (depuis mes 12 ans), spécialisé dans la création de systèmes robustes et performants. Développeur en **Golang** et **Node.js**, je transforme des défis techniques complexes en solutions élégantes et maintenables.
 
-Actuellement en **BUT Informatique 2e année** à Lens, je combine formation académique et expérience pratique acquise à travers de nombreux projets personnels ambitieux.
+Actuellement en **alternance chez Elosi** et en **BUT Informatique 3e année** à Lens, je combine formation académique et expérience pratique acquise à travers de nombreux projets personnels ambitieux.
 
 ## Expertise technique
 
@@ -156,4 +156,4 @@ C'est cette combinaison entre ingénierie rigoureuse et créativité technique q
 
 ---
 
-*Disponible pour une alternance*
+*En alternance chez Elosi*

@@ -1,0 +1,11 @@
+{{/* En-tête de section Nebula — eyebrow ◆ + titre serif + accroche.
+     Appelé avec  (dict "eyebrow" "..." "title" "..." "lead" "..." "tight" false) */}}
+<div class="text-center {{ if .tight }}mb-12{{ else }}mb-16{{ end }}">
+    <span class="or-eyebrow {{ if .tight }}mb-3{{ else }}mb-5{{ end }}">
+        {{ partial "mark.html" (dict "size" 9) }}{{ .eyebrow }}
+    </span>
+    <h2 class="or-display {{ if .tight }}text-2xl md:text-3xl mb-2{{ else }}text-3xl md:text-4xl mb-4{{ end }}">{{ .title }}</h2>
+    {{ with .lead }}
+    <p class="{{ if $.tight }}text-base max-w-2xl{{ else }}text-lg max-w-3xl{{ end }} text-text-secondary mx-auto">{{ . }}</p>
+    {{ end }}
+</div>

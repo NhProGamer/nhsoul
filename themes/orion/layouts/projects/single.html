@@ -1,0 +1,22 @@
+{{ define "main" }}
+<article class="container mx-auto px-6 py-16">
+    <div class="max-w-4xl mx-auto">
+        {{ with .Params.stack }}
+        <div class="flex flex-wrap gap-2 mb-6">
+            {{ range . }}<span class="or-badge or-badge-accent">{{ . }}</span>{{ end }}
+        </div>
+        {{ end }}
+        <h1 class="or-display text-3xl md:text-5xl mb-4">{{ .Title }}</h1>
+        {{ with .Params.description }}
+        <p class="text-lg text-text-secondary mb-8">{{ . }}</p>
+        {{ end }}
+        {{ with .Params.repo }}
+        <a href="{{ . }}" target="_blank" rel="noopener"
+            class="inline-flex items-center gap-2 mb-10 px-4 py-2 rounded-md bg-surface border border-border hover:border-primary text-text-secondary hover:text-primary transition-colors text-sm font-mono">
+            {{ i18n "projects_repo" }}
+        </a>
+        {{ end }}
+        <div class="content-markdown">{{ .Content }}</div>
+    </div>
+</article>
+{{ end }}

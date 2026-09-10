@@ -1,0 +1,20 @@
+{{ define "main" }}
+<section class="container mx-auto px-6 py-16">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="or-display text-3xl md:text-5xl mb-10">{{ .Title }}</h1>
+        {{ with .Content }}<div class="content-markdown mb-12">{{ . }}</div>{{ end }}
+        <div class="space-y-4">
+            {{ range .Pages }}
+            <a href="{{ .RelPermalink }}" class="or-card group flex items-baseline gap-4 p-5">
+                <span class="flex-1 font-medium group-hover:text-primary transition-colors">{{ .Title }}</span>
+                {{ if not .Date.IsZero }}
+                <time class="font-mono text-xs text-text-faint shrink-0" datetime="{{ .Date.Format "2006-01-02" }}">
+                    {{ .Date.Format (i18n "date_format_short") }}
+                </time>
+                {{ end }}
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ end }}

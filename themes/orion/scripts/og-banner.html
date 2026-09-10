@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>orion — bannière</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Teintes resolues depuis l'OKLCH du design system (cf. README). */
+  :root{
+    --bg-0:#0F0F16; --fg-0:#F4F5F8; --fg-2:#85858F;
+    --accent:#AA7EFF; --accent-hi:#C6A7FF; --accent-lo:#8851EB;
+    --border:#2A2A38;
+  }
+  *{box-sizing:border-box;margin:0}
+  html,body{width:1200px;height:630px}
+  body{
+    background:var(--bg-0);
+    /* Halo Nebula, decale vers le coin haut-gauche (charte 7.2) */
+    background-image:radial-gradient(ellipse 900px 560px at 18% -8%, rgba(136,81,235,.38), transparent 62%);
+    color:var(--fg-0);
+    font-family:Inter,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:0 96px;gap:26px;position:relative;overflow:hidden;
+  }
+  /* Champ d'etoiles discret, meme vocabulaire que les particules du site */
+  .stars{position:absolute;inset:0;pointer-events:none}
+  .stars i{position:absolute;background:var(--accent-hi);border-radius:50%}
+  .row{display:flex;align-items:center;gap:22px}
+  .mark{filter:drop-shadow(0 0 26px rgba(170,126,255,.55))}
+  .word{font-size:34px;font-weight:500;letter-spacing:-.01em}
+  .eyebrow{
+    font:500 15px/1 'JetBrains Mono',monospace;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--fg-2);
+  }
+  h1{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+    font-optical-sizing:auto;font-variation-settings:'SOFT' 30,'WONK' 1;
+    font-size:104px;line-height:1;letter-spacing:-.02em;
+    background:linear-gradient(120deg,var(--accent-hi) 0%,var(--accent) 48%,var(--accent-lo) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    padding-bottom:.08em;
+  }
+  .rule{height:1px;background:var(--border);margin:6px 0}
+  .foot{display:flex;align-items:baseline;gap:14px}
+  .domain{font:500 20px/1 'JetBrains Mono',monospace;color:var(--accent)}
+  .role{font-size:21px;color:var(--fg-2)}
+</style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+
+  <div class="row">
+    <svg class="mark" width="60" height="60" viewBox="0 0 32 32">
+      <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#C6A7FF"/><stop offset="1" stop-color="#8851EB"/>
+      </linearGradient>
+      <path d="M16 .8C17.3 8.9 23.1 14.7 31.2 16 23.1 17.3 17.3 23.1 16 31.2 14.7 23.1 8.9 17.3 .8 16 8.9 14.7 14.7 8.9 16 .8Z" fill="url(#g)"/>
+    </svg>
+    <span class="word" id="word">NнPro</span>
+  </div>
+
+  <span class="eyebrow" id="eyebrow">Développeur backend</span>
+  <h1 id="name">Néo Huyghe</h1>
+  <div class="rule"></div>
+  <div class="foot">
+    <span class="domain" id="domain">nhsoul.fr</span>
+    <span class="role" id="tagline">Systèmes robustes, backend, DevOps</span>
+  </div>
+
+<script>
+  // Texte injectable par le script de rendu (voir scripts/build-og.js)
+  const q = new URLSearchParams(location.search);
+  for (const [k, id] of Object.entries({ word:'word', eyebrow:'eyebrow', name:'name', domain:'domain', tagline:'tagline' })) {
+    const v = q.get(k);
+    if (v) document.getElementById(id).textContent = v;
+  }
+  // Etoiles deterministes : meme banniere a chaque rendu (pas de Math.random)
+  const seedStars = [
+    [ 8, 18, 2.4, .55], [ 22,  9, 1.6, .40], [ 36, 26, 1.2, .30],
+    [ 52, 12, 2.0, .45], [ 63, 34, 1.4, .28], [ 74, 18, 2.6, .50],
+    [ 86, 44, 1.8, .34], [ 92, 12, 1.3, .26], [ 45, 62, 1.5, .22],
+    [ 68, 74, 2.1, .30], [ 81, 66, 1.2, .20], [ 30, 80, 1.7, .24],
+    [ 15, 68, 1.4, .22], [ 57, 86, 1.9, .26], [ 96, 78, 1.5, .20]
+  ];
+  document.getElementById('stars').innerHTML = seedStars.map(([x, y, r, o]) =>
+    `<i style="left:${x}%;top:${y}%;width:${r * 2}px;height:${r * 2}px;opacity:${o}"></i>`
+  ).join('');
+</script>
+</body>
+</html>

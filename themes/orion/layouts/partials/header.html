@@ -1,0 +1,68 @@
+<header class="site-header no-print">
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+            <a href="{{ "/" | relLangURL }}" class="or-wordmark-link group" aria-label="{{ .Site.Params.pseudo }}">
+                {{ partial "wordmark.html" (dict "ctx" . "size" 22) }}
+            </a>
+
+            <!-- Navigation desktop -->
+            <nav class="hidden md:flex items-center space-x-8" aria-label="{{ i18n "nav_main" }}">
+                {{ partial "nav-links.html" (dict "ctx" . "class" "text-text-secondary hover:text-primary transition-colors") }}
+                {{ partial "theme-toggle.html" . }}
+                {{ partial "lang-switcher.html" . }}
+            </nav>
+
+            <!-- Contrôles mobile -->
+            <div class="flex items-center gap-2 md:hidden">
+                {{ partial "theme-toggle.html" . }}
+                <button type="button" id="mobile-menu-button" class="or-theme-toggle" aria-expanded="false"
+                    aria-controls="mobile-menu" aria-label="{{ i18n "nav_menu" }}">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" aria-hidden="true">
+                        <path d="M4 7h16M4 12h16M4 17h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu mobile -->
+        <nav id="mobile-menu" class="hidden md:hidden mt-4 pb-4" aria-label="{{ i18n "nav_main" }}">
+            <div class="flex flex-col space-y-4">
+                {{ partial "nav-links.html" (dict "ctx" . "class" "block text-text-secondary hover:text-primary transition-colors") }}
+
+                <div class="border-t border-border pt-4 mt-4">
+                    <span class="or-eyebrow mb-3">{{ i18n "nav_language" }}</span>
+                    {{ partial "lang-list.html" . }}
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<script>
+    // Menu mobile
+    (function () {
+        var btn = document.getElementById('mobile-menu-button');
+        var menu = document.getElementById('mobile-menu');
+        if (!btn || !menu) return;
+        btn.addEventListener('click', function () {
+            var open = menu.classList.toggle('hidden') === false;
+            btn.setAttribute('aria-expanded', String(open));
+        });
+    })();
+
+    // Toggle de thème Nebula — persiste le choix et notifie les particules
+    (function () {
+        function applyTheme(t) {
+            document.documentElement.setAttribute('data-theme', t);
+            try { localStorage.setItem('orion-theme', t); } catch (e) {}
+            document.dispatchEvent(new CustomEvent('orion:theme', { detail: t }));
+        }
+        document.querySelectorAll('[data-theme-toggle]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+                applyTheme(cur === 'light' ? 'dark' : 'light');
+            });
+        });
+    })();
+</script>

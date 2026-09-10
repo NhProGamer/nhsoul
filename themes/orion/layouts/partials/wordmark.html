@@ -1,0 +1,26 @@
+{{/*
+  Wordmark — étoile + nom. Le glyphe précède toujours le mot (charte §2.5 :
+  ne jamais inverser glyphe et wordmark).
+
+  La forme `Orion` en Fraunces italique + suffixe en Inter 600 vient de
+  la charte §2.3 ; pour un pseudo sans suffixe, le mot est rendu tel quel.
+
+  Appel :
+    {{ partial "wordmark.html" (dict "ctx" . ) }}
+    {{ partial "wordmark.html" (dict "ctx" . "size" 26 "serif" "Orion" "sans" "Drive") }}
+*/}}
+{{- $ctx := .ctx -}}
+{{- $size := .size | default 22 -}}
+{{- $serif := .serif -}}
+{{- $sans := .sans -}}
+{{- $word := .word | default $ctx.Site.Params.pseudo -}}
+<span class="or-wordmark" style="--or-wordmark-size: {{ $size }}px">
+    {{ partial "mark.html" (dict "size" $size "variant" "grad" "glow" true "class" "or-wordmark-glyph") }}
+    <span class="or-wordmark-text">
+        {{- if $serif -}}
+        <em>{{ $serif }}</em><strong>{{ $sans }}</strong>
+        {{- else -}}
+        {{ $word }}
+        {{- end -}}
+    </span>
+</span>

@@ -1,0 +1,53 @@
+{{/* Projets — alimenté par la section de contenu "projects".
+     Ne rend rien si la section est vide (pas de contenu de démonstration codé en dur). */}}
+{{ $projects := where .Site.RegularPages "Section" "projects" }}
+{{ with $projects }}
+<section id="projects" class="container mx-auto px-6 py-16">
+    {{ partial "section-head.html" (dict
+        "eyebrow" (i18n "projects_badge")
+        "title" (i18n "projects_title")
+        "lead" (i18n "projects_description")
+    ) }}
+
+    <div class="grid md:grid-cols-2 gap-8">
+        {{ range $i, $p := first 4 . }}
+        <a href="{{ $p.RelPermalink }}" class="or-card group block overflow-hidden">
+            {{ with $p.Params.featured_image }}
+            {{ with $p.Resources.GetMatch . }}
+            <img src="{{ .RelPermalink }}" alt="{{ $p.Title }}" class="w-full h-48 object-cover" loading="lazy">
+            {{ end }}
+            {{ else }}
+            <div class="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                <div class="text-5xl font-mono font-bold text-text-faint">{{ printf "%02d" (add $i 1) }}</div>
+            </div>
+            {{ end }}
+            <div class="p-8">
+                {{ with $p.Params.stack }}
+                <div class="flex flex-wrap gap-2 mb-4">
+                    {{ range . }}<span class="or-badge">{{ . }}</span>{{ end }}
+                </div>
+                {{ end }}
+                <h3 class="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">{{ $p.Title }}</h3>
+                <p class="text-text-secondary mb-4">{{ $p.Params.description | default $p.Summary }}</p>
+                <span class="inline-flex items-center text-primary font-medium group-hover:translate-x-1 transition-transform">
+                    {{ i18n "projects_read_more" }}
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7" />
+                    </svg>
+                </span>
+            </div>
+        </a>
+        {{ end }}
+    </div>
+
+    {{ if gt (len .) 4 }}
+    <div class="text-center mt-12">
+        <a href="{{ "/projects" | relLangURL }}"
+            class="inline-flex items-center px-6 py-3 rounded-md bg-surface hover:bg-raised border border-border hover:border-border-strong text-text-primary font-medium transition-colors">
+            {{ i18n "projects_view_all" }}
+        </a>
+    </div>
+    {{ end }}
+</section>
+{{ end }}

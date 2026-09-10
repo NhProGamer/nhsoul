@@ -1,0 +1,26 @@
+{{/*
+  Disponibilité — ligne de transmission.
+
+  Ne rend RIEN tant que le site ne déclare pas params.availability.label.
+  Le marqueur vivant est l'étoile de la marque, pas un point vert : un point
+  vert pulsant est le badge générique de tous les portfolios, et il annonce
+  « en ligne » alors qu'il s'agit d'une recherche de poste.
+
+  Le filet qui s'étire vers la droite répond à celui des chiffres plus bas :
+  le bloc titre se retrouve encadré en haut et en bas.
+
+  params.availability:
+    label  ce que tu cherches — jamais l'intitulé de poste, déjà dans le titre
+    state  open (recherche active, scintille) · soon (statique) · closed (muet)
+*/}}
+{{- $a := .Site.Params.availability | default dict -}}
+{{- with $a.label -}}
+{{- $state := $a.state | default "open" -}}
+<span class="or-avail" data-state="{{ $state }}" role="status">
+    {{ partial "mark.html" (dict "size" 13) }}
+    {{/* L'état n'est jamais porté par la seule forme ni la seule couleur (règle 04) */}}
+    <span class="sr-only">{{ i18n (printf "availability_%s" $state) }} —</span>
+    <span class="or-avail-label">{{ . }}</span>
+    <span class="or-avail-rule" aria-hidden="true"></span>
+</span>
+{{- end -}}

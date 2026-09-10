@@ -1,0 +1,11 @@
+{{ define "main" }}
+<article class="container mx-auto px-6 py-16">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="or-display text-3xl md:text-5xl mb-6">{{ .Title }}</h1>
+        {{ with .Params.subtitle }}
+        <p class="text-lg text-text-secondary mb-10">{{ . }}</p>
+        {{ end }}
+        <div class="content-markdown">{{ .Content }}</div>
+    </div>
+</article>
+{{ end }}

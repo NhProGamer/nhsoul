@@ -1,0 +1,10 @@
+{{/* Boutons rétro 88×31 — libellés traduits, liens dérivés du site */}}
+<div class="flex flex-wrap gap-4 justify-center my-8 no-print">
+    <a href="{{ "/blog" | relLangURL }}" class="web-button">{{ i18n "nav_blog" }}</a>
+    <a href="{{ "/tools" | relLangURL }}" class="web-button">{{ i18n "nav_tools" }}</a>
+    <a href="{{ "/about" | relLangURL }}" class="web-button">{{ i18n "nav_about" }}</a>
+    <a href="{{ "/cv" | relLangURL }}" class="web-button">{{ i18n "nav_cv" }}</a>
+    {{ range sort .Site.Params.social "weight" }}
+    <a href="{{ .url }}" class="web-button" target="_blank" rel="noopener">{{ .name }}</a>
+    {{ end }}
+</div>

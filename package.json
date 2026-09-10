@@ -6,7 +6,7 @@
     "dev": "hugo server -D",
     "build:html": "hugo --minify",
     "build:cv": "node scripts/generate-pdf.js",
-    "build:theme-js": "cd themes/neoflux && pnpm run build:js",
+    "build:theme-js": "cd themes/orion && pnpm run build:js",
     "build": "pnpm run build:theme-js && pnpm run build:html && pnpm run build:cv && pnpm run build:html"
   },
   "devDependencies": {

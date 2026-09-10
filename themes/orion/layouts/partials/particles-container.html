@@ -1,0 +1,5 @@
+{{/* Conteneur des particules — placé derrière tout le reste */}}
+{{ $anim := .Site.Params.animation | default dict }}
+{{ if $anim.enable_particles }}
+<div id="particles-js" class="fixed inset-0 -z-10 pointer-events-none no-print" aria-hidden="true"></div>
+{{ end }}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="512" height="512">
+  <!-- orion — etoile cardinale, variante light. Proportions fixes : ne jamais etirer. -->
+  <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#6E21D2"/>
+    <stop offset="1" stop-color="#9265EF"/>
+  </linearGradient>
+  <path d="M16 .8C17.3 8.9 23.1 14.7 31.2 16 23.1 17.3 17.3 23.1 16 31.2 14.7 23.1 8.9 17.3 .8 16 8.9 14.7 14.7 8.9 16 .8Z" fill="url(#g)"/>
+</svg>

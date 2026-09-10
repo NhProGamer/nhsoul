@@ -1,0 +1,95 @@
+{{ define "main" }}
+<article class="container mx-auto px-6 py-16">
+    <div class="max-w-4xl mx-auto">
+        {{ with .Params.tags }}
+        <div class="mb-6">
+            <span class="or-badge or-badge-accent">{{ index . 0 }}</span>
+        </div>
+        {{ end }}
+
+        <h1 class="or-display text-3xl md:text-5xl mb-4">{{ .Title }}</h1>
+
+        <!-- Métadonnées — mono, comme tout identifiant technique (règle 08) -->
+        <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mb-8 text-text-muted text-sm">
+            <div class="flex items-center gap-2">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <time class="font-mono text-xs" datetime="{{ .Date.Format "2006-01-02" }}">
+                    {{ .Date.Format (i18n "date_format_long") }}
+                </time>
+            </div>
+            {{ with .Params.author }}
+            <div class="flex items-center gap-2">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <span>{{ . }}</span>
+            </div>
+            {{ end }}
+            <div class="flex items-center gap-2">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 2" />
+                </svg>
+                <span class="font-mono text-xs">{{ .ReadingTime }} {{ i18n "reading_time_unit" }}</span>
+            </div>
+        </div>
+
+        {{ with .Params.featured_image }}
+        {{ $img := $.Resources.GetMatch . }}
+        <div class="mb-8 rounded-xl overflow-hidden border border-border">
+            <img src="{{ with $img }}{{ .RelPermalink }}{{ else }}{{ . }}{{ end }}" alt="{{ $.Title }}" class="w-full h-auto object-cover">
+        </div>
+        {{ end }}
+
+        <!-- Corps de l'article : le résumé placé avant <!--more--> n'est pas répété -->
+        <div class="content-markdown mb-12">
+            {{ $content := .RawContent }}
+            {{ if in $content "<!--more-->" }}
+            {{ $parts := split $content "<!--more-->" }}
+            {{ if gt (len $parts) 1 }}{{ index $parts 1 | markdownify }}{{ end }}
+            {{ else }}
+            {{ .Content }}
+            {{ end }}
+        </div>
+
+        {{ with .Params.tags }}
+        <div class="mt-12 pt-6 border-t border-border">
+            <span class="or-eyebrow mb-4">{{ partial "mark.html" (dict "size" 9) }}{{ i18n "post_tags_title" }}</span>
+            <div class="flex flex-wrap gap-2">
+                {{ range . }}
+                <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}/" class="or-badge hover:or-badge-accent transition-colors">{{ . }}</a>
+                {{ end }}
+            </div>
+        </div>
+        {{ end }}
+
+        <nav class="mt-16 grid md:grid-cols-2 gap-8" aria-label="{{ i18n "post_nav_label" }}">
+            {{ with .PrevInSection }}
+            <a href="{{ .RelPermalink }}" class="or-card p-6">
+                <div class="flex items-center text-text-muted text-sm">
+                    <svg class="h-4 w-4 mr-2 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    <span>{{ i18n "post_prev" }}</span>
+                </div>
+                <h3 class="text-lg font-semibold mt-2">{{ .Title }}</h3>
+            </a>
+            {{ end }}
+
+            {{ with .NextInSection }}
+            <a href="{{ .RelPermalink }}" class="or-card p-6 md:text-right">
+                <div class="flex items-center md:justify-end text-text-muted text-sm">
+                    <span>{{ i18n "post_next" }}</span>
+                    <svg class="h-4 w-4 ml-2 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold mt-2">{{ .Title }}</h3>
+            </a>
+            {{ end }}
+        </nav>
+    </div>
+</article>
+{{ end }}

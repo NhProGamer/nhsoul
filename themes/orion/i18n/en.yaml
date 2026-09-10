@@ -1,0 +1,119 @@
+# orion — default translations (English).
+# A site may override any key in its own i18n/en.yaml.
+
+# ── Navigation ──
+nav_home: "Home"
+nav_expertise: "Expertise"
+nav_blog: "Blog"
+nav_tools: "Tools"
+nav_about: "About"
+nav_cv: "Resume"
+nav_projects: "Projects"
+nav_main: "Main navigation"
+nav_menu: "Open menu"
+nav_language: "Language"
+nav_toggle_theme: "Toggle light / dark theme"
+
+# ── Home ──
+availability_open: "Available"
+availability_soon: "Available soon"
+availability_closed: "Unavailable"
+hero_title_suffix: "Backend developer"
+hero_description: "I build robust, performant systems."
+hero_years_experience: "Years of experience"
+hero_languages: "Languages"
+hero_cta_projects: "See my work"
+hero_cta_cv: "My resume"
+hero_terminal_age: "age"
+hero_terminal_languages: "languages"
+
+# ── Expertise ──
+expertise_badge: "Expertise"
+expertise_title: "My areas of expertise"
+expertise_description: "The technologies and methods I work with."
+
+# ── Blog ──
+blog_badge: "Blog"
+blog_latest_title: "Latest posts"
+blog_description: "I write about backend development, my projects and what I learn."
+blog_read_more: "Read the post"
+blog_view_all: "View all posts"
+
+# ── Post ──
+post_tags_title: "Tags"
+post_nav_label: "Post navigation"
+post_prev: "Previous post"
+post_next: "Next post"
+reading_time_unit: "min"
+
+# ── Pagination ──
+pagination_label: "Pagination"
+pagination_prev: "Previous"
+pagination_next: "Next"
+
+# ── Date formats ──
+date_format_short: "Jan 2, 2006"
+date_format_long: "January 2, 2006"
+
+# ── Projects ──
+projects_badge: "Projects"
+projects_title: "Recent work"
+projects_description: "A few projects I have worked on."
+projects_read_more: "View project"
+projects_view_all: "View all projects"
+projects_repo: "Source code"
+
+# ── Contact ──
+contact_badge: "Contact"
+contact_title: "Let's work together"
+contact_description: "Got a backend project or a technical question? Drop me a line."
+contact_field_name: "Name"
+contact_field_email: "Email"
+contact_field_subject: "Subject"
+contact_field_message: "Message"
+contact_submit: "Send message"
+contact_direct_lead: "Plain email works best."
+
+# ── About ──
+about_badge: "About"
+about_age: "Age"
+about_age_value:
+  one: "{{ .Count }} year old"
+  other: "{{ .Count }} years old"
+about_location: "Location"
+about_exp_label: "Exp"
+about_experience_title: "Experience"
+about_education_title: "Education"
+about_skills_title: "Skills"
+about_soft_skills_title: "Soft skills"
+about_technologies_title: "Technologies"
+about_contact_title: "Want to talk?"
+about_contact_button: "Get in touch"
+
+# ── Tools ──
+tools_badge: "My tools"
+tools_stat_tools: "Tools"
+tools_stat_categories: "Categories"
+tools_empty_title: "No tool categories configured."
+tools_empty_sub: "Add categories in the page front matter."
+
+# ── 404 ──
+notfound_title: "Page not found"
+notfound_lead: "This page does not exist, or no longer does. The link may be stale."
+notfound_cta: "Back to home"
+
+# ── Footer ──
+footer_rights: "All rights reserved."
+
+# ── Resume ──
+cv_job_status: "Looking for an internship / apprenticeship"
+cv_profile_title: "Profile"
+cv_experience_title: "Experience"
+cv_projects_title: "Projects"
+cv_personal_projects_title: "Personal projects"
+cv_professional_projects_title: "Professional projects"
+cv_skills_title: "Skills"
+cv_soft_skills_title: "Soft skills"
+cv_education_title: "Education"
+cv_technologies_title: "Technologies"
+cv_download_button: "Download resume"
