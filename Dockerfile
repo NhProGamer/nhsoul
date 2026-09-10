@@ -1,9 +1,14 @@
-# Étape 1 : Build du site Hugo + PDF
-FROM node:20-alpine AS builder
+# Hugo epingle : le paquet Alpine reste bloque en 0.152.x, trop vieux pour
+# les templates du theme. On recupere le binaire extended musl deja compile.
+FROM hugomods/hugo:0.165.0 AS hugo
 
-# Installer Hugo + dépendances Puppeteer + pnpm
-RUN apk add --no-cache hugo \
-    chromium \
+# Étape 1 : Build du site Hugo + PDF
+FROM node:22-alpine AS builder
+
+COPY --from=hugo /usr/bin/hugo /usr/local/bin/hugo
+
+# Installer les dépendances Puppeteer + pnpm
+RUN apk add --no-cache chromium \
     nss \
     freetype \
     harfbuzz \

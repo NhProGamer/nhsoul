@@ -33,7 +33,7 @@
     <meta property="og:title" content="{{ $ogTitle }}">
     <meta property="og:description" content="{{ $ogDesc }}">
     <meta property="og:url" content="{{ .Permalink }}">
-    <meta property="og:locale" content="{{ .Site.Language.Locale | default .Site.Language.Lang }}">
+    <meta property="og:locale" content="{{ replace (.Site.Language.Locale | default .Site.Language.Lang) "-" "_" }}">
     <meta property="og:site_name" content="{{ .Site.Title }}">
     <meta property="og:image" content="{{ "images/og-orion.png" | absURL }}">
     <meta property="og:image:width" content="1200">
