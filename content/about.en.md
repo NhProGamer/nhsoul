@@ -8,7 +8,7 @@ draft: false
 profile:
   title: "Backend Developer"
   location: "Lens, France"
-  experience: "BUT Computer Science 2nd year"
+  experience: "BUT Computer Science 3rd year"
   email: "contact@nhsoul.fr"
   linkedin: "https://linkedin.com/in/neo-huyghe"
   github: "https://github.com/NhProGamer"
@@ -78,7 +78,7 @@ experience:
 
 Self-taught backend developer with **7 years of experience** (since I was 12), specialized in creating robust and performant systems. Developer in **Golang** and **Node.js**, I transform complex technical challenges into elegant and maintainable solutions.
 
-Currently in **BUT Computer Science 2nd year** in Lens, I combine academic training and practical experience acquired through numerous ambitious personal projects.
+Currently in **work-study at Elosi** and in **BUT Computer Science 3rd year** in Lens, I combine academic training and practical experience acquired through numerous ambitious personal projects.
 
 ## Technical Expertise
 
@@ -154,4 +154,4 @@ It is this combination of rigorous engineering and technical creativity that mot
 
 ---
 
-*Available for a work-study program*
+*Work-study at Elosi*

@@ -8,12 +8,15 @@ draft: false
 profile:
   title: "Développeur Backend"
   location: "Lens, France"
-  experience: "BUT Informatique 2e année"
+  experience: "BUT Informatique 3e année"
   email: "contact@nhsoul.fr"
   linkedin: "neo-huyghe"
   github: "NhProGamer"
   #phone: "+33 X XX XX XX XX"
   photo: "/images/pfp-min.jpg" # chemin de ta photo
+
+spoken_languages:
+  - "Anglais B2+"
 
 skills:
   - name: "Golang"
@@ -100,7 +103,7 @@ projects_pro:
 
 Développeur backend autodidacte avec **7 ans d'expérience** (depuis mes 12 ans), spécialisé dans la création de systèmes robustes et performants en **Golang** et **Node.js**.
 
-J'ai réalisé de nombreux **projets professionnels rémunérés** via ma micro-entreprise, entièrement sur mon temps libre. Actuellement sans contrat, je suis en **BUT Informatique 2e année** à Lens ; pendant mes stages ou alternances, je n'accepte aucun contrat freelance.
+J'ai réalisé de nombreux **projets professionnels rémunérés** via ma micro-entreprise, entièrement sur mon temps libre. Actuellement en **alternance chez Elosi** et en **BUT Informatique 3e année** à Lens ; pendant mes stages ou alternances, je n'accepte aucun contrat freelance.
 
 **Ma valeur ajoutée**
 _Expérience précoce_ : **7 ans de pratique** intensive depuis l'adolescence.

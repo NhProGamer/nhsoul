@@ -77,7 +77,7 @@
 
 # CV Section
 - id: cv_job_status
-  translation: "Looking for work-study"
+  translation: "Work-study at Elosi"
 - id: cv_skills_title
   translation: "Skills"
 - id: cv_soft_skills_title

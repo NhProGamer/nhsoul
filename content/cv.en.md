@@ -8,12 +8,15 @@ draft: false
 profile:
   title: "Backend Developer"
   location: "Lens, France"
-  experience: "BUT Computer Science 2nd year"
+  experience: "BUT Computer Science 3rd year"
   email: "contact@nhsoul.fr"
   linkedin: "neo-huyghe"
   github: "NhProGamer"
   #phone: "+33 X XX XX XX XX"
   photo: "/images/pfp-min.jpg" # path to your photo
+
+spoken_languages:
+  - "English B2+"
 
 skills:
   - name: "Golang"
@@ -62,8 +65,8 @@ technologies:
 education:
   - degree: "BUT Computer Science"
     school: "IUT de Lens"
-    year: "2024-2026"
-    status: "2nd year in progress"
+    year: "2024-2027"
+    status: "3rd year in progress"
   - degree: "Baccalaureate"
     school: "Lycée Wingles"
     year: "2024"
@@ -96,7 +99,7 @@ projects_pro:
 
 Self-taught backend developer with **7 years of experience** (since I was 12), specialized in creating robust and performant systems.
 I work mainly with **Golang** and **Node.js**, and I have designed numerous personal projects.
-Currently in **BUT Computer Science 2nd year** in Lens, I combine academic training and practical experience.
+Currently in **work-study at Elosi** and in **BUT Computer Science 3rd year** in Lens, I combine academic training and practical experience.
 
 **My Added Value**
 Early Experience: **7 years of practice** since adolescence
