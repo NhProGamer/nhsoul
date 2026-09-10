@@ -3,8 +3,8 @@ defaultContentLanguage: "fr"
 defaultContentLanguageInSubdir: false
 languages:
   fr:
-    languageName: "Français"
-    languageCode: "fr-FR"
+    label: "Français"
+    locale: "fr-FR"
     weight: 1
     title: "NнPro | Développeur Backend"
     params:
@@ -13,8 +13,8 @@ languages:
       availability:
         label: "Développeur backend"
   en:
-    languageName: "English"
-    languageCode: "en-US"
+    label: "English"
+    locale: "en-US"
     weight: 2
     title: "NнPro | Backend Developer"
     params:
