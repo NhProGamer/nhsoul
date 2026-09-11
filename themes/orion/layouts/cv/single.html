@@ -18,9 +18,17 @@
 
         <!-- 1. PHOTO (Gauche) -->
         {{ with .Params.profile.photo }}
+        {{/* La photo est affichee a 96 px. Si le fichier vit dans assets/, Hugo le
+             redimensionne a 288 px (3x, suffisant pour l'impression) : la source
+             pleine resolution pesait 521 Ko dans le PDF, soit 60 % du fichier.
+             Repli sur le chemin brut pour un fichier encore dans static/. */}}
+        {{ $photo := . }}
+        {{ with resources.Get (strings.TrimPrefix "/" $photo) }}
+        {{ $photo = (.Resize "288x288 q82 Lanczos").RelPermalink }}
+        {{ end }}
         <div class="flex-shrink-0">
             <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-white shadow-md ring-1 ring-gray-100">
-                <img src="{{ . }}" alt="Photo de profil" class="w-full h-full object-cover">
+                <img src="{{ $photo }}" alt="Photo de profil" class="w-full h-full object-cover">
             </div>
         </div>
         {{ end }}

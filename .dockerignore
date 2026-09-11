@@ -1,0 +1,40 @@
+# Ce qui ne doit pas partir dans le contexte de build.
+# Sans ce fichier, `COPY . .` envoyait node_modules et .git au daemon et
+# invalidait le cache de couche a chaque changement, meme hors build.
+
+.git
+.gitignore
+.dockerignore
+node_modules
+**/node_modules
+
+# Sorties de build, toutes regenerees dans l'image
+public
+resources
+hugo_stats.json
+.hugo_build.lock
+themes/orion/static/js
+
+# Artefacts produits par build:cv
+static/images/cv.pdf
+static/images/cv-en.pdf
+static/images/cv.png
+static/images/cv-en.png
+
+# Ancien theme : remplace par orion, conserve en local pour le rollback.
+# Le retirer du contexte evite d'envoyer un second theme complet.
+themes/neoflux
+
+# Outils et editeurs
+.serena
+.claude
+.idea
+.vscode
+*.swp
+.DS_Store
+
+# Documentation : n'intervient pas dans le build
+*.md
+!themes/orion/**/*.md
+LICENSE
+Dockerfile
