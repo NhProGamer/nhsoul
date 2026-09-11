@@ -36,14 +36,19 @@
             </div>
         </div>
 
+        {{/* Rien n'est rendu si la ressource est absente du bundle : afficher le
+             nom de fichier brut en src produirait une image cassée. */}}
         {{ with .Params.featured_image }}
-        {{ $img := $.Resources.GetMatch . }}
+        {{ with $.Resources.GetMatch . }}
         <div class="mb-8 rounded-xl overflow-hidden border border-border">
-            <img src="{{ with $img }}{{ .RelPermalink }}{{ else }}{{ . }}{{ end }}" alt="{{ $.Title }}" class="w-full h-auto object-cover">
+            <img src="{{ .RelPermalink }}" alt="{{ $.Title }}" class="w-full h-auto object-cover">
         </div>
         {{ end }}
+        {{ end }}
 
-        <!-- Corps de l'article : le résumé placé avant <!--more--> n'est pas répété -->
+        {{/* Corps de l'article : le résumé placé avant la balise "more" n'est pas
+             répété ici. Ce commentaire est un commentaire de template, pas HTML :
+             un commentaire HTML contenant la balise se refermerait sur elle. */}}
         <div class="content-markdown mb-12">
             {{ $content := .RawContent }}
             {{ if in $content "<!--more-->" }}
