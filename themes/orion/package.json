@@ -1,7 +1,7 @@
 {
   "name": "orion-theme",
   "version": "1.0.0",
-  "description": "orion \u2014 Hugo theme built on the OrionAuth \"Nebula\" design system",
+  "description": "orion \u2014 Hugo theme carrying the Orion design system",
   "license": "GPL-3.0-only",
   "scripts": {
     "build:js": "node scripts/build-js.js",

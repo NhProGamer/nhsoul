@@ -1,4 +1,4 @@
-// Ciel étoilé Nebula — configuration de base pour particles.js.
+// Ciel étoilé Orion — configuration de base pour particles.js.
 // Le nombre d'étoiles et leur vitesse viennent du site (window.orionParticles,
 // alimenté par params.animation) ; la couleur vient du thème actif (--or-particle).
 // Cette configuration ne touche jamais au background : le halo est peint en CSS.
@@ -9,7 +9,7 @@ export const particlesConfig = {
       density: { enable: true, value_area: 800 }
     },
     color: {
-      value: '#c4b2fb' // lavande Nebula — surchargée au runtime
+      value: '#c4b2fb' // lavande Orion — surchargée au runtime
     },
     shape: {
       type: 'circle',

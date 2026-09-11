@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <!-- orion — etoile cardinale. Teintes = accent-hi -> accent-lo du design system Nebula,
+  <!-- orion — etoile cardinale. Teintes = accent-hi -> accent-lo du design system Orion,
        resolues depuis l'OKLCH source. Bascule avec le theme du systeme. -->
   <style>
     .hi { stop-color: #6E21D2 }

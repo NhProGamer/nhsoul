@@ -83,7 +83,7 @@ Go 1.26 with **Gin** and **GORM**, on **SQLite**, **PostgreSQL** or **MySQL** as
 
 On the frontend: Vue 3, Vite, TypeScript, Pinia, an installable PWA, light and dark themes, and full internationalisation in French and English.
 
-A small nod along the way: the interface uses **Nebula**, the design system I built, which also dresses this very site. Same **oklch** tokens, same violet. My drive and my portfolio are family.
+A small nod along the way: the interface uses **Orion**, the design system I built, which also dresses this very site. Same **oklch** tokens, same violet. My drive and my portfolio are family.
 
 ## The Weak Points
 

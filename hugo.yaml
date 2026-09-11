@@ -73,7 +73,7 @@ params:
     user: "nhpro"
     host: "t480"
 
-  # Ciel etoile Nebula
+  # Ciel etoile Orion
   animation:
     enable_particles: true
     particle_count: 120

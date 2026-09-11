@@ -83,7 +83,7 @@ Go 1.26 avec **Gin** et **GORM**, au choix sur **SQLite**, **PostgreSQL** ou **M
 
 Côté frontend, Vue 3, Vite, TypeScript, Pinia, PWA installable, thèmes clair et sombre, et une internationalisation complète en français et en anglais.
 
-Petit clin d'œil au passage : l'interface utilise **Nebula**, le design system que j'ai construit et qui habille aussi ce site. Mêmes tokens **oklch**, même violet. Mon drive et mon portfolio sont de la même famille.
+Petit clin d'œil au passage : l'interface utilise **Orion**, le design system que j'ai construit et qui habille aussi ce site. Mêmes tokens **oklch**, même violet. Mon drive et mon portfolio sont de la même famille.
 
 ## Les points faibles
 
