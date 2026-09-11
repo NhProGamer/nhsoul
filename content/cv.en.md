@@ -79,12 +79,12 @@ experience:
     description: "Sole developer of two Odoo 19 modules: a portal page builder (exposing any model with no code, auto-generating ir.rule / ACL security) and a multi-sheet Excel importer handling relational dependencies, with SQL savepoint dry-run mode and unit tests. Also built a local generative AI POC on NVIDIA DGX Spark (vLLM, NVFP4 quantization, OpenAI-compatible API) and assessed AI-related tender feasibility."
 
 projects_perso:
-  - title: "Custom Minecraft Launcher (In progress)"
-    description: "Complete migration from Electron to Go/Wails, cross-platform native interface, profile and modpack management."
-  - title: "Online Werewolf Game (In progress)"
-    description: "Port & adapters architecture with WebSockets, real-time multiplayer room management and complex game logic."
-  - title: "NatsBridge"
-    description: "Minecraft plugin and library for simplified NATS usage in the Minecraft ecosystem"
+  - title: "OrionAuth"
+    description: "Built an OAuth 2.0 / OpenID Connect authorization server in Go: MFA, passkeys, identity federation, RBAC and audit log, with two Vue SPAs for administration and sign-in plus TypeScript and Go SDKs."
+  - title: "OrionDrive"
+    description: "Built a self-hosted drive as a single Go binary embedding a Vue 3 SPA: sharing, WebDAV and SFTP, local / S3 / remote-node storage, SQLite, PostgreSQL or MySQL, OIDC-only authentication."
+  - title: "Shamus (In progress)"
+    description: "Architected a real-time Werewolf game: Go backend with Gin and WebSockets, PostgreSQL through sqlc with goose migrations, Vue 3 TypeScript frontend, delegated OIDC authentication."
 
 projects_pro:
   - title: "BaggyDessine Training Platform"
