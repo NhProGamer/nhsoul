@@ -7,7 +7,7 @@
     "build:html": "hugo --minify",
     "build:cv": "node scripts/generate-pdf.js",
     "build:theme-js": "cd themes/orion && pnpm run build:js",
-    "build": "pnpm run build:theme-js && pnpm run build:html && pnpm run build:cv && pnpm run build:html"
+    "build": "pnpm run build:theme-js && pnpm run build:html && pnpm run build:cv"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.13",

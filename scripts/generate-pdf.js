@@ -1,355 +1,261 @@
 #!/usr/bin/env node
 
+// Genere le PDF imprimable du CV, dans chaque langue.
+//
+// Le script demarre un serveur Hugo, ouvre les pages CV dans Chromium et
+// exporte un PDF A4. Les deux langues sont traitees en parallele.
+//
+//   node scripts/generate-pdf.js              toutes les pages
+//   node scripts/generate-pdf.js --page cv    une seule
+//   node scripts/generate-pdf.js --png        + capture PNG (debug visuel)
+
 const puppeteer = require('puppeteer');
 const fs = require('fs').promises;
+const net = require('net');
 const path = require('path');
 const { spawn } = require('child_process');
 const yargs = require('yargs');
 const chalk = require('chalk');
 const ora = require('ora');
 
-// Configuration
 const CONFIG = {
     hugoPort: 1313,
-    baseUrl: 'http://localhost:1313',
+    get baseUrl() { return `http://localhost:${this.hugoPort}`; },
+    // static/images : source suivie par git, recopiee par Hugo au prochain build.
+    // public/images : sortie servie, alimentee directement pour eviter un second
+    // passage de `hugo --minify` dont c'etait le seul role.
     outputDir: 'static/images',
-    publicDir: 'public',
+    publicOutputDir: 'public/images',
     timeout: 30000,
 
-    // Pages à capturer
+    // Chaque entree produit <name>.pdf dans outputDir et publicOutputDir.
     pages: {
-        cv: {
-            url: '/cv',
-            filename: 'cv.png',
-            title: 'CV - Néo Huyghe'
-        },
-        cv_en: {
-            url: '/en/cv',
-            filename: 'cv-en.png',
-            title: 'CV - Néo Huyghe'
-        },
+        cv: { url: '/cv', name: 'cv', title: 'CV — Néo Huyghe' },
+        cv_en: { url: '/en/cv', name: 'cv-en', title: 'CV — Néo Huyghe (EN)' },
     },
 };
 
+// Surcharge d'impression. Le theme orion definit deja `.no-print` et son bloc
+// @media print, que page.pdf() applique puisque Chromium emule le media print.
+// Ne reste ici que ce que le layout ne peut pas savoir : forcer la hauteur de
+// page exacte pour que le contenu ne parte pas sur une seconde feuille.
+const PRINT_CSS = `
+  html, body {
+    height: 297mm;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+`;
+
+/** Attend que le port accepte une connexion, au lieu d'un delai fixe. */
+function waitForPort(port, { timeout = 15000, interval = 60 } = {}) {
+    const deadline = Date.now() + timeout;
+
+    return new Promise((resolve, reject) => {
+        const attempt = () => {
+            const socket = net.connect({ port, host: '127.0.0.1' });
+            socket.once('connect', () => { socket.destroy(); resolve(); });
+            socket.once('error', () => {
+                socket.destroy();
+                if (Date.now() > deadline) {
+                    reject(new Error(`Port ${port} injoignable après ${timeout} ms`));
+                } else {
+                    setTimeout(attempt, interval);
+                }
+            });
+        };
+        attempt();
+    });
+}
+
 class PDFGenerator {
-    constructor() {
+    constructor({ withPng = false } = {}) {
         this.browser = null;
         this.hugoServer = null;
-        this.spinner = null;
+        this.withPng = withPng;
+        this.startedHugo = false;
     }
 
     async init() {
         await this.ensureOutputDir();
-
         await this.startHugoServer();
 
-        this.spinner = ora('Initialisation du navigateur...').start();
+        const spinner = ora('Initialisation du navigateur...').start();
         this.browser = await puppeteer.launch({
             headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox']
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
         });
-        this.spinner.succeed('Navigateur initialisé');
+        spinner.succeed('Navigateur initialisé');
     }
 
     async ensureOutputDir() {
-        const dirs = [CONFIG.outputDir, path.join(CONFIG.publicDir, 'pdf')];
-
-        for (const dir of dirs) {
-            try {
-                await fs.access(dir);
-            } catch {
-                await fs.mkdir(dir, { recursive: true });
-                console.log(chalk.green(`✓ Dossier créé: ${dir}`));
-            }
+        for (const dir of [CONFIG.outputDir, CONFIG.publicOutputDir]) {
+            await fs.mkdir(dir, { recursive: true });
         }
     }
 
     async startHugoServer() {
-        return new Promise((resolve, reject) => {
-            this.spinner = ora('Démarrage du serveur Hugo...').start();
+        const spinner = ora('Démarrage du serveur Hugo...').start();
 
-            this.hugoServer = spawn('hugo', ['server', '-D', '--port', CONFIG.hugoPort], {
-                stdio: 'pipe'
-            });
+        // Un serveur deja en ecoute (npm run dev) est reutilise tel quel.
+        try {
+            await waitForPort(CONFIG.hugoPort, { timeout: 300 });
+            spinner.succeed(`Serveur Hugo déjà actif sur le port ${CONFIG.hugoPort}`);
+            return;
+        } catch {
+            // Port libre : on lance notre propre serveur.
+        }
 
-            this.hugoServer.stdout.on('data', (data) => {
-                const output = data.toString();
-                if (output.includes('Web Server is available')) {
-                    this.spinner.succeed(`Serveur Hugo démarré sur le port ${CONFIG.hugoPort}`);
-                    setTimeout(resolve, 1000);
-                }
-            });
-
-            this.hugoServer.stderr.on('data', (data) => {
-                const error = data.toString();
-                if (error.includes('port already in use')) {
-                    this.spinner.succeed('Serveur Hugo déjà en cours d\'exécution');
-                    resolve();
-                } else if (!error.includes('WARN')) {
-                    console.log(chalk.yellow('Hugo:', error.trim()));
-                }
-            });
-
-            this.hugoServer.on('error', (error) => {
-                this.spinner.fail('Erreur lors du démarrage de Hugo');
-                reject(error);
-            });
-
-            setTimeout(() => {
-                if (this.spinner.isSpinning) {
-                    this.spinner.warn('Timeout Hugo - on continue quand même');
-                    resolve();
-                }
-            }, 10000);
+        this.hugoServer = spawn('hugo', ['server', '-D', '--port', CONFIG.hugoPort], {
+            stdio: ['ignore', 'ignore', 'pipe'],
         });
-    }
+        this.startedHugo = true;
 
-    async generateScreenshot(pageKey, pageConfig) {
-        const page = await this.browser.newPage();
+        let stderr = '';
+        this.hugoServer.stderr.on('data', (d) => { stderr += d.toString(); });
+
+        const exited = new Promise((_, reject) => {
+            this.hugoServer.once('error', reject);
+            this.hugoServer.once('exit', (code) => {
+                if (code !== 0) {
+                    reject(new Error(`Hugo s'est arrêté (code ${code})\n${stderr.trim()}`));
+                }
+            });
+        });
 
         try {
-            this.spinner = ora(`Capture de ${pageConfig.title}...`).start();
-
-            await page.setViewport({
-                width: 794,
-                height: 1123,
-                deviceScaleFactor: 1
-            });
-
-            const url = `${CONFIG.baseUrl}${pageConfig.url}`;
-            await page.goto(url, {
-                waitUntil: 'networkidle0',
-                timeout: CONFIG.timeout
-            });
-
-            await page.waitForSelector('body', { timeout: 5000 });
-
-            await page.addStyleTag({
-                content: `
-        .no-print {
-            display: none !important;
-            visibility: hidden !important;
-        }
-      
-        :root {
-            --color-background: #ffffff;       /* fond blanc pour l'impression */
-            --color-surface: #f1f5f9;          /* gris très clair pour les surfaces */
-            --color-primary: #0ea5e9;          /* bleu clair lisible sur fond clair */
-            --color-primary-dark: #0369a1;     /* bleu plus soutenu */
-            --color-secondary: #6366f1;        /* violet doux */
-            --color-accent: #d946ef;           /* rose-violet marqué mais pas trop saturé */
-            --color-text-primary: #1e293b;     /* gris anthracite pour le texte */
-            --color-text-secondary: #475569;   /* gris moyen pour le secondaire */
-            --color-code-bg: #f8fafc;          /* fond clair pour le code */
-            --color-code-text: #1e293b;        /* texte de code sombre */
-            --color-code-comment: #64748b;     /* gris bleuté pour les commentaires */
-            --color-code-keyword: #0ea5e9;     /* bleu clair */
-            --color-code-string: #16a34a;      /* vert moyen pour les chaînes */
-            --color-code-number: #db2777;      /* rose soutenu pour les nombres */
-        }
-    `
-            });
-
-            // Les webfonts (Inter) doivent etre chargees AVANT la capture : avec la
-            // police de repli, le texte se rompt differemment et deborde de l'A4.
-            // networkidle0 ne suffit pas, il peut se declencher polices non pretes.
-            await page.evaluate(() => document.fonts.ready);
-
-            const screenshotBuffer = await page.screenshot({
-                fullPage: true,
-                type: 'png',
-                preferCSSPageSize: true
-            });
-
-            const outputPath = path.join(CONFIG.outputDir, pageConfig.filename);
-            await fs.writeFile(outputPath, screenshotBuffer);
-
-            const publicPath = path.join(CONFIG.publicDir, 'pdf', pageConfig.filename);
-            await fs.writeFile(publicPath, screenshotBuffer);
-
-            this.spinner.succeed(`✓ Capture générée: ${pageConfig.filename}`);
-            console.log(chalk.blue(`  📁 Sauvegardé dans: ${outputPath}`));
-            console.log(chalk.blue(`  🌐 Disponible sur: ${CONFIG.baseUrl}/pdf/${pageConfig.filename}`));
-
+            await Promise.race([waitForPort(CONFIG.hugoPort), exited]);
+            spinner.succeed(`Serveur Hugo démarré sur le port ${CONFIG.hugoPort}`);
         } catch (error) {
-            this.spinner.fail(`❌ Erreur pour ${pageConfig.title}`);
-            console.error(chalk.red(error.message));
+            spinner.fail('Échec du démarrage de Hugo');
             throw error;
-        } finally {
-            await page.close();
         }
     }
 
-    async generatePDF(pageKey, pageConfig) {
+    /** Charge la page, polices comprises, et renvoie l'onglet pret a exporter. */
+    async openPage(pageConfig) {
         const page = await this.browser.newPage();
+        await page.setViewport({ width: 794, height: 1123, deviceScaleFactor: 1 });
+
+        // La page CV n'a aucune ressource externe : `load` suffit et evite les
+        // 500 ms d'inactivite reseau qu'impose networkidle0.
+        await page.goto(`${CONFIG.baseUrl}${pageConfig.url}`, {
+            waitUntil: 'load',
+            timeout: CONFIG.timeout,
+        });
+
+        await page.addStyleTag({ content: PRINT_CSS });
+
+        // Les webfonts doivent etre pretes AVANT l'export : avec la police de
+        // repli, le texte se rompt differemment et deborde de l'A4.
+        await page.evaluate(() => document.fonts.ready);
+
+        return page;
+    }
+
+    async generate(pageConfig) {
+        const spinner = ora(`${pageConfig.title}...`).start();
+        const page = await this.openPage(pageConfig);
 
         try {
-            this.spinner = ora(`Génération PDF de ${pageConfig.title}...`).start();
-
-            // Viewport correspondant à A4 à 96 DPI
-            await page.setViewport({
-                width: 794,
-                height: 1123,
-                deviceScaleFactor: 1
-            });
-
-            const url = `${CONFIG.baseUrl}${pageConfig.url}`;
-            await page.goto(url, {
-                waitUntil: 'networkidle0',
-                timeout: CONFIG.timeout
-            });
-
-            await page.waitForSelector('body', { timeout: 5000 });
-
-            // Injection CSS pour impression
-            await page.addStyleTag({
-                content: `
-                .no-print {
-                    display: none !important;
-                    visibility: hidden !important;
-                }
-
-                html, body {
-                    height: 297mm;
-                    margin: 0;
-                    padding: 0;
-                    box-sizing: border-box;
-                }
-
-                :root {
-                    --color-background: #ffffff;
-                    --color-surface: #f1f5f9;
-                    --color-primary: #0ea5e9;
-                    --color-primary-dark: #0369a1;
-                    --color-secondary: #6366f1;
-                    --color-accent: #d946ef;
-                    --color-text-primary: #1e293b;
-                    --color-text-secondary: #475569;
-                }
-
-                body {
-                    background: var(--color-background);
-                    color: var(--color-text-primary);
-                }
-            `
-            });
-
-            // Idem capture : sans polices pretes, la mise en page deborde sur 2 pages.
-            await page.evaluate(() => document.fonts.ready);
-
-            // Génération PDF
-            const outputPath = path.join(CONFIG.outputDir, pageConfig.filename.replace(/\.png$/, '.pdf'));
+            const pdfPath = path.join(CONFIG.outputDir, `${pageConfig.name}.pdf`);
             await page.pdf({
-                path: outputPath,
+                path: pdfPath,
                 format: 'A4',
                 printBackground: true,
                 preferCSSPageSize: true,
                 scale: 0.90,
-                margin: { top: 0, right: 0, bottom: 0, left: 0 }
+                margin: { top: 0, right: 0, bottom: 0, left: 0 },
             });
+            await fs.copyFile(pdfPath, path.join(CONFIG.publicOutputDir, `${pageConfig.name}.pdf`));
 
-            const publicPath = path.join(CONFIG.publicDir, 'pdf', pageConfig.filename.replace(/\.png$/, '.pdf'));
-            await fs.copyFile(outputPath, publicPath);
+            const written = [`${pageConfig.name}.pdf`];
 
-            this.spinner.succeed(`✓ PDF généré: ${pageConfig.filename.replace(/\.png$/, '.pdf')}`);
-            console.log(chalk.blue(`  📁 Sauvegardé dans: ${outputPath}`));
-            console.log(chalk.blue(`  🌐 Disponible sur: ${CONFIG.baseUrl}/pdf/${pageConfig.filename.replace(/\.png$/, '.pdf')}`));
+            // Les PNG ne sont references par aucun layout : ils ne sont produits
+            // que sur demande explicite, pour verifier un rendu a l'oeil.
+            if (this.withPng) {
+                const pngPath = path.join(CONFIG.outputDir, `${pageConfig.name}.png`);
+                await page.screenshot({ path: pngPath, fullPage: true, type: 'png' });
+                await fs.copyFile(pngPath, path.join(CONFIG.publicOutputDir, `${pageConfig.name}.png`));
+                written.push(`${pageConfig.name}.png`);
+            }
 
+            const { size } = await fs.stat(pdfPath);
+            spinner.succeed(`${written.join(' + ')} — ${(size / 1024).toFixed(0)} Ko`);
         } catch (error) {
-            this.spinner.fail(`❌ Erreur pour ${pageConfig.title}`);
-            console.error(chalk.red(error.message));
+            spinner.fail(`Échec : ${pageConfig.title}`);
             throw error;
         } finally {
             await page.close();
         }
     }
 
-
-
+    /** Les langues sont independantes : un onglet chacune, en parallele. */
     async generateAll() {
-        const pageKeys = Object.keys(CONFIG.pages);
-        console.log(chalk.cyan(`\n📄 Génération de ${pageKeys.length} capture(s)...\n`));
-
-        for (const [key, config] of Object.entries(CONFIG.pages)) {
-            await this.generateScreenshot(key, config);
-            await this.generatePDF(key, config);
-        }
+        const entries = Object.values(CONFIG.pages);
+        console.log(chalk.cyan(`\n${entries.length} document(s) à générer\n`));
+        await Promise.all(entries.map((c) => this.generate(c)));
     }
 
     async generateSingle(pageKey) {
         const pageConfig = CONFIG.pages[pageKey];
         if (!pageConfig) {
-            throw new Error(`Page "${pageKey}" non trouvée. Pages disponibles: ${Object.keys(CONFIG.pages).join(', ')}`);
+            throw new Error(
+                `Page "${pageKey}" inconnue. Disponibles : ${Object.keys(CONFIG.pages).join(', ')}`
+            );
         }
-
-        console.log(chalk.cyan(`\n📄 Génération pour: ${pageConfig.title}\n`));
-        //await this.generateScreenshot(pageKey, pageConfig);
-        await this.generatePDF(pageKey, pageConfig);
+        console.log(chalk.cyan(`\n${pageConfig.title}\n`));
+        await this.generate(pageConfig);
     }
 
     async cleanup() {
         if (this.browser) {
-            await this.browser.close();
+            await this.browser.close().catch(() => {});
+            this.browser = null;
         }
-
-        if (this.hugoServer && !this.hugoServer.killed) {
+        // On ne tue que le serveur qu'on a demarre : un `npm run dev` deja en
+        // cours doit survivre au script.
+        if (this.startedHugo && this.hugoServer && !this.hugoServer.killed) {
             this.hugoServer.kill('SIGTERM');
             console.log(chalk.gray('Serveur Hugo arrêté'));
         }
     }
 }
 
-// CLI
 const argv = yargs
-    .option('page', {
-        alias: 'p',
-        description: 'Générer la capture pour une page spécifique',
-        type: 'string'
-    })
-    .option('all', {
-        alias: 'a',
-        description: 'Générer toutes les captures',
-        type: 'boolean'
-    })
+    .option('page', { alias: 'p', type: 'string', describe: 'Générer une seule page' })
+    .option('png', { type: 'boolean', default: false, describe: 'Produire aussi un PNG (debug)' })
     .help()
     .argv;
 
-// Fonction principale
+let generator;
+
 async function main() {
-    const generator = new PDFGenerator();
+    const started = Date.now();
+    generator = new PDFGenerator({ withPng: argv.png });
 
     try {
         await generator.init();
-
         if (argv.page) {
             await generator.generateSingle(argv.page);
         } else {
             await generator.generateAll();
         }
-
-        console.log(chalk.green('\n✅ Génération terminée avec succès!\n'));
-
+        console.log(chalk.green(`\n✓ Terminé en ${((Date.now() - started) / 1000).toFixed(1)} s`));
     } catch (error) {
-        console.error(chalk.red('\n❌ Erreur lors de la génération:'));
-        console.error(chalk.red(error.message));
-        process.exit(1);
+        console.error(chalk.red(`\n✗ ${error.message}`));
+        process.exitCode = 1;
     } finally {
         await generator.cleanup();
     }
 }
 
-process.on('SIGINT', async () => {
-    console.log(chalk.yellow('\n⚠️  Interruption détectée, nettoyage...'));
-    process.exit(0);
-});
-
-process.on('SIGTERM', async () => {
-    console.log(chalk.yellow('\n⚠️  Arrêt demandé, nettoyage...'));
-    process.exit(0);
-});
-
-if (require.main === module) {
-    main();
+for (const signal of ['SIGINT', 'SIGTERM']) {
+    process.on(signal, async () => {
+        if (generator) await generator.cleanup();
+        process.exit(130);
+    });
 }
 
-module.exports = PDFGenerator;
+main();

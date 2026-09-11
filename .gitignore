@@ -11,3 +11,6 @@ hugo_stats.json
 
 # Bundle des particules : regenere par `pnpm run build:theme-js`
 /themes/orion/static/js/
+
+# Cache d'images Hugo : regenere au build (photo du CV redimensionnee)
+/resources/
