@@ -4,7 +4,7 @@
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
 
-    {{/* Thème Nebula — pose data-theme avant le premier paint (anti-FOUC).
+    {{/* Thème Orion — pose data-theme avant le premier paint (anti-FOUC).
          Ordre de résolution : choix mémorisé, puis préférence système, puis sombre. */}}
     <script>
         (function () {

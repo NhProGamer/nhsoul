@@ -83,12 +83,12 @@ experience:
     description: "Développement seul de deux modules Odoo 19 : un générateur de pages portail (exposition de n'importe quel modèle sans code, avec génération automatique des ir.rule / ACL) et un importeur Excel multi-feuilles gérant les dépendances relationnelles, avec mode simulation par savepoint SQL et tests unitaires. En parallèle, POC d'IA générative locale sur NVIDIA DGX Spark (vLLM, quantification NVFP4, API compatible OpenAI) et analyse de faisabilité d'appels d'offres orientés IA."
 
 projects_perso:
-  - title: "Launcher Minecraft Personnalisé (En cours)"
-    description: "Migration complète d'Electron vers Go/Wails, interface native multiplateforme, gestion des profils et modpacks."
-  - title: "Jeu de Loup Garou en Ligne (En cours)"
-    description: "Architecture port & adapters avec WebSockets, gestion temps réel de salles multijoueurs et logique de jeu complexe."
-  - title: "NatsBridge"
-    description: "Plugin Minecraft et librarie servant pour l'utilisation de NATS simplifié dans l'ecosystème minecraft"
+  - title: "OrionAuth"
+    description: "Développé un serveur OAuth 2.0 / OpenID Connect en Go : MFA, passkeys, fédération d'identité, RBAC et journal d'audit, avec deux SPA Vue d'administration et de connexion et des SDK TypeScript et Go."
+  - title: "OrionDrive"
+    description: "Construit un drive auto-hébergé en un binaire Go unique embarquant une SPA Vue 3 : partage, WebDAV et SFTP, stockage local, S3 ou nœud distant, SQLite, PostgreSQL ou MySQL, authentification OIDC exclusive."
+  - title: "Shamus (En cours)"
+    description: "Architecturé un jeu du Loup-Garou temps réel : backend Go avec Gin et WebSockets, PostgreSQL via sqlc et migrations goose, frontend Vue 3 TypeScript, authentification OIDC déléguée."
 
 projects_pro:
   - title: "Plateforme de Formation BaggyDessine"

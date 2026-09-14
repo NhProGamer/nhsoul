@@ -1,4 +1,4 @@
-// Initialisation du ciel étoilé Nebula.
+// Initialisation du ciel étoilé Orion.
 //
 // Trois choses que fait ce module et que la version d'origine ne faisait pas :
 //   1. les étoiles prennent la couleur du thème actif (--or-particle) ;

@@ -1,7 +1,9 @@
 # orion
 
-Thème Hugo bâti sur le design system **Nebula** (OrionAuth) : violet cosmique,
-dark-first, décliné en clair et en sombre.
+Thème Hugo portant le design system **Orion** : violet cosmique,
+dark-first, décliné en clair et en sombre. Le thème et le design system
+partagent le nom parce qu'ils partagent l'identité — mêmes tokens, même
+accent, la même famille qu'OrionAuth et OrionDrive.
 
 Successeur de `neoflux`. Même modèle de données (`params`, front matter, `i18n`),
 donc aucun contenu à réécrire pour passer de l'un à l'autre.
@@ -10,7 +12,7 @@ donc aucun contenu à réécrire pour passer de l'un à l'autre.
 
 | Axe | Choix |
 |---|---|
-| Accent | violet Nebula — `oklch(0.70 0.20 295)`, < 10 % de la surface |
+| Accent | violet Orion — `oklch(0.70 0.20 295)`, < 10 % de la surface |
 | Surfaces | `--or-bg-0 → bg-3`, plus `--or-bg-inset` à part pour champs et code |
 | Texte | 4 niveaux, tous ≥ WCAG AA sur le fond de page |
 | Typo | Inter (UI) · JetBrains Mono (tout identifiant technique) · Fraunces (display ≥ 20 px, variable : opsz · SOFT · WONK) |
@@ -123,7 +125,7 @@ Piloté par `<html data-theme="dark|light">`.
 | `.or-cta` | CTA primaire accent avec lueur — **un seul par vue** |
 | `.or-display` | titre en Fraunces |
 | `.site-header` | header sticky glassmorphique |
-| `.web-button` | bouton rétro 88×31, version Nebula |
+| `.web-button` | bouton rétro 88×31, version Orion |
 
 Les utilitaires Tailwind (`bg-surface`, `text-text-muted`, `border-border`…)
 pointent tous vers les tokens via `@theme`, donc ils suivent la bascule de thème.

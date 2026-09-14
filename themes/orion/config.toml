@@ -21,7 +21,7 @@ experience_years = 7
 label = ""
 state = "open"
 
-# Ciel étoilé Nebula
+# Ciel étoilé Orion
 [params.animation]
 enable_particles = true   # active / désactive l'animation
 particle_count = 120      # nombre d'étoiles

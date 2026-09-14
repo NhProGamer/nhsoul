@@ -2,10 +2,10 @@
 @source "hugo_stats.json";
 
 /* ============================================================
-   orion — Hugo theme · Design System « Nebula »
+   orion — thème Hugo portant le design system Orion.
    Violet cosmique · dark-first · décliné clair + sombre.
 
-   Source de vérité : BRAND-GUIDELINES.md (OrionAuth · Nebula v1.0)
+   Source de vérité : BRAND-GUIDELINES.md (Orion v1.0)
    et styles/tokens.css du design system.
 
    Le thème actif est piloté par  <html data-theme="dark|light">.
@@ -14,7 +14,7 @@
    ============================================================ */
 
 /* ------------------------------------------------------------
-   1. Tokens Nebula — sombre (référence d'identité)
+   1. Tokens Orion — sombre (référence d'identité)
    ------------------------------------------------------------ */
 :root,
 :root[data-theme="dark"] {
@@ -38,7 +38,7 @@
     --or-fg-2: oklch(0.62 0.015 285);       /* labels / meta        */
     --or-fg-3: oklch(0.48 0.015 285);       /* muted / placeholder  */
 
-    /* Accent — violet Nebula, < 10 % de la surface (règle 01) */
+    /* Accent — violet Orion, < 10 % de la surface (règle 01) */
     --or-accent: oklch(0.70 0.20 295);
     --or-accent-hi: oklch(0.80 0.16 295);
     --or-accent-lo: oklch(0.58 0.22 295);
@@ -56,7 +56,7 @@
     --or-shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.35);
     --or-shadow-lg: 0 20px 40px -12px rgb(0 0 0 / 0.5);
 
-    /* Halo Nebula — fond radial haut-gauche, présent partout */
+    /* Halo Orion — fond radial haut-gauche, présent partout */
     --or-glow: radial-gradient(ellipse 900px 560px at 18% -8%,
             oklch(0.55 0.20 295 / 0.20), transparent 62%);
 
@@ -65,7 +65,7 @@
 }
 
 /* ------------------------------------------------------------
-   2. Tokens Nebula — clair (variante de service)
+   2. Tokens Orion — clair (variante de service)
    ------------------------------------------------------------ */
 :root[data-theme="light"] {
     color-scheme: light;
@@ -169,7 +169,7 @@
     --color-code-number: var(--or-info);
 
     /* La page CV imprimable s'appuie sur le palier "indigo" de Tailwind.
-       On le repeint en violet Nebula pour rester cohérent sur blanc. */
+       On le repeint en violet Orion pour rester cohérent sur blanc. */
     --color-indigo-50: oklch(0.96 0.02 295);
     --color-indigo-100: oklch(0.92 0.04 295);
     --color-indigo-200: oklch(0.85 0.08 295);
@@ -193,7 +193,7 @@
    5. Fondations
    ------------------------------------------------------------ */
 /* Fond piloté explicitement par les tokens (fiable en clair ET sombre,
-   sans dépendre de l'utilitaire bg-background). Le halo Nebula est peint
+   sans dépendre de l'utilitaire bg-background). Le halo Orion est peint
    comme calque de fond fixe par-dessus la couleur de base. */
 html { background-color: var(--or-bg-0); }
 
@@ -254,7 +254,7 @@ p { text-wrap: pretty; }
     color: transparent;
 }
 
-/* Titre de section — serif Nebula. Classe explicite : n'attrape jamais
+/* Titre de section — serif Orion. Classe explicite : n'attrape jamais
    les h2 de la page CV imprimable ni ceux du markdown. */
 .or-display {
     font-family: var(--font-display);
@@ -265,7 +265,7 @@ p { text-wrap: pretty; }
 }
 
 /* ------------------------------------------------------------
-   7. Composants Nebula
+   7. Composants Orion
    ------------------------------------------------------------ */
 
 /* Marque — étoile cardinale, signature de l'identité.
@@ -396,7 +396,7 @@ p { text-wrap: pretty; }
 .bg-primary { color: var(--or-on-accent); }
 [data-theme="light"] .bg-primary { background-color: var(--or-accent-deep); }
 
-/* Carte Nebula — bord subtle au repos, accent + élévation au survol */
+/* Carte Orion — bord subtle au repos, accent + élévation au survol */
 .or-card {
     background: var(--or-bg-1);
     border: 1px solid var(--or-border-subtle);
@@ -455,7 +455,7 @@ p { text-wrap: pretty; }
 [data-theme="light"] .or-theme-toggle .or-sun { display: block; }
 [data-theme="light"] .or-theme-toggle .or-moon { display: none; }
 
-/* Boutons rétro 88×31, version Nebula */
+/* Boutons rétro 88×31, version Orion */
 .web-button {
     display: inline-flex;
     align-items: center;
