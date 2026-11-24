@@ -1,13 +1,22 @@
-# Hugo epingle : le paquet Alpine reste bloque en 0.152.x, trop vieux pour
-# les templates du theme. On recupere le binaire extended musl deja compile.
-FROM hugomods/hugo:0.165.0 AS hugo
+# Hugo epingle. hugomods ne publie plus d'image au-dela de 0.165, et le
+# paquet Alpine est en retard : on prend le binaire officiel. L'edition
+# standard est un binaire Go statique (pas besoin de glibc) et encode deja
+# le WebP dont le theme a besoin. La somme de controle publiee avec la
+# release est verifiee avant usage.
+FROM alpine:3 AS hugo
+ARG HUGO_VERSION=0.170.1
+ARG TARGETARCH
+RUN wget -q https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_linux-${TARGETARCH}.tar.gz \
+         https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_checksums.txt \
+  && grep " hugo_${HUGO_VERSION}_linux-${TARGETARCH}.tar.gz$" hugo_${HUGO_VERSION}_checksums.txt | sha256sum -c - \
+  && tar -xzf hugo_${HUGO_VERSION}_linux-${TARGETARCH}.tar.gz -C /usr/local/bin hugo
 
 # ── Etape 1 : site Hugo + PDF du CV ──
 # Node ne sert qu'a scripts/generate-pdf.js, qui n'a aucune dependance :
 # pas de gestionnaire de paquets ni d'etape d'installation.
 FROM node:22-alpine AS builder
 
-COPY --from=hugo /usr/bin/hugo /usr/local/bin/hugo
+COPY --from=hugo /usr/local/bin/hugo /usr/local/bin/hugo
 
 # Chromium et ses polices, pour le rendu du PDF du CV (scripts/generate-pdf.js).
 # font-noto-emoji n'est pas installe : les pages CV, seules rendues en PDF,
