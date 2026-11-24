@@ -18,9 +18,9 @@
         {{- with $t.size }}{{ $wide = eq . "wide" }}{{ end }}
       <a class="tile {{ if $wide }}tile--7{{ else }}tile--5{{ end }}" href="{{ $p.Params.link | default $p.RelPermalink }}">
         {{- with $t.image }}{{ with $p.Resources.Get . }}
-        <figure class="frame{{ if $t.zoom }} zoom{{ end }}">{{ partial "picture.html" (dict "img" . "alt" ($t.alt | default "") "sizes" "(min-width: 60rem) 58vw, 100vw" "style" (cond (isset $t "position") (printf "object-position: %s" $t.position) "")) }}</figure>
+        <figure class="frame{{ if $t.zoom }} zoom{{ end }}"{{ if not $p.Params.link }} style="{{ partial "vt.html" (dict "page" $p "kind" "shot") }}"{{ end }}>{{ partial "picture.html" (dict "img" . "alt" ($t.alt | default "") "sizes" "(min-width: 60rem) 58vw, 100vw" "style" (cond (isset $t "position") (printf "object-position: %s" $t.position) "")) }}</figure>
         {{- end }}{{ end }}
-        <h3>{{ $p.Title }}</h3>
+        <h3{{ if not $p.Params.link }} style="{{ partial "vt.html" (dict "page" $p "kind" "title") }}"{{ end }}>{{ $p.Title }}</h3>
         {{- with $p.Params.summary }}<p>{{ . }}</p>{{ end }}
         {{- with $p.Params.status }}<small>{{ . }}</small>{{ end }}
       </a>
@@ -32,7 +32,7 @@
         {{- end }}
         <ul class="index">
           {{- range $k, $_ := . }}
-          <li style="--k: {{ $k }}"><a href="{{ .Params.link | default .RelPermalink }}">{{ .Title }}{{ if .Params.link }} {{ partial "icon.html" (dict "name" "arrow-up-right" "class" "i-ext") }}<span class="visually-hidden">{{ T "externalLink" }}</span>{{ end }}</a><span>{{ .Params.summary }}</span><span class="y">{{ .Params.year }}</span></li>
+          <li style="--k: {{ $k }}"><a href="{{ .Params.link | default .RelPermalink }}"{{ if not .Params.link }} style="{{ partial "vt.html" (dict "page" . "kind" "title") }}"{{ end }}>{{ .Title }}{{ if .Params.link }} {{ partial "icon.html" (dict "name" "arrow-up-right" "class" "i-ext") }}<span class="visually-hidden">{{ T "externalLink" }}</span>{{ end }}</a><span>{{ .Params.summary }}</span><span class="y">{{ .Params.year }}</span></li>
           {{- end }}
         </ul>
       </div>

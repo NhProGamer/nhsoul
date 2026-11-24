@@ -2,7 +2,7 @@
 <article class="proj">
   <div class="container">
     <a class="back" href="{{ .Parent.RelPermalink }}">{{ T "backToProjects" }}</a>
-    <h1 class="proj__name">{{ .Title }}</h1>
+    <h1 class="proj__name" style="{{ partial "vt.html" (dict "page" . "kind" "title") }}">{{ .Title }}</h1>
     <div class="case__head">
       <div class="case__ctx">{{ .Content }}</div>
       {{- partial "facts.html" .Params.facts }}
@@ -10,13 +10,13 @@
 
     {{- with .Params.shots }}
     <div class="shots">
-      {{- range . }}
+      {{- range $n, $_ := . }}
         {{- $img := $.Resources.Get .image }}
         {{- if not $img }}{{ errorf "manchette: shot %q not found in %s" .image $.File.Path }}{{ end }}
         {{- $kind := .kind | default "wide" }}
         {{- $sizes := cond (eq $kind "phone") "(min-width: 60rem) 30vw, 100vw" (cond (eq $kind "half") "(min-width: 60rem) 45vw, 100vw" "(min-width: 60rem) 62vw, 100vw") }}
       <figure class="shot shot--{{ $kind }}">
-        <div class="frame{{ if .zoom }} zoom{{ end }}">{{ partial "picture.html" (dict "img" $img "alt" (.alt | default "") "sizes" $sizes) }}</div>
+        <div class="frame{{ if .zoom }} zoom{{ end }}"{{ if eq $n 0 }} style="{{ partial "vt.html" (dict "page" $ "kind" "shot") }}"{{ end }}>{{ partial "picture.html" (dict "img" $img "alt" (.alt | default "") "sizes" $sizes) }}</div>
         {{- with .caption }}<figcaption>{{ . }}</figcaption>{{ end }}
       </figure>
       {{- end }}

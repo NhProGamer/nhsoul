@@ -185,6 +185,19 @@ clair et en sombre. Toutes les animations ont un repli
 `prefers-reduced-motion`, et le contenu reste lisible sans JavaScript : la
 frise redevient un simple défilement horizontal.
 
+Trois mouvements donnent vie au site :
+
+- **Entrée du hero** : les lettres du nom, découpées par Hugo au build,
+  tombent inclinées puis se posent. Le titre garde son texte entier en
+  `aria-label`.
+- **Index de l'accueil** : ses lignes entrent l'une après l'autre au premier
+  passage à l'écran.
+- **Transitions de page** (`@view-transition`) : la capture et le titre d'un
+  projet passent de sa tuile, de sa ligne d'index ou de la page Projets à
+  l'en-tête de sa page. Les éléments sont appariés par
+  `partials/vt.html`. Les navigateurs sans View Transitions changent
+  simplement de page.
+
 ## Licence
 
 GPL-3.0. Apfel Grotezk et Inter : SIL Open Font License. Icônes Lucide :

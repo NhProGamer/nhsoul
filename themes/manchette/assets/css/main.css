@@ -269,3 +269,26 @@ a.tile:focus-visible { outline-offset: 4px; }
   .index a { transition: translate 400ms var(--ease-out), color var(--dur-short) var(--ease-out); }
   .index li:hover a { translate: 0.25em 0; color: var(--color-accent); }
 }
+
+/* ---- motion: page transitions ----
+   Navigating between pages of the site cross-fades: the old page rises
+   away, the new one rises into place. A project's tile or index row and
+   its page header share a name (partials/vt.html), so the screenshot and
+   the title travel from one page to the other. Browsers without view
+   transitions just change page. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  ::view-transition-group(*) { animation-duration: 700ms; animation-timing-function: var(--ease-out); }
+  ::view-transition-old(root) { animation: 280ms ease-in both m-leave; }
+  ::view-transition-new(root) { animation: 600ms var(--ease-out) both m-enter 180ms; }
+  /* Tile and header crops differ: cover re-crops instead of stretching. */
+  ::view-transition-old(.shot), ::view-transition-new(.shot) { height: 100%; object-fit: cover; object-position: 50% 0; }
+  ::view-transition-old(.shot) { animation: none; opacity: 0; }
+  ::view-transition-new(.shot) { animation: none; }
+  /* The old title fades fast so two titles never overlap; the new one grows with its box. */
+  ::view-transition-old(.title) { animation: 160ms ease-out both m-fade-out; }
+  ::view-transition-new(.title) { animation: none; }
+}
+@keyframes m-leave { to { opacity: 0; transform: translateY(-2rem); } }
+@keyframes m-enter { from { opacity: 0; transform: translateY(2.5rem); } }
+@keyframes m-fade-out { to { opacity: 0; } }

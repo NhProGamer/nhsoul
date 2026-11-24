@@ -1,0 +1,5 @@
+{{- /* Style attribute that pairs an element across pages for the view
+       transition: the same project's tile, index row and page header share
+       a name. Context: dict "page" (the project), "kind" (shot or title). */}}
+{{- $style := printf "view-transition-name: %s-%s; view-transition-class: %s" .kind (anchorize .page.File.ContentBaseName) .kind }}
+{{- return safeCSS $style }}
