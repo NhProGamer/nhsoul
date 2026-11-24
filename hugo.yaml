@@ -15,7 +15,7 @@ languages:
     params:
       description: "Néo Huyghe, développeur backend à Lens : des sites et des logiciels en production pour de vrais clients."
       footer:
-        closing: "Un logiciel à faire tourner ? Écrivez-moi."
+        closing: "Un logiciel à faire tourner ? Écrivez-moi."
     menus:
       main:
         - { name: "Projets", pageRef: "/projects", weight: 1 }

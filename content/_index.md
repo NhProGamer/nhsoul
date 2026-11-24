@@ -17,7 +17,7 @@ sections:
     index_word: "soft"
   - type: statement
     text: "Je conçois, je livre, et je réponds quand ça casse."
-    note: "Des agents IA écrivent une partie du code, comme une équipe : je fixe l’architecture, je relis et je valide sur le vrai produit."
+    note: "Des agents IA écrivent une partie du code, comme une équipe : je fixe l’architecture, je relis et je valide sur le vrai produit."
   - type: steps
     title: "Du besoin à la production"
     items:
