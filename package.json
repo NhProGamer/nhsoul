@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "hugo server -D",
     "build:html": "hugo --minify",
-    "build:cv": "node scripts/generate-pdf.js",
+    "build:cv": "sh scripts/generate-pdf.sh",
     "build": "pnpm run build:html && pnpm run build:cv"
   },
   "packageManager": "pnpm@10.21.0",

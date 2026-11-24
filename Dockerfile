@@ -12,13 +12,13 @@ RUN wget -q https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/
   && tar -xzf hugo_${HUGO_VERSION}_linux-${TARGETARCH}.tar.gz -C /usr/local/bin hugo
 
 # ── Etape 1 : site Hugo + PDF du CV ──
-# Node ne sert qu'a scripts/generate-pdf.js, qui n'a aucune dependance :
-# pas de gestionnaire de paquets ni d'etape d'installation.
-FROM node:26-alpine AS builder
+# Alpine nu : le PDF du CV est produit par un script shell, sans Node.
+FROM alpine:3 AS builder
 
 COPY --from=hugo /usr/local/bin/hugo /usr/local/bin/hugo
 
-# Chromium et ses polices, pour le rendu du PDF du CV (scripts/generate-pdf.js).
+# Chromium et ses polices, pour le rendu du PDF du CV (scripts/generate-pdf.sh).
+# busybox-extras fournit le serveur HTTP local qui lui sert public/.
 # font-noto-emoji n'est pas installe : les pages CV, seules rendues en PDF,
 # ne contiennent plus aucun emoji.
 RUN apk add --no-cache \
@@ -27,16 +27,17 @@ RUN apk add --no-cache \
       freetype \
       harfbuzz \
       ca-certificates \
-      ttf-freefont
+      ttf-freefont \
+      busybox-extras
 
-# Chemin du navigateur lu par scripts/generate-pdf.js.
+# Chemin du navigateur lu par scripts/generate-pdf.sh.
 ENV CHROMIUM_PATH=/usr/bin/chromium-browser
 
 WORKDIR /app
 
 COPY . .
 
-RUN hugo --minify && node scripts/generate-pdf.js
+RUN hugo --minify && sh scripts/generate-pdf.sh
 
 # ── Etape 2 : image finale ──
 FROM nginx:alpine

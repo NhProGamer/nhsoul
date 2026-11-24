@@ -1,5 +1,5 @@
 {{- /* The CV: one A4 sheet, read on screen and printed to PDF by a headless
-       browser (scripts/generate-pdf.js at the site root). */}}
+       browser (scripts/generate-pdf.sh at the site root). */}}
 {{ define "head" }}
 {{- $css := resources.Get "css/cv.css" }}
 {{- if hugo.IsProduction }}{{ $css = $css | minify | fingerprint }}{{ end }}

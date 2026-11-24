@@ -2,7 +2,7 @@
 title: "CV"
 description: "CV of Néo Huyghe, backend developer in Lens, France, on a work-study contract at Elosi."
 date: 2025-09-25
-# Built by scripts/generate-pdf.js.
+# Built by scripts/generate-pdf.sh.
 pdf: "/images/cv-en.pdf"
 hello: "Hello, I am"
 role: "Backend developer"

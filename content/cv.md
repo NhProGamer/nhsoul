@@ -2,7 +2,7 @@
 title: "CV"
 description: "CV de Néo Huyghe, développeur backend à Lens, en alternance chez Elosi."
 date: 2025-09-25
-# Généré au build par scripts/generate-pdf.js.
+# Généré au build par scripts/generate-pdf.sh.
 pdf: "/images/cv.pdf"
 hello: "Bonjour, je suis"
 role: "Développeur backend"
