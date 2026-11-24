@@ -79,32 +79,3 @@ markup:
   highlight:
     style: "github-dark"
     lineNos: true
-
-build:
-  buildStats:
-    enable: true
-  cachebusters:
-    - source: assets/notwatching/hugo_stats\.json
-      target: css
-    - source: (postcss|tailwind)\.config\.js
-      target: css
-module:
-  mounts:
-    - source: assets
-      target: assets
-    - disableWatch: true
-      source: hugo_stats.json
-      target: assets/notwatching/hugo_stats.json
-# Hugo >= 0.165 ne whitelist plus tailwindcss par défaut dans security.exec.
-# Cette liste remplace (et non complète) la liste par défaut : les entrées
-# d'origine sont donc reprises telles quelles.
-security:
-  exec:
-    allow:
-      - '^(dart-)?sass$'
-      - '^go$'
-      - '^git$'
-      - '^node$'
-      - '^npx$'
-      - '^postcss$'
-      - '^tailwindcss$'

@@ -3,8 +3,8 @@
 FROM hugomods/hugo:0.165.0 AS hugo
 
 # ── Etape 1 : site Hugo + PDF du CV ──
-# node 22 : Hugo >= 0.164 lance Tailwind via node avec --permission, un flag
-# que node 20 rejette.
+# Node ne sert qu'a scripts/generate-pdf.js, qui n'a aucune dependance :
+# pas de gestionnaire de paquets ni d'etape d'installation.
 FROM node:22-alpine AS builder
 
 COPY --from=hugo /usr/bin/hugo /usr/local/bin/hugo
@@ -18,26 +18,16 @@ RUN apk add --no-cache \
       freetype \
       harfbuzz \
       ca-certificates \
-      ttf-freefont \
-  && corepack enable \
-  && corepack prepare pnpm@10.21.0 --activate
-
-WORKDIR /app
-
-# Manifestes d'abord : cette couche ne se reconstruit que si les dependances
-# changent, pas a chaque edition de contenu.
-# .npmrc doit etre present AVANT l'install : il porte node-linker=hoisted,
-# sans quoi pnpm genere un wrapper sh pour tailwindcss que Hugo >= 0.165 refuse.
-COPY package.json pnpm-lock.yaml .npmrc ./
+      ttf-freefont
 
 # Chemin du navigateur lu par scripts/generate-pdf.js.
 ENV CHROMIUM_PATH=/usr/bin/chromium-browser
 
-RUN pnpm install --frozen-lockfile
+WORKDIR /app
 
 COPY . .
 
-RUN pnpm run build
+RUN hugo --minify && node scripts/generate-pdf.js
 
 # ── Etape 2 : image finale ──
 FROM nginx:alpine
