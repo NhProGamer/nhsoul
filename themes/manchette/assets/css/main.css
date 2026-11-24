@@ -146,8 +146,6 @@ a.tile:focus-visible { outline-offset: 4px; }
 }
 
 /* ---- project pages: case studies ---- */
-.page--flush { padding-bottom: 0; }
-.page--flush .page__head { margin-bottom: 0; border-bottom: 0; }
 .proj { padding-block: var(--space-2xl) var(--section-gap); }
 .proj__name { max-width: none; margin-top: var(--space-2xl); font-size: var(--text-poster); line-height: 0.94; }
 .case__head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-lg) var(--gap-columns); align-items: start; margin-top: var(--space-2xl); }
@@ -215,3 +213,19 @@ a.tile:focus-visible { outline-offset: 4px; }
 .post__cover { margin: 0 0 var(--space-2xl); }
 .post__cover img { width: 100%; border-radius: var(--radius-card); outline: 1px solid var(--frame-line); outline-offset: -1px; }
 @media (max-width: 60rem) { .posts time, .posts h2, .posts p { grid-column: 1 / -1; } }
+
+/* ---- projects page: one line per project ---- */
+.plist { margin: 0; padding: 0; list-style: none; }
+.plist li + li { border-top: 1px solid var(--color-rule); }
+.plist a { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-sm) var(--gap-columns); align-items: center; padding-block: var(--space-xl); text-decoration: none; }
+.plist a:focus-visible { outline-offset: 4px; }
+.plist h2 { grid-column: 1 / span 5; max-width: none; font-size: var(--text-display-s); line-height: 1; transition: color var(--dur-short) var(--ease-out); }
+.plist a:hover h2 { color: var(--color-accent); }
+.plist__text { grid-column: 6 / span 4; display: grid; gap: var(--space-xs); }
+.plist__text p { color: var(--color-ink-2); }
+.plist small { font-size: var(--text-sm); color: var(--color-muted); }
+.plist figure { grid-column: 10 / -1; aspect-ratio: 16 / 10; }
+@media (max-width: 60rem) {
+  .plist h2, .plist__text { grid-column: 1 / -1; }
+  .plist figure { grid-column: 1 / span 8; grid-row: 1; }
+}
