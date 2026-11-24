@@ -220,6 +220,8 @@ a.tile:focus-visible { outline-offset: 4px; }
   .case__ctx, .facts, .shot--wide, .shot--phone, .shot--half, .tech .facts, .tech p, .rows h3, .rows p { grid-column: 1 / -1; }
   .shot--phone .frame { aspect-ratio: 390 / 560; height: auto; }
   .tech { padding: var(--space-lg); }
+  /* A phone screenshot at full width turns into a tall wall: keep it phone-sized. */
+  .shot--phone { justify-self: center; width: min(100%, 20rem); }
 }
 
 /* ---- tools page ---- */
