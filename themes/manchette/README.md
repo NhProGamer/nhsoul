@@ -169,8 +169,9 @@ Pour en ajouter une, déposer son SVG dans `assets/icons/` du site.
   le téléchargement du CV et les projets qui pointent hors du site.
 
 Fournies : `mail`, `map-pin`, `globe`, `copy`, `check`, `download`, `sun`,
-`moon`, `arrow-up-right` (Lucide, ISC) et `github`, `forgejo`, `linkedin`
-(Simple Icons, CC0).
+`moon`, `arrow-up-right` (Lucide 1.79, ISC) et `github`, `forgejo`
+(Simple Icons 16.38, CC0). `linkedin` vient de Simple Icons 13.21 : le logo
+a été retiré des versions suivantes.
 
 ## Traductions
 
