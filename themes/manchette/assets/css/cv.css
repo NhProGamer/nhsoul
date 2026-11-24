@@ -30,6 +30,8 @@ html:not(.js) .bar button { display: none; }
 .role b { font-weight: 600; }
 .role span { color: var(--color-accent); font-weight: 600; }
 .contact { display: grid; gap: 1mm; font-size: 8.8pt; text-align: right; color: var(--color-ink-2); }
+.contact li, .contact a { display: flex; justify-content: flex-end; align-items: center; gap: 1.5mm; }
+.contact .icon { width: 1.15em; height: 1.15em; color: var(--color-accent); }
 .contact a:hover { color: var(--color-accent); }
 
 .cols { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); gap: 9mm; margin-top: 5mm; }
@@ -67,5 +69,6 @@ html:not(.js) .bar button { display: none; }
   .sheet { width: auto; min-height: 0; margin-inline: var(--space-md); padding: var(--space-lg) var(--space-md); font-size: 1rem; }
   .head, .cols, .projects { grid-template-columns: minmax(0, 1fr); }
   .contact { text-align: left; }
+  .contact li, .contact a { justify-content: flex-start; }
   .name { font-size: 3rem; }
 }

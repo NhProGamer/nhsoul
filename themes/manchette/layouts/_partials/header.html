@@ -13,7 +13,7 @@
     <ul>
       {{- range $end }}{{ partial "menu-item.html" (dict "item" . "page" $) }}{{ end }}
       {{- partial "lang-switch.html" . }}
-      <li><button class="theme" type="button" aria-pressed="false" data-light="{{ T "themeLight" }}" data-dark="{{ T "themeDark" }}">{{ T "themeDark" }}</button></li>
+      <li><button class="theme" type="button" aria-pressed="false" data-light="{{ T "themeLight" }}" data-dark="{{ T "themeDark" }}">{{ partial "icon.html" (dict "name" "moon" "class" "i-moon") }}{{ partial "icon.html" (dict "name" "sun" "class" "i-sun") }}<span class="theme__label">{{ T "themeDark" }}</span></button></li>
     </ul>
   </nav>
 </header>

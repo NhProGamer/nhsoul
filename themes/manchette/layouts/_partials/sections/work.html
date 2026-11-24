@@ -32,7 +32,7 @@
         {{- end }}
         <ul class="index">
           {{- range . }}
-          <li><a href="{{ .Params.link | default .RelPermalink }}">{{ .Title }}</a><span>{{ .Params.summary }}</span><span class="y">{{ .Params.year }}</span></li>
+          <li><a href="{{ .Params.link | default .RelPermalink }}">{{ .Title }}{{ if .Params.link }} {{ partial "icon.html" (dict "name" "arrow-up-right" "class" "i-ext") }}<span class="visually-hidden">{{ T "externalLink" }}</span>{{ end }}</a><span>{{ .Params.summary }}</span><span class="y">{{ .Params.year }}</span></li>
           {{- end }}
         </ul>
       </div>

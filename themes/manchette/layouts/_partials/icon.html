@@ -1,0 +1,7 @@
+{{- /* Inline SVG icon from assets/icons/, decorative: the text next to it
+       carries the meaning. Context: dict "name", optional "class". */}}
+{{- with resources.Get (printf "icons/%s.svg" .name) }}
+  {{- replace .Content "<svg " (printf `<svg class="icon%s" aria-hidden="true" focusable="false" ` (cond (isset $ "class") (printf " %s" $.class) "")) 1 | safeHTML }}
+{{- else }}
+  {{- errorf "manchette: icon %q not found in assets/icons/" .name }}
+{{- end -}}

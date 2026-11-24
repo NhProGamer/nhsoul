@@ -38,3 +38,8 @@ button { font: inherit; }
 .back { display: inline-flex; align-items: center; min-height: 44px; font-size: var(--text-sm); text-decoration: underline; text-underline-offset: 0.3em; }
 .skip { position: absolute; left: var(--space-md); top: calc(-1 * var(--space-3xl)); z-index: var(--z-toast); padding: var(--space-xs) var(--space-md); background: var(--color-ink); color: var(--color-paper); }
 .skip:focus-visible { top: var(--space-md); }
+
+/* ---- icons: inline SVG sized by the text, coloured by currentColor ---- */
+.icon { width: 1.1em; height: 1.1em; flex: none; vertical-align: -0.2em; }
+.btn, .theme { gap: var(--space-xs); }
+.btn .icon { width: 1.15em; height: 1.15em; }

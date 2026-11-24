@@ -156,6 +156,22 @@ Les projets du CV viennent des pages projet qui ont un bloc `cv`.
 Liste paginée, puis articles avec date, temps de lecture et couverture
 (`featured_image`, une ressource du bundle).
 
+## Icônes
+
+Icônes SVG inline dans `assets/icons/`, insérées par
+`{{ partial "icon.html" (dict "name" "mail") }}`. Elles prennent la couleur du
+texte et sont décoratives (`aria-hidden`) : le texte voisin porte le sens.
+Pour en ajouter une, déposer son SVG dans `assets/icons/` du site.
+
+- Menus : `params: { icon: "github" }` sur une entrée du menu `footer`.
+- CV : `icon: "mail"` sur une ligne de `contacts`.
+- Le thème les pose seul sur la bascule clair/sombre, le bouton « copier »,
+  le téléchargement du CV et les projets qui pointent hors du site.
+
+Fournies : `mail`, `map-pin`, `globe`, `copy`, `check`, `download`, `sun`,
+`moon`, `arrow-up-right` (Lucide, ISC) et `github`, `forgejo`, `linkedin`
+(Simple Icons, CC0).
+
 ## Traductions
 
 Les textes du thème sont dans `i18n/fr.yaml` et `i18n/en.yaml`. Le site
@@ -170,4 +186,5 @@ frise redevient un simple défilement horizontal.
 
 ## Licence
 
-GPL-3.0. Apfel Grotezk et Inter : SIL Open Font License.
+GPL-3.0. Apfel Grotezk et Inter : SIL Open Font License. Icônes Lucide :
+ISC. Logos Simple Icons : CC0.

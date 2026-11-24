@@ -7,7 +7,7 @@
     var current = function () { return root.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); };
     var label = function () {
       var dark = current() === 'dark';
-      btn.textContent = dark ? btn.dataset.light : btn.dataset.dark;
+      btn.querySelector('.theme__label').textContent = dark ? btn.dataset.light : btn.dataset.dark;
       btn.setAttribute('aria-pressed', String(dark));
     };
     btn.addEventListener('click', function () {
@@ -25,7 +25,7 @@
     copy.hidden = false;
     copy.addEventListener('click', function () {
       navigator.clipboard.writeText(copy.dataset.copy)
-        .then(function () { out.textContent = copy.dataset.done; })
+        .then(function () { out.textContent = copy.dataset.done; copy.classList.add('is-done'); })
         .catch(function () { out.textContent = copy.dataset.fail; });
     });
   }

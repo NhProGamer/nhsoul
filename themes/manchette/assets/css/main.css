@@ -6,7 +6,7 @@
 .mast ul a { font-size: var(--text-sm); text-decoration: none; white-space: nowrap; display: inline-flex; align-items: center; min-height: 44px; transition: color var(--dur-short) var(--ease-out); }
 .mast ul a:hover, .mast ul a[aria-current] { color: var(--color-accent); }
 .wordmark { font: var(--display-weight) var(--text-xl)/1 var(--font-display); font-stretch: 88%; letter-spacing: var(--tracking-display); text-decoration: none; white-space: nowrap; }
-.theme { min-height: 44px; padding: 0 var(--space-sm); border: 1px solid var(--color-rule); border-radius: var(--radius-pill); background: transparent; color: var(--color-ink); font-size: var(--text-sm); white-space: nowrap; cursor: pointer; transition: background-color var(--dur-short) var(--ease-out); }
+.theme { display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--space-sm); border: 1px solid var(--color-rule); border-radius: var(--radius-pill); background: transparent; color: var(--color-ink); font-size: var(--text-sm); white-space: nowrap; cursor: pointer; transition: background-color var(--dur-short) var(--ease-out); }
 .theme:hover { background: var(--color-paper-2); }
 .theme:active { background: var(--color-paper-3); }
 html:not(.js) .theme { display: none; }
@@ -229,3 +229,13 @@ a.tile:focus-visible { outline-offset: 4px; }
   .plist h2, .plist__text { grid-column: 1 / -1; }
   .plist figure { grid-column: 1 / span 8; grid-row: 1; }
 }
+
+/* ---- icons in context ---- */
+/* The toggle shows the theme it switches to: a moon on light, a sun on dark. */
+.theme .i-sun, .theme[aria-pressed="true"] .i-moon { display: none; }
+.theme[aria-pressed="true"] .i-sun { display: block; }
+[data-copy] .i-check, [data-copy].is-done .i-copy { display: none; }
+[data-copy].is-done .i-check { display: block; }
+.foot__links a { gap: var(--space-xs); }
+/* Marks a link that leaves the site; smaller and lighter than the name. */
+.i-ext { width: 0.6em; height: 0.6em; margin-left: 0.1em; vertical-align: 0.3em; color: var(--color-muted); stroke-width: 2.5; }

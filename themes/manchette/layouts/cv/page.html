@@ -10,7 +10,7 @@
 <nav class="bar" aria-label="{{ T "cvActions" }}">
   <a class="back" href="{{ site.Home.RelPermalink }}">{{ T "cvBack" }}</a>
   {{- with .Params.pdf }}
-  <a class="btn" href="{{ . | relURL }}" download>{{ T "cvDownload" }}</a>
+  <a class="btn" href="{{ . | relURL }}" download>{{ partial "icon.html" (dict "name" "download") }}{{ T "cvDownload" }}</a>
   {{- else }}
   <button class="btn" type="button" data-print>{{ T "cvPrint" }}</button>
   {{- end }}
@@ -27,7 +27,7 @@
     {{- with .Params.contacts }}
     <ul class="contact">
       {{- range . }}
-      <li>{{ with .url }}<a href="{{ . }}">{{ end }}{{ .label }}{{ if .url }}</a>{{ end }}</li>
+      <li>{{ with .url }}<a href="{{ . }}">{{ end }}{{ with .icon }}{{ partial "icon.html" (dict "name" .) }}{{ end }}{{ .label }}{{ if .url }}</a>{{ end }}</li>
       {{- end }}
     </ul>
     {{- end }}
