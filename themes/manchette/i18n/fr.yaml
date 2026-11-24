@@ -36,3 +36,4 @@ readingTime:
 pagination: "Pages du blog"
 newerPosts: "Articles plus récents"
 olderPosts: "Articles plus anciens"
+notFound: "Cette page n’existe pas, ou plus."
