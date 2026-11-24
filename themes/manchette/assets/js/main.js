@@ -61,6 +61,15 @@
     addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(place); } }, { passive: true });
   }
 
+  // The home index brings its rows in one after the other the first time
+  // it scrolls into view (see .index in main.css).
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -12% 0px' });
+    document.querySelectorAll('.index').forEach(function (el) { io.observe(el); });
+  }
+
   var print = document.querySelector('[data-print]');
   if (print) print.addEventListener('click', function () { window.print(); });
 })();

@@ -259,3 +259,13 @@ a.tile:focus-visible { outline-offset: 4px; }
 @keyframes m-pop { from { opacity: 0; scale: 0.3; rotate: -20deg; } to { opacity: 1; scale: 1; rotate: 0deg; } }
 @keyframes m-blur { from { opacity: 0; filter: blur(12px); } to { opacity: 1; filter: blur(0); } }
 @keyframes m-up { from { opacity: 0; transform: translateY(0.6em); } to { opacity: 1; transform: none; } }
+
+/* ---- motion: home index ----
+   Rows rise one after the other the first time the index scrolls into
+   view; hidden only once JS is there to bring them back. */
+@media (prefers-reduced-motion: no-preference) {
+  .index li { transition: opacity 700ms var(--ease-out), translate 700ms var(--ease-out); transition-delay: calc(var(--k, 0) * 80ms); }
+  html.js .index:not(.in) li { opacity: 0; translate: 0 1.2rem; }
+  .index a { transition: translate 400ms var(--ease-out), color var(--dur-short) var(--ease-out); }
+  .index li:hover a { translate: 0.25em 0; color: var(--color-accent); }
+}

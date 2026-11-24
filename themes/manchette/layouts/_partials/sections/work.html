@@ -31,8 +31,8 @@
         <h3{{ with $s.index_word }} aria-label="{{ $s.index_title }} {{ upper . }}"{{ end }}>{{ $s.index_title }}{{ with $s.index_word }} <span class="soft"><span aria-hidden="true">{{ range $k, $c := split . "" }}<span style="--i:{{ $k }}">{{ $c }}</span>{{ end }}</span></span>{{ end }}</h3>
         {{- end }}
         <ul class="index">
-          {{- range . }}
-          <li><a href="{{ .Params.link | default .RelPermalink }}">{{ .Title }}{{ if .Params.link }} {{ partial "icon.html" (dict "name" "arrow-up-right" "class" "i-ext") }}<span class="visually-hidden">{{ T "externalLink" }}</span>{{ end }}</a><span>{{ .Params.summary }}</span><span class="y">{{ .Params.year }}</span></li>
+          {{- range $k, $_ := . }}
+          <li style="--k: {{ $k }}"><a href="{{ .Params.link | default .RelPermalink }}">{{ .Title }}{{ if .Params.link }} {{ partial "icon.html" (dict "name" "arrow-up-right" "class" "i-ext") }}<span class="visually-hidden">{{ T "externalLink" }}</span>{{ end }}</a><span>{{ .Params.summary }}</span><span class="y">{{ .Params.year }}</span></li>
           {{- end }}
         </ul>
       </div>
