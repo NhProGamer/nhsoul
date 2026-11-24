@@ -6,3 +6,6 @@ themeLight: "Light"
 copyEmail: "Copy the address"
 copyDone: "Address copied."
 copyFail: "Copy failed: select the address by hand."
+ageYears:
+  one: "{{ .Count }} year old"
+  other: "{{ .Count }} years old"

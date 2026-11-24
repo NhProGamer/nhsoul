@@ -1,0 +1,8 @@
+<section class="band" aria-label="{{ .s.label | default .s.text }}">
+  <div class="container">
+    <p class="statement">{{ .s.text }}</p>
+    {{- with .s.note }}
+    <p class="lead band__note">{{ . }}</p>
+    {{- end }}
+  </div>
+</section>

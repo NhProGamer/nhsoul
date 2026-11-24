@@ -6,3 +6,6 @@ themeLight: "Clair"
 copyEmail: "Copier l’adresse"
 copyDone: "Adresse copiée."
 copyFail: "La copie a échoué : sélectionnez l’adresse à la main."
+ageYears:
+  one: "{{ .Count }} an"
+  other: "{{ .Count }} ans"

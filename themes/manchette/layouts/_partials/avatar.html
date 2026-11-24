@@ -1,0 +1,9 @@
+{{- /* The author's photo, square, from params.author.photo (a path under assets/). */}}
+{{- with site.Params.author.photo }}
+  {{- with resources.Get . }}
+    {{- $img := .Fill (printf "%dx%d webp Center" $.size $.size) }}
+<img class="{{ $.class }}" src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt=""{{ if $.eager }} fetchpriority="high"{{ end }}>
+  {{- else }}
+    {{- warnf "manchette: params.author.photo %q was not found under assets/" . }}
+  {{- end }}
+{{- end }}

@@ -1,0 +1,17 @@
+{{- /* Horizontal timeline. On wide screens main.js pins it and scrolls it
+       sideways as the page scrolls down. */}}
+<section class="path"{{ with .s.id }} id="{{ . }}"{{ end }} aria-labelledby="sec-{{ .i }}">
+  <div class="path__runway">
+    <div class="path__sticky">
+      <div class="container"><h2 id="sec-{{ .i }}">{{ partial "fill.html" .s.title }}</h2></div>
+      <div class="path__view" tabindex="0" aria-label="{{ .s.label | default .s.title }}">
+        <ol class="track">
+          {{- range .s.items }}
+            {{- $age := partial "age.html" (dict "at" (time.AsTime (printf "%d-12-31" (int .year)))) }}
+          <li><b>{{ .year }}</b>{{ if $age }}<small>{{ T "ageYears" $age }}</small>{{ end }}<p>{{ .text }}</p></li>
+          {{- end }}
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
