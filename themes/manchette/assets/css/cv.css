@@ -66,11 +66,9 @@ html:not(.js) .bar button { display: none; }
      second page, which the PDF script rejects, instead of being cut off. */
   .sheet { margin: 0; box-shadow: none; width: 210mm; min-height: 0; }
 }
-/* Screen only: the sheet fits a phone. Print keeps the A4. */
-@media screen and (max-width: 52rem) {
-  .sheet { width: auto; min-height: 0; margin-inline: var(--space-md); padding: var(--space-lg) var(--space-md); font-size: 1rem; }
-  .head, .cols, .projects { grid-template-columns: minmax(0, 1fr); }
-  .contact { text-align: left; }
-  .contact li, .contact a { justify-content: flex-start; }
-  .name { font-size: 3rem; }
+/* The CV never reflows: on any screen it is the same A4 sheet as the PDF.
+   On a screen narrower than the sheet, main.js zooms the whole sheet down
+   to fit; without script the frame scrolls sideways instead. */
+.sheet-frame { overflow-x: auto; }
+@media print { .sheet-frame { overflow: visible; } .sheet { zoom: 1 !important; } }
 }

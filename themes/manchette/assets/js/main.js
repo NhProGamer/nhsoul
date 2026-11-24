@@ -78,6 +78,19 @@
     document.addEventListener('click', function (e) { if (menu.open && !menu.contains(e.target)) menu.open = false; });
   }
 
+  // The CV sheet keeps its A4 layout: on a narrow screen it is scaled down
+  // as a whole, like a PDF preview, instead of reflowing.
+  var sheet = document.querySelector('.sheet');
+  if (sheet) {
+    var fit = function () {
+      sheet.style.zoom = '';
+      var room = document.documentElement.clientWidth - 24, width = sheet.offsetWidth;
+      if (width > room) sheet.style.zoom = (room / width).toFixed(4);
+    };
+    fit();
+    addEventListener('resize', fit);
+  }
+
   var print = document.querySelector('[data-print]');
   if (print) print.addEventListener('click', function () { window.print(); });
 })();
