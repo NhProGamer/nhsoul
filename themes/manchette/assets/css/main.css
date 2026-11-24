@@ -179,7 +179,10 @@ a.tile:focus-visible { outline-offset: 4px; }
   .tile--7, .tile--5 { grid-column: 1 / -1; }
   .verbs h3, .verbs p { grid-column: 1 / -1; }
 }
-@media (max-width: 40rem) {
+/* The index sits in a narrow tile on some widths, a wide one on others:
+   it lays its rows out by its own width, not the screen's. */
+.tile--list { container-type: inline-size; }
+@container (max-width: 34rem) {
   .index li { grid-template-columns: minmax(0, 1fr) auto; }
   .index li > span:not(.y) { grid-column: 1 / -1; grid-row: 2; }
 }
