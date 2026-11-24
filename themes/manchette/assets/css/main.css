@@ -1,19 +1,43 @@
 /* ---- nav: masthead, the name centred between two link groups ---- */
-.mast { border-bottom: 1px solid var(--color-rule); }
+.mast { position: relative; border-bottom: 1px solid var(--color-rule); }
 .mast .container { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; min-height: 72px; gap: var(--space-lg); }
-.mast ul { display: flex; gap: var(--space-lg); margin: 0; padding: 0; list-style: none; align-items: center; }
-.mast ul:last-of-type { justify-content: flex-end; }
-.mast ul a { font-size: var(--text-sm); text-decoration: none; white-space: nowrap; display: inline-flex; align-items: center; min-height: 44px; transition: color var(--dur-short) var(--ease-out); }
-.mast ul a:hover, .mast ul a[aria-current] { color: var(--color-accent); }
+.mast__links { display: flex; gap: var(--space-lg); margin: 0; padding: 0; list-style: none; align-items: center; }
+.mast__end { display: flex; gap: var(--space-lg); align-items: center; justify-content: flex-end; }
+.mast__links a { font-size: var(--text-sm); text-decoration: none; white-space: nowrap; display: inline-flex; align-items: center; min-height: 44px; transition: color var(--dur-short) var(--ease-out); }
+.mast__links a:hover, .mast__links a[aria-current] { color: var(--color-accent); }
 .wordmark { font: var(--display-weight) var(--text-xl)/1 var(--font-display); font-stretch: 88%; letter-spacing: var(--tracking-display); text-decoration: none; white-space: nowrap; }
 .theme { display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--space-sm); border: 1px solid var(--color-rule); border-radius: var(--radius-pill); background: transparent; color: var(--color-ink); font-size: var(--text-sm); white-space: nowrap; cursor: pointer; transition: background-color var(--dur-short) var(--ease-out); }
 .theme:hover { background: var(--color-paper-2); }
 .theme:active { background: var(--color-paper-3); }
 html:not(.js) .theme { display: none; }
-@media (max-width: 60rem) { .mast .hide-s { display: none; } }
+
+/* The Menu disclosure replaces the link groups on small screens. */
+.menu { display: none; }
+.menu summary { display: inline-flex; align-items: center; gap: var(--space-xs); min-height: 44px; padding: 0 var(--space-md); border: 1px solid var(--color-ink); border-radius: var(--radius-pill); font-size: var(--text-sm); font-weight: 600; list-style: none; cursor: pointer; user-select: none; transition: background-color var(--dur-short) var(--ease-out); }
+.menu summary::-webkit-details-marker { display: none; }
+.menu summary:hover { background: var(--color-paper-2); }
+.menu .i-close, .menu[open] .i-menu { display: none; }
+.menu[open] .i-close { display: block; }
+.menu__list { position: absolute; left: 0; right: 0; top: 100%; z-index: var(--z-sticky); margin: 0; padding: var(--space-xs) var(--gutter) var(--space-lg); list-style: none; background: var(--color-paper); border-bottom: 1px solid var(--color-ink); box-shadow: 0 24px 40px -24px color-mix(in oklab, var(--color-ink) 30%, transparent); }
+.menu__list li + li { border-top: 1px solid var(--color-rule); }
+.menu__list a { display: flex; align-items: center; min-height: 56px; font: var(--display-weight) var(--text-2xl)/1 var(--font-display); font-stretch: 88%; letter-spacing: var(--tracking-display); text-decoration: none; }
+.menu__list a[aria-current] { color: var(--color-accent); }
+@media (prefers-reduced-motion: no-preference) {
+  .menu[open] .menu__list { animation: m-menu 320ms var(--ease-out); }
+}
+@keyframes m-menu { from { opacity: 0; transform: translateY(-0.5rem); } }
+
+/* The full masthead needs about 70rem before the right group crowds the name. */
+@media (max-width: 70rem) {
+  .mast .container { grid-template-columns: minmax(0, 1fr) auto; min-height: 64px; gap: var(--space-sm); }
+  .mast__links { display: none; }
+  .mast__end { gap: var(--space-xs); }
+  .menu { display: block; }
+}
 @media (max-width: 40rem) {
-  .mast .container { grid-template-columns: minmax(0, 1fr) auto; }
-  .mast ul:first-of-type { display: none; }
+  /* Icon only: the label stays for screen readers. */
+  .theme { padding: 0; width: 44px; justify-content: center; }
+  .theme__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 }
 
 /* ---- footer: statement ---- */

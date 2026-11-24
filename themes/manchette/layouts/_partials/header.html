@@ -1,19 +1,29 @@
 {{- /* Masthead: menu entries with params.side = "end" sit right of the name.
-       Entries without params.pin are hidden on small screens. */}}
+       Below 60rem the links fold into a Menu disclosure, which works
+       without JavaScript (main.js only closes it after a choice). */}}
 {{- $start := slice }}{{ $end := slice }}
 {{- range site.Menus.main }}
   {{- if eq .Params.side "end" }}{{ $end = $end | append . }}{{ else }}{{ $start = $start | append . }}{{ end }}
 {{- end }}
 <header class="mast">
   <nav class="container" aria-label="{{ T "navMain" }}">
-    <ul>
+    <ul class="mast__links">
       {{- range $start }}{{ partial "menu-item.html" (dict "item" . "page" $) }}{{ end }}
     </ul>
     <a class="wordmark" href="{{ site.Home.RelPermalink }}" aria-label="{{ T "navHome" (dict "Name" (partial "author-name.html" .)) }}">{{ partial "author-name.html" . }}</a>
-    <ul>
-      {{- range $end }}{{ partial "menu-item.html" (dict "item" . "page" $) }}{{ end }}
-      {{- partial "lang-switch.html" . }}
-      <li><button class="theme" type="button" aria-pressed="false" data-light="{{ T "themeLight" }}" data-dark="{{ T "themeDark" }}">{{ partial "icon.html" (dict "name" "moon" "class" "i-moon") }}{{ partial "icon.html" (dict "name" "sun" "class" "i-sun") }}<span class="theme__label">{{ T "themeDark" }}</span></button></li>
-    </ul>
+    <div class="mast__end">
+      <ul class="mast__links">
+        {{- range $end }}{{ partial "menu-item.html" (dict "item" . "page" $) }}{{ end }}
+        {{- partial "lang-switch.html" . }}
+      </ul>
+      <button class="theme" type="button" aria-pressed="false" data-light="{{ T "themeLight" }}" data-dark="{{ T "themeDark" }}">{{ partial "icon.html" (dict "name" "moon" "class" "i-moon") }}{{ partial "icon.html" (dict "name" "sun" "class" "i-sun") }}<span class="theme__label">{{ T "themeDark" }}</span></button>
+      <details class="menu">
+        <summary>{{ partial "icon.html" (dict "name" "menu" "class" "i-menu") }}{{ partial "icon.html" (dict "name" "x" "class" "i-close") }}<span>{{ T "menu" }}</span></summary>
+        <ul class="menu__list">
+          {{- range site.Menus.main }}{{ partial "menu-item.html" (dict "item" . "page" $) }}{{ end }}
+          {{- partial "lang-switch.html" . }}
+        </ul>
+      </details>
+    </div>
   </nav>
 </header>

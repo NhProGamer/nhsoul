@@ -45,16 +45,16 @@ languages:
         closing: "Un logiciel à faire tourner ? Écrivez-moi."
     menus:
       main:
-        - { name: "Projets", url: "/#projets", params: { pin: true } }
+        - { name: "Projets", pageRef: "/projects" }
         - { name: "Ma stack", pageRef: "/tools", params: { side: "end" } }
       footer:
         - { name: "GitHub", url: "https://github.com/…" }
 ```
 
 Menu `main` : les entrées avec `params.side: end` se placent à droite du
-nom, les autres à gauche. Sur petit écran, seules les entrées avec
-`params.pin: true` restent visibles. Le menu `footer` donne les liens du
-pied de page.
+nom, les autres à gauche. Sous 70rem, tous les liens passent dans un bouton
+« Menu » (un `<details>`, qui marche sans JavaScript). Le menu `footer`
+donne les liens du pied de page.
 
 Toutes les clés sont optionnelles : sans `author`, le thème affiche le
 titre du site ; sans `email`, le bloc contact disparaît.
