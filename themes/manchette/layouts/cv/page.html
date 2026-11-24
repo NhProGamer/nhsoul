@@ -1,0 +1,114 @@
+{{- /* The CV: one A4 sheet, read on screen and printed to PDF by a headless
+       browser (scripts/generate-pdf.sh at the site root). */}}
+{{ define "head" }}
+{{- $css := resources.Get "css/cv.css" }}
+{{- if hugo.IsProduction }}{{ $css = $css | minify | fingerprint }}{{ end }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}"{{ with $css.Data.Integrity }} integrity="{{ . }}"{{ end }}>
+{{ end }}
+{{ define "bodyClass" }}cv{{ end }}
+{{ define "body" }}
+<nav class="bar" aria-label="{{ T "cvActions" }}">
+  <a class="back" href="{{ site.Home.RelPermalink }}">{{ T "cvBack" }}</a>
+  {{- with .Params.pdf }}
+  <a class="btn" href="{{ . | relURL }}" download>{{ partial "icon.html" (dict "name" "download") }}{{ T "cvDownload" }}</a>
+  {{- else }}
+  <button class="btn" type="button" data-print>{{ T "cvPrint" }}</button>
+  {{- end }}
+</nav>
+
+<main class="sheet" id="main">
+  <header class="head">
+    <div>
+      <h1>{{ with .Params.hello }}<span class="hello">{{ . }}</span>{{ end }}<span class="name">{{ partial "avatar.html" (dict "size" 240 "class" "") }}{{ partial "author-name.html" . }}.</span></h1>
+      {{- with .Params.role }}
+      <p class="role"><b>{{ . }}</b>{{ with $.Params.role_note }}, <span>{{ . }}</span>{{ end }}</p>
+      {{- end }}
+    </div>
+    {{- with .Params.contacts }}
+    <ul class="contact">
+      {{- range . }}
+      <li>{{ with .url }}<a href="{{ . }}">{{ end }}{{ with .icon }}{{ partial "icon.html" (dict "name" .) }}{{ end }}{{ .label }}{{ if .url }}</a>{{ end }}</li>
+      {{- end }}
+    </ul>
+    {{- end }}
+  </header>
+
+  <div class="cols">
+    <div>
+      <section class="profile" aria-labelledby="cv-profile">
+        <h2 id="cv-profile">{{ T "cvProfile" }}</h2>
+        {{ .Content }}
+        {{- with .Params.motto }}<p class="motto">{{ . }}</p>{{ end }}
+      </section>
+      {{- with .Params.experience }}
+      <section aria-labelledby="cv-exp">
+        <h2 id="cv-exp">{{ T "cvExperience" }}</h2>
+        {{- range . }}
+        <div class="job">
+          <div class="job__top"><h3>{{ .title }}</h3>{{ with .when }}<span class="when">{{ . }}</span>{{ end }}</div>
+          {{- with .where }}<p class="where">{{ . }}</p>{{ end }}
+          {{- with .text }}<p>{{ . }}</p>{{ end }}
+        </div>
+        {{- end }}
+      </section>
+      {{- end }}
+    </div>
+
+    <aside class="aside">
+      {{- with .Params.skills }}
+      <section aria-labelledby="cv-skills">
+        <h2 id="cv-skills">{{ T "cvSkills" }}</h2>
+        {{- range . }}<p>{{ . }}</p>{{ end }}
+      </section>
+      {{- end }}
+      {{- with .Params.technologies }}
+      <section aria-labelledby="cv-tech">
+        <h2 id="cv-tech">{{ T "cvTechnologies" }}</h2>
+        <dl>
+          {{- range . }}
+          <div><dt>{{ .label }}</dt><dd>{{ delimit .items ", " }}</dd></div>
+          {{- end }}
+        </dl>
+      </section>
+      {{- end }}
+      {{- with .Params.education }}
+      <section aria-labelledby="cv-edu">
+        <h2 id="cv-edu">{{ T "cvEducation" }}</h2>
+        {{- range . }}
+        <div class="school">
+          <div class="job__top"><h3>{{ .title }}</h3>{{ with .when }}<span class="when">{{ . }}</span>{{ end }}</div>
+          {{- with .where }}<p class="where">{{ . }}</p>{{ end }}
+        </div>
+        {{- end }}
+      </section>
+      {{- end }}
+      {{- with .Params.soft_skills }}
+      <section aria-labelledby="cv-soft">
+        <h2 id="cv-soft">{{ T "cvSoftSkills" }}</h2>
+        <p>{{ delimit . ", " }}</p>
+      </section>
+      {{- end }}
+    </aside>
+  </div>
+
+  {{- /* Projects come from the project pages that carry a `cv` block. */}}
+  {{- $projects := where (where site.RegularPages "Section" "projects") "Params.cv" "!=" nil }}
+  {{- with $projects }}
+  <section class="wide" aria-labelledby="cv-projects">
+    <h2 id="cv-projects">{{ T "cvProjects" }}</h2>
+    <ul class="projects">
+      {{- range . }}
+      <li>
+        <h3>{{ .Params.cv.title | default .Title }}</h3>
+        {{- with .Params.cv.kind }}<span class="kind">{{ . }}</span>{{ end }}
+        <p>{{ .Params.cv.text }}{{ with .Params.cv.url }} <a href="{{ . }}">{{ replaceRE `^https?://` "" . }}</a>{{ end }}</p>
+      </li>
+      {{- end }}
+    </ul>
+  </section>
+  {{- end }}
+</main>
+{{- $js := resources.Get "js/main.js" }}
+{{- if hugo.IsProduction }}{{ $js = $js | minify | fingerprint }}{{ end }}
+<script src="{{ $js.RelPermalink }}" defer></script>
+{{ end }}

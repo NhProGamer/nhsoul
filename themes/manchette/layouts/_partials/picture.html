@@ -1,0 +1,9 @@
+{{- /* Responsive image from a resource.
+       Context: dict "img" (image resource), "alt", "sizes", "class", "style", "eager". */}}
+{{- $img := .img }}
+{{- $widths := slice }}
+{{- range slice 480 960 1440 }}{{ if lt . $img.Width }}{{ $widths = $widths | append . }}{{ end }}{{ end }}
+{{- $srcset := slice }}
+{{- range $widths }}{{ $r := $img.Process (printf "resize %dx webp" .) }}{{ $srcset = $srcset | append (printf "%s %dw" $r.RelPermalink $r.Width) }}{{ end }}
+{{- $srcset = $srcset | append (printf "%s %dw" $img.RelPermalink $img.Width) }}
+<img src="{{ $img.RelPermalink }}" srcset="{{ delimit $srcset ", " }}" sizes="{{ .sizes | default "100vw" }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="{{ .alt }}"{{ with .class }} class="{{ . }}"{{ end }}{{ with .style }} style="{{ . | safeCSS }}"{{ end }}{{ if .eager }} fetchpriority="high"{{ else }} loading="lazy"{{ end }}>

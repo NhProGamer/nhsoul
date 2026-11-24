@@ -1,120 +1,77 @@
 baseURL: "https://nhsoul.fr"
 defaultContentLanguage: "fr"
 defaultContentLanguageInSubdir: false
+theme: "manchette"
+
+permalinks:
+  blog: "/blog/:slug/"
+
 languages:
   fr:
     label: "Français"
     locale: "fr-FR"
     weight: 1
-    title: "NнPro | Développeur Backend"
+    title: "Néo Huyghe, développeur à Lens"
     params:
-      description: "Développeur backend passionné"
-      bio: "Je construis des systèmes robustes et performants avec Node.js, Python et Go. J'aime résoudre des problèmes complexes et partager mes connaissances."
-      availability:
-        label: "Développeur backend"
+      description: "Néo Huyghe, développeur backend à Lens : des sites et des logiciels en production pour de vrais clients."
+      footer:
+        closing: "Un logiciel à faire tourner ? Écrivez-moi."
+    menus:
+      main:
+        - { name: "Projets", pageRef: "/projects", weight: 1, params: { pin: true } }
+        - { name: "Parcours", url: "/#parcours", weight: 2 }
+        - { name: "Blog", pageRef: "/blog", weight: 3 }
+        - { name: "Ma stack", pageRef: "/tools", weight: 4, params: { side: "end" } }
+        - { name: "CV", pageRef: "/cv", weight: 5, params: { side: "end" } }
+        - { name: "Contact", url: "#contact", weight: 6, params: { side: "end", pin: true } }
+      footer:
+        - { name: "GitHub", url: "https://github.com/NhProGamer", weight: 1, params: { icon: "github" } }
+        - { name: "Forgejo", url: "https://git.nhsoul.fr/nhpro", weight: 2, params: { icon: "forgejo" } }
+        - { name: "LinkedIn", url: "https://www.linkedin.com/in/neo-huyghe", weight: 3, params: { icon: "linkedin" } }
+        - { name: "Projets", pageRef: "/projects", weight: 4 }
+        - { name: "Blog", pageRef: "/blog", weight: 5 }
+        - { name: "CV", pageRef: "/cv", weight: 6 }
+        - { name: "Ma stack", pageRef: "/tools", weight: 7 }
   en:
     label: "English"
     locale: "en-US"
     weight: 2
-    title: "NнPro | Backend Developer"
+    title: "Néo Huyghe, developer in Lens"
     params:
-      description: "Passionate Backend Developer"
-      bio: "I build robust and performant systems with Node.js, Python and Go. I love solving complex problems and sharing my knowledge."
-      chip: "Backend Developer"
-      availability:
-        label: "Backend developer"
-      expertise:
-        title: "My Areas of Expertise"
-        description: "Discover the technologies and methodologies I master to create robust and performant backend solutions."
-        items:
-          - title: "Software Architecture"
-            description: "Design of modular and maintainable systems with patterns."
-            icon: |
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-                  </svg>
-          - title: "High Performance APIs"
-            description: "Development of REST APIs optimized for speed and stability."
-            icon: |
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-          - title: "DevOps"
-            description: "Automation, CI/CD, and deployments via Docker and Kubernetes."
-            icon: |
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
-                  </svg>
-theme: "orion"
-
-permalinks:
-  blog: "/blog/:slug/"
+      description: "Néo Huyghe, backend developer in Lens, France: websites and software running in production for real clients."
+      footer:
+        closing: "Got software to run? Write to me."
+    menus:
+      main:
+        - { name: "Projects", pageRef: "/projects", weight: 1, params: { pin: true } }
+        - { name: "Path", url: "/en/#path", weight: 2 }
+        - { name: "Blog", pageRef: "/blog", weight: 3 }
+        - { name: "My stack", pageRef: "/tools", weight: 4, params: { side: "end" } }
+        - { name: "CV", pageRef: "/cv", weight: 5, params: { side: "end" } }
+        - { name: "Contact", url: "#contact", weight: 6, params: { side: "end", pin: true } }
+      footer:
+        - { name: "GitHub", url: "https://github.com/NhProGamer", weight: 1, params: { icon: "github" } }
+        - { name: "Forgejo", url: "https://git.nhsoul.fr/nhpro", weight: 2, params: { icon: "forgejo" } }
+        - { name: "LinkedIn", url: "https://www.linkedin.com/in/neo-huyghe", weight: 3, params: { icon: "linkedin" } }
+        - { name: "Projects", pageRef: "/projects", weight: 4 }
+        - { name: "Blog", pageRef: "/blog", weight: 5 }
+        - { name: "CV", pageRef: "/cv", weight: 6 }
+        - { name: "My stack", pageRef: "/tools", weight: 7 }
 
 params:
-  first_name: "Néo"
-  last_name: "Huyghe"
-  pseudo: "NнPro"
-  birthdate: "2006-02-05"
-  description: "Développeur backend passionné"
-  bio: "Je construis des systèmes robustes et performants avec Node.js, Python et Go. J'aime résoudre des problèmes complexes et partager mes connaissances."
-  languages: ["Java", "JavaScript", "HTML", "CSS", "Python", "C#", "Go"]
-  chip: "Développeur Backend"
-
-  # Chiffre affiche dans le hero ("<n>+ ans d'experience")
-  experience_years: 7
-
-  # Pastille de disponibilite du hero. Le libelle est par langue (voir languages:).
-  # state: open (recherche active, point vert pulsant) | soon | closed
-  # Retirer le libelle fait disparaitre la pastille entierement.
-  availability:
-    state: "open"
-
-  term:
-    user: "nhpro"
-    host: "t480"
-
-  # Ciel etoile Orion
-  animation:
-    enable_particles: true
-    particle_count: 120
-    particle_speed: 0.15
-
-  contact:
+  author:
+    first_name: "Néo"
+    last_name: "Huyghe"
     email: "contact@nhsoul.fr"
-    # Vide => lien mail direct plutot qu'un formulaire sans destination.
-    action: ""
-
-  expertise:
-    title: "Ce que je fais"
-    description: "Spécialisé dans le développement backend, je crée des solutions techniques robustes et évolutives."
-    items:
-      - title: "Architecture Logicielle"
-        description: "Conception de systèmes modulaires et maintenables avec des patterns."
-        icon: |
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-              </svg>
-      - title: "APIs Performantes"
-        description: "Développement d'APIs REST optimisées pour la rapidité et la stabilité. "
-        icon: |
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-      - title: "DevOps"
-        description: "Automatisation, CI/CD, et déploiements via Docker et Kubernetes."
-        icon: |
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
-              </svg>
-
-  social:
-    - name: "Github"
-      icon: |
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-        </svg>
-      weight: 1
-      url: "https://github.com/NhProGamer/"
+    location: "Lens"
+    # Ages on the home page and the timeline are computed from these two.
+    birthdate: "2006-02-05"
+    coding_since: 2017
+    # Path under assets/, resized by Hugo.
+    photo: "images/pfp-min.jpg"
+  manchette:
+    # Hue of the whole palette, in OKLCH degrees: 292 is Orion violet.
+    hue: 292
 
 markup:
   goldmark:
@@ -124,32 +81,3 @@ markup:
   highlight:
     style: "github-dark"
     lineNos: true
-
-build:
-  buildStats:
-    enable: true
-  cachebusters:
-    - source: assets/notwatching/hugo_stats\.json
-      target: css
-    - source: (postcss|tailwind)\.config\.js
-      target: css
-module:
-  mounts:
-    - source: assets
-      target: assets
-    - disableWatch: true
-      source: hugo_stats.json
-      target: assets/notwatching/hugo_stats.json
-# Hugo >= 0.165 ne whitelist plus tailwindcss par défaut dans security.exec.
-# Cette liste remplace (et non complète) la liste par défaut : les entrées
-# d'origine sont donc reprises telles quelles.
-security:
-  exec:
-    allow:
-      - '^(dart-)?sass$'
-      - '^go$'
-      - '^git$'
-      - '^node$'
-      - '^npx$'
-      - '^postcss$'
-      - '^tailwindcss$'

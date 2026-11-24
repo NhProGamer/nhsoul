@@ -1,0 +1,20 @@
+{{ define "main" }}
+<article class="post">
+  <div class="container">
+    <a class="back" href="{{ .Parent.RelPermalink }}">{{ T "backToBlog" }}</a>
+    <header class="post__head">
+      <h1 class="post__title">{{ .Title }}</h1>
+      <p class="post__meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>, {{ T "readingTime" .ReadingTime }}</p>
+    </header>
+    {{- with .Params.featured_image }}{{ with $.Resources.Get . }}
+    <figure class="post__cover">{{ partial "picture.html" (dict "img" . "alt" "" "sizes" "(min-width: 90rem) 1312px, 100vw" "eager" true) }}</figure>
+    {{- end }}{{ end }}
+    <div class="prose">
+      {{ .Content }}
+    </div>
+    {{- with .PrevInSection }}
+    <a class="next" href="{{ .RelPermalink }}"><span>{{ T "nextPost" }}</span><b>{{ .Title }}</b></a>
+    {{- end }}
+  </div>
+</article>
+{{ end }}

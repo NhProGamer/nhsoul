@@ -1,0 +1,76 @@
+/* The CV sheet stays light whatever the site theme: it is a printed
+   document, and a dark PDF would waste toner and read as a mistake. */
+.cv {
+  color-scheme: light;
+  --color-paper: oklch(99% 0.004 var(--hue)); --color-desk: oklch(93% 0.012 var(--hue));
+  --color-ink: oklch(19% 0.022 var(--hue)); --color-ink-2: oklch(34% 0.02 var(--hue)); --color-muted: oklch(46% 0.02 var(--hue));
+  --color-rule: oklch(86% 0.014 var(--hue));
+  --color-accent: oklch(48% 0.2 var(--hue)); --color-accent-ink: oklch(98% 0.008 var(--hue)); --color-focus: oklch(50% 0.21 var(--hue));
+  --frame-line: color-mix(in oklab, var(--color-ink) 10%, transparent);
+  --shadow-sheet: 0 1px 2px oklch(20% 0.02 var(--hue) / 0.08);
+  background: var(--color-desk); color: var(--color-ink);
+}
+.cv p, .cv ul, .cv dl, .cv dd { margin: 0; }
+.cv ul { padding: 0; list-style: none; }
+.cv a { text-decoration: none; }
+
+/* ---- screen-only bar, never printed ---- */
+.bar { display: flex; justify-content: space-between; align-items: center; gap: var(--space-md); max-width: 210mm; margin: 0 auto; padding: var(--space-lg) var(--space-md); }
+html:not(.js) .bar button { display: none; }
+
+/* ---- the A4 sheet: same measures on screen and on paper ---- */
+.sheet { width: 210mm; min-height: 297mm; margin: 0 auto var(--space-2xl); padding: 11mm 13mm; background: var(--color-paper); box-shadow: var(--shadow-sheet); font-size: 9pt; line-height: 1.4; }
+.sheet h1, .sheet h2, .sheet h3 { max-width: none; }
+.head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-lg); align-items: end; padding-bottom: 5mm; border-bottom: 2px solid var(--color-ink); }
+.hello { display: block; font-size: 15pt; font-weight: 400; color: var(--color-ink-2); line-height: 1; margin-bottom: 1.5mm; }
+.name { display: block; font-size: 34pt; line-height: 0.92; letter-spacing: -0.02em; }
+/* Same line as the portfolio hero: the photo in a circle, the height of the letters. */
+.name img { display: inline-block; width: 0.84em; height: 0.84em; margin-right: 0.12em; vertical-align: -0.04em; border-radius: 50%; object-fit: cover; object-position: 50% 45%; outline: 1px solid var(--frame-line); outline-offset: -1px; }
+.role { margin-top: 2.5mm; font-size: 11pt; }
+.role b { font-weight: 600; }
+.role span { color: var(--color-accent); font-weight: 600; }
+.contact { display: grid; gap: 1mm; font-size: 8.8pt; text-align: right; color: var(--color-ink-2); }
+.contact li, .contact a { display: flex; justify-content: flex-end; align-items: center; gap: 1.5mm; }
+.contact .icon { width: 1.15em; height: 1.15em; color: var(--color-accent); }
+.contact a:hover { color: var(--color-accent); }
+
+.cols { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); gap: 9mm; margin-top: 5mm; }
+.cols section + section { margin-top: 4.5mm; }
+.sheet h2 { font-size: 13pt; line-height: 1; padding-bottom: 2mm; margin-bottom: 3mm; border-bottom: 1px solid var(--color-rule); }
+.sheet h3 { font-size: 10.5pt; line-height: 1.15; }
+.profile p { max-width: none; }
+.profile p + p { margin-top: 2mm; }
+.motto { font-family: var(--font-display); font-weight: 700; font-stretch: 88%; font-size: 11pt; color: var(--color-accent); }
+.job + .job { margin-top: 3mm; }
+.job__top { display: flex; justify-content: space-between; gap: var(--space-sm); align-items: baseline; }
+.when { flex: 0 0 auto; font-size: 8.6pt; color: var(--color-muted); font-variant-numeric: tabular-nums; }
+.where { margin: 0.5mm 0 1mm; font-size: 8.8pt; font-weight: 600; color: var(--color-ink-2); }
+.job p:last-child { color: var(--color-ink-2); }
+.wide { margin-top: 4.5mm; }
+.projects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3.5mm 7mm; }
+.projects li { display: grid; gap: 0.8mm; align-content: start; }
+.projects .kind { font-size: 8.4pt; color: var(--color-muted); }
+.projects p { color: var(--color-ink-2); }
+.projects a { color: var(--color-accent); font-weight: 600; }
+.aside dl > div + div { margin-top: 2.2mm; }
+.aside dt { font-weight: 600; }
+.aside dd { color: var(--color-ink-2); }
+.school + .school { margin-top: 2.5mm; }
+.school .job__top h3 { font-size: 10pt; }
+
+@media print {
+  @page { size: A4; margin: 0; }
+  html, body { background: var(--color-paper); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .bar { display: none; }
+  /* The sheet takes its content's height: an overflowing CV spills onto a
+     second page, which the PDF script rejects, instead of being cut off. */
+  .sheet { margin: 0; box-shadow: none; width: 210mm; min-height: 0; }
+}
+/* Screen only: the sheet fits a phone. Print keeps the A4. */
+@media screen and (max-width: 52rem) {
+  .sheet { width: auto; min-height: 0; margin-inline: var(--space-md); padding: var(--space-lg) var(--space-md); font-size: 1rem; }
+  .head, .cols, .projects { grid-template-columns: minmax(0, 1fr); }
+  .contact { text-align: left; }
+  .contact li, .contact a { justify-content: flex-start; }
+  .name { font-size: 3rem; }
+}

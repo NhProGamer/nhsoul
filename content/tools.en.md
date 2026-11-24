@@ -1,7 +1,6 @@
 ---
-title: "My Tools"
-badge: "Dev Stack"
-subtitle: "Software, languages and systems I use daily."
+title: "My tools"
+description: "Software, languages and systems I use daily."
 
 categories:
   - name: "Software"
@@ -17,6 +16,7 @@ categories:
         desc: "Versatile IDE for Java and other JVM languages."
       - name: "HTTPie"
         icon: "/icons/httpie.svg"
+        plate: true
         desc: "Modern and intuitive HTTP client."
       - name: "OnlyOffice"
         icon: "/icons/onlyoffice.svg"

@@ -1,0 +1,42 @@
+{{- /* Projects: pages of the "projects" section with a `tile` become picture
+       tiles, the others an index. A project with `link` points there instead
+       of its own page (use build.render: never for those). */}}
+{{- $s := .s }}
+{{- $projects := where site.RegularPages "Section" (.s.section | default "projects") }}
+{{- $tiles := where $projects "Params.tile" "!=" nil }}
+{{- $index := where $projects "Params.tile" "==" nil }}
+<section class="work" id="{{ $s.id | default "work" }}" {{ if $s.title }} aria-labelledby="sec-{{ .i }}"{{ end }}>
+  <div class="container">
+    {{- with $s.title }}
+    <h2 id="sec-{{ $.i }}">{{ . }}</h2>
+    {{- end }}
+    <div class="bento">
+      {{- range $n, $p := $tiles }}
+        {{- $t := $p.Params.tile }}
+        {{- /* Two tiles per row, wide then narrow, flipped on every other row. */}}
+        {{- $wide := eq (mod $n 2) (mod (div $n 2) 2) }}
+        {{- with $t.size }}{{ $wide = eq . "wide" }}{{ end }}
+      <a class="tile {{ if $wide }}tile--7{{ else }}tile--5{{ end }}" href="{{ $p.Params.link | default $p.RelPermalink }}">
+        {{- with $t.image }}{{ with $p.Resources.Get . }}
+        <figure class="frame{{ if $t.zoom }} zoom{{ end }}">{{ partial "picture.html" (dict "img" . "alt" ($t.alt | default "") "sizes" "(min-width: 60rem) 58vw, 100vw" "style" (cond (isset $t "position") (printf "object-position: %s" $t.position) "")) }}</figure>
+        {{- end }}{{ end }}
+        <h3>{{ $p.Title }}</h3>
+        {{- with $p.Params.summary }}<p>{{ . }}</p>{{ end }}
+        {{- with $p.Params.status }}<small>{{ . }}</small>{{ end }}
+      </a>
+      {{- end }}
+      {{- with $index }}
+      <div class="tile {{ if eq (mod (len $tiles) 2) 1 }}tile--7{{ else }}tile--5{{ end }} tile--list">
+        {{- with $s.index_title }}
+        <h3{{ with $s.index_word }} aria-label="{{ $s.index_title }} {{ upper . }}"{{ end }}>{{ $s.index_title }}{{ with $s.index_word }} <span class="soft"><span aria-hidden="true">{{ range $k, $c := split . "" }}<span style="--i:{{ $k }}">{{ $c }}</span>{{ end }}</span></span>{{ end }}</h3>
+        {{- end }}
+        <ul class="index">
+          {{- range . }}
+          <li><a href="{{ .Params.link | default .RelPermalink }}">{{ .Title }}{{ if .Params.link }} {{ partial "icon.html" (dict "name" "arrow-up-right" "class" "i-ext") }}<span class="visually-hidden">{{ T "externalLink" }}</span>{{ end }}</a><span>{{ .Params.summary }}</span><span class="y">{{ .Params.year }}</span></li>
+          {{- end }}
+        </ul>
+      </div>
+      {{- end }}
+    </div>
+  </div>
+</section>

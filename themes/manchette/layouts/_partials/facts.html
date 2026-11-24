@@ -1,0 +1,8 @@
+{{- /* A label/value list. Context: a list of dict "label" "value". */}}
+{{- with . }}
+<dl class="facts">
+  {{- range . }}
+  <div><dt>{{ .label }}</dt><dd>{{ .value }}</dd></div>
+  {{- end }}
+</dl>
+{{- end }}

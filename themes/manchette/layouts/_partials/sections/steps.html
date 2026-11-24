@@ -1,0 +1,10 @@
+<section class="does"{{ with .s.id }} id="{{ . }}"{{ end }} aria-labelledby="sec-{{ .i }}">
+  <div class="container">
+    <h2 id="sec-{{ .i }}">{{ .s.title }}</h2>
+    <ol class="verbs">
+      {{- range .s.items }}
+      <li><h3>{{ .title }}</h3><p>{{ .text }}</p></li>
+      {{- end }}
+    </ol>
+  </div>
+</section>

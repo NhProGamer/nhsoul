@@ -1,0 +1,26 @@
+{{ define "main" }}
+<section class="page">
+  <div class="container">
+    <header class="page__head">
+      <h1 class="page__title">{{ .Title }}</h1>
+      {{- with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+    </header>
+    {{- $pager := .Paginate .RegularPages }}
+    <ol class="posts">
+      {{- range $pager.Pages }}
+      <li>
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        {{- with .Summary }}<p>{{ . | plainify | truncate 220 }}</p>{{ end }}
+      </li>
+      {{- end }}
+    </ol>
+    {{- if gt $pager.TotalPages 1 }}
+    <nav class="pager" aria-label="{{ T "pagination" }}">
+      {{- with $pager.Prev }}<a class="btn btn--quiet" href="{{ .URL }}" rel="prev">{{ T "newerPosts" }}</a>{{ end }}
+      {{- with $pager.Next }}<a class="btn btn--quiet" href="{{ .URL }}" rel="next">{{ T "olderPosts" }}</a>{{ end }}
+    </nav>
+    {{- end }}
+  </div>
+</section>
+{{ end }}

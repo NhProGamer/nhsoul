@@ -1,0 +1,32 @@
+{{ define "main" }}
+{{- with .Params.hero }}
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container">
+    <h1 id="hero-title">
+      {{- with .hello }}<span class="h-hello">{{ . }}</span> {{ end -}}
+      <span class="h-name">{{ partial "avatar.html" (dict "size" 460 "class" "pill" "eager" true) }}{{ .name | default (printf "%s." (partial "author-name.html" $)) }}</span>
+    </h1>
+    <div class="hero__foot">
+      {{- with .lead }}
+      <p class="lead">{{ partial "fill.html" . }}</p>
+      {{- end }}
+      {{- with .actions }}
+      <div class="hero__acts">
+        {{- range . }}
+        <a class="btn{{ if eq .style "quiet" }} btn--quiet{{ end }}" href="{{ .url | relLangURL }}">{{ .label }}</a>
+        {{- end }}
+      </div>
+      {{- end }}
+    </div>
+  </div>
+</section>
+{{- end }}
+{{- range $i, $s := .Params.sections }}
+  {{- $tpl := printf "sections/%s.html" $s.type }}
+  {{- if templates.Exists (printf "_partials/%s" $tpl) }}
+    {{- partial $tpl (dict "page" $ "s" $s "i" $i) }}
+  {{- else }}
+    {{- warnf "manchette: unknown home section type %q in %s" $s.type $.File.Path }}
+  {{- end }}
+{{- end }}
+{{ end }}

@@ -1,0 +1,10 @@
+{{- /* Age in whole years at a date. Context: dict "at" (time, defaults to now).
+       Returns 0 when params.author.birthdate is not set. */}}
+{{- $age := 0 }}
+{{- with site.Params.author.birthdate }}
+  {{- $b := time.AsTime . }}
+  {{- $at := $.at | default now }}
+  {{- $age = sub $at.Year $b.Year }}
+  {{- if or (lt (int $at.Month) (int $b.Month)) (and (eq (int $at.Month) (int $b.Month)) (lt $at.Day $b.Day)) }}{{ $age = sub $age 1 }}{{ end }}
+{{- end }}
+{{- return $age }}

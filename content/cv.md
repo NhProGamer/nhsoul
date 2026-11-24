@@ -1,116 +1,41 @@
 ---
-title: "CV - Développeur Backend"
-subtitle: "Découvrez mon parcours, mes compétences et mes réalisations dans le développement backend."
-badge: "CV"
+title: "CV"
+description: "CV de Néo Huyghe, développeur backend à Lens, en alternance chez Elosi."
 date: 2025-09-25
-draft: false
-
-profile:
-  title: "Développeur Backend"
-  location: "Lens, France"
-  experience: "BUT Informatique 3e année"
-  email: "contact@nhsoul.fr"
-  linkedin: "neo-huyghe"
-  github: "NhProGamer"
-  #phone: "+33 X XX XX XX XX"
-  photo: "/images/pfp-min.jpg" # chemin de ta photo
-
-spoken_languages:
-  - "Anglais B2+"
-
-skills:
-  - name: "Golang"
-    level: 85
-  - name: "Python"
-    level: 80
-  - name: "Node.js"
-    level: 70
-  - name: "Java"
-    level: 60
-  - name: "C#"
-    level: 25
-
-soft_skills:
-  - "Apprentissage autonome"
-  - "Problem solving"
-  - "Curiosité technique"
-  - "Communication"
-  - "Esprit d'équipe"
-  - "Adaptabilité"
-  - "Créativité"
-
-technologies:
-  backend:
-    - "REST APIs"
-    - "Protobuf"
-    - "Microservices"
-    - "NATS Messaging"
-    - "JWT Auth"
-    - "OAuth2 / OIDC"
-  databases:
-    - "PostgreSQL"
-    - "MySQL"
-    - "Redis"
-    - "MongoDB"
-  tools:
-    - "Docker"
-    - "Docker Compose"
-    - "Git"
-    - "Linux"
-    - "NATS"
-  frameworks:
-    - "Gin (Go)"
-    - "Express.js"
-    - "Wails (GO)"
-    - "FastAPI"
-    - "Vue.js"
-    - "Flask"
-
-education:
-  - degree: "BUT Informatique"
-    school: "IUT de Lens"
-    year: "2024-2027"
-    status: "3e année en cours"
-  - degree: "Baccalauréat Général"
-    school: "Lycée Wingles"
-    year: "2024"
-    mention: "Mention Bien"
-
+# Généré au build par scripts/generate-pdf.sh.
+pdf: "/images/cv.pdf"
+hello: "Bonjour, je suis"
+role: "Développeur backend"
+role_note: "en alternance chez Elosi"
+contacts:
+  - { label: "contact@nhsoul.fr", url: "mailto:contact@nhsoul.fr", icon: "mail" }
+  - { label: "Lens, France", icon: "map-pin" }
+  - { label: "linkedin.com/in/neo-huyghe", url: "https://www.linkedin.com/in/neo-huyghe", icon: "linkedin" }
+  - { label: "github.com/NhProGamer", url: "https://github.com/NhProGamer", icon: "github" }
+  - { label: "nhsoul.fr", url: "https://nhsoul.fr", icon: "globe" }
+motto: "La simplicité est la sophistication ultime."
 experience:
-  - title: "Stage Développeur — Odoo & IA générative"
-    company: "Groupe Elosi (ESN) — Centre de Services, Villeneuve-d'Ascq"
-    duration: "Avr. - Juin 2026"
-    description: "Développement seul de deux modules Odoo 19 : un générateur de pages portail (exposition de n'importe quel modèle sans code, avec génération automatique des ir.rule / ACL) et un importeur Excel multi-feuilles gérant les dépendances relationnelles, avec mode simulation par savepoint SQL et tests unitaires. En parallèle, POC d'IA générative locale sur NVIDIA DGX Spark (vLLM, quantification NVFP4, API compatible OpenAI) et analyse de faisabilité d'appels d'offres orientés IA."
-
-projects_perso:
-  - title: "OrionAuth"
-    description: "Développé un serveur OAuth 2.0 / OpenID Connect en Go : MFA, passkeys, fédération d'identité, RBAC et journal d'audit, avec deux SPA Vue d'administration et de connexion et des SDK TypeScript et Go."
-  - title: "OrionDrive"
-    description: "Construit un drive auto-hébergé en un binaire Go unique embarquant une SPA Vue 3 : partage, WebDAV et SFTP, stockage local, S3 ou nœud distant, SQLite, PostgreSQL ou MySQL, authentification OIDC exclusive."
-  - title: "Shamus (En cours)"
-    description: "Architecturé un jeu du Loup-Garou temps réel : backend Go avec Gin et WebSockets, PostgreSQL via sqlc et migrations goose, frontend Vue 3 TypeScript, authentification OIDC déléguée."
-
-projects_pro:
-  - title: "Plateforme de Formation BaggyDessine"
-    description: "Développement complet backend/frontend, système d'authentification et codes d'accès, gestion des utilisateurs et progression. clown.school"
-  - title: "Site E-Commerce BaggyDessine"
-    description: "Site E-Commerce simple automatisé avec Stripe, backend golang, frontend HTML, CSS, Js. shop.baggydessine.fr"
-  - title: "Site E-Commerce Bleitsan"
-    description: "Site E-Commerce simple automatisé avec Stripe, backend Golang, frontend vue.js. bleitsan.fr"
-
-
+  - title: "Stage développeur : Odoo et IA générative"
+    when: "Avr. à juin 2026"
+    where: "Groupe Elosi (ESN), Centre de Services, Villeneuve-d’Ascq"
+    text: "Développement seul de deux modules Odoo 19 : un générateur de pages portail (exposition de n’importe quel modèle sans code, avec génération automatique des ir.rule et ACL) et un importeur Excel multi-feuilles gérant les dépendances relationnelles, avec mode simulation par savepoint SQL et tests unitaires. En parallèle, POC d’IA générative locale sur NVIDIA DGX Spark (vLLM, quantification NVFP4, API compatible OpenAI) et analyse de faisabilité d’appels d’offres orientés IA."
+  - title: "Développeur freelance, micro-entreprise"
+    when: "Depuis 2024"
+    where: "Clown Art et Baggydessine"
+    text: "Seul développeur de Clown School, la plateforme de formations vidéo payantes de Clown Art, et de Comptoir, le système de vente de la marque Bleitsan. Conception, mise en ligne et maintenance en production."
+skills:
+  - "Golang, Python, Node.js, Java, C#"
+  - "Anglais B2+"
+technologies:
+  - { label: "Backend", items: ["REST APIs", "Protobuf", "microservices", "NATS Messaging", "JWT Auth", "OAuth2 / OIDC"] }
+  - { label: "Bases de données", items: ["PostgreSQL", "MySQL", "Redis", "MongoDB"] }
+  - { label: "Frameworks", items: ["Gin (Go)", "Express.js", "Wails (Go)", "FastAPI", "Vue.js", "Flask"] }
+  - { label: "Outils", items: ["Docker", "Docker Compose", "Git", "Linux", "NATS"] }
+education:
+  - { title: "BUT Informatique", when: "2024 à 2027", where: "IUT de Lens, 3e année en cours" }
+  - { title: "Baccalauréat général", when: "2024", where: "Lycée de Wingles" }
+soft_skills: ["Apprentissage autonome", "résolution de problèmes", "curiosité technique", "communication", "esprit d’équipe", "adaptabilité", "créativité"]
 ---
+Développeur backend autodidacte, je code depuis mes 11 ans : un Arduino d’abord, puis mon propre réseau de serveurs Minecraft à 14 ans. Je conçois, je mets en ligne et je fais tourner seul des logiciels en production pour des clients, via ma micro-entreprise.
 
-Développeur backend autodidacte avec **7 ans d'expérience** (depuis mes 12 ans), spécialisé dans la création de systèmes robustes et performants en **Golang** et **Node.js**.
-
-J'ai réalisé de nombreux **projets professionnels rémunérés** via ma micro-entreprise, entièrement sur mon temps libre. Actuellement en **alternance chez Elosi** et en **BUT Informatique 3e année** à Lens ; pendant mes stages ou alternances, je n'accepte aucun contrat freelance.
-
-**Ma valeur ajoutée**
-_Expérience précoce_ : **7 ans de pratique** intensive depuis l'adolescence.
-_Veille technologique_ : Adaptation rapide aux nouveautés IT.
-_Autodidacte_ : Apprentissage continu depuis mes 12 ans.
-
-**Ma philosophie de développement**
-_La simplicité est la sophistication ultime_
-
-Découvrez mes projets sur **[nhsoul.fr](https://nhsoul.fr)**.
+Actuellement en alternance chez Elosi et en BUT Informatique 3e année à Lens. Pendant mes stages et alternances, je n’accepte aucun contrat freelance.

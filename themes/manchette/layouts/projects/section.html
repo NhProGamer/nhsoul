@@ -1,0 +1,31 @@
+{{ define "main" }}
+<section class="page">
+  <div class="container">
+    <header class="page__head">
+      <h1 class="page__title">{{ .Title }}</h1>
+      {{- with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+    </header>
+    {{- /* Every project on one line each; projects with `link` show where they lead. */}}
+    <ol class="plist">
+      {{- range $p := .RegularPages }}
+        {{- $link := $p.Params.link }}
+        {{- $meta := slice }}
+        {{- with $p.Params.status | default $p.Params.year }}{{ $meta = $meta | append . }}{{ end }}
+        {{- with $link }}{{ $meta = $meta | append (urls.Parse .).Host }}{{ end }}
+      <li>
+        <a href="{{ $link | default $p.RelPermalink }}">
+          <h2>{{ $p.Title }}{{ if $link }} {{ partial "icon.html" (dict "name" "arrow-up-right" "class" "i-ext") }}<span class="visually-hidden">{{ T "externalLink" }}</span>{{ end }}</h2>
+          <div class="plist__text">
+            {{- with $p.Params.summary }}<p>{{ . }}</p>{{ end }}
+            {{- with $meta }}<small>{{ delimit . ", " }}</small>{{ end }}
+          </div>
+          {{- with $p.Params.tile }}{{ with $p.Resources.Get .image }}
+          <figure class="frame{{ if $p.Params.tile.zoom }} zoom{{ end }}">{{ partial "picture.html" (dict "img" . "alt" "" "sizes" "(min-width: 60rem) 22vw, 100vw") }}</figure>
+          {{- end }}{{ end }}
+        </a>
+      </li>
+      {{- end }}
+    </ol>
+  </div>
+</section>
+{{ end }}
