@@ -1,5 +1,7 @@
 ---
 title: "Accueil"
+# L’ancienne page À propos redirige ici : son contenu vit dans l’accueil et le CV.
+aliases: ["/about/"]
 hero:
   hello: "Bonjour, je suis"
   # {age} et {since} sont calculés depuis params.author.

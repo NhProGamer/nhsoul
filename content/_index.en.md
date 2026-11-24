@@ -1,5 +1,6 @@
 ---
 title: "Home"
+aliases: ["/about/"]
 hero:
   hello: "Hello, I am"
   # {age} and {since} are computed from params.author.
