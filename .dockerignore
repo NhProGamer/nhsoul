@@ -13,10 +13,6 @@ public
 resources
 .hugo_build.lock
 
-# Ancien theme : remplace par orion, conserve en local pour le rollback.
-# Le retirer du contexte evite d'envoyer un second theme complet.
-themes/neoflux
-
 # Outils et editeurs
 .serena
 .claude
