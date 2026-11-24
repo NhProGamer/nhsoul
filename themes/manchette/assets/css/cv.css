@@ -62,7 +62,9 @@ html:not(.js) .bar button { display: none; }
   @page { size: A4; margin: 0; }
   html, body { background: var(--color-paper); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .bar { display: none; }
-  .sheet { margin: 0; box-shadow: none; width: 210mm; height: 297mm; overflow: hidden; }
+  /* The sheet takes its content's height: an overflowing CV spills onto a
+     second page, which the PDF script rejects, instead of being cut off. */
+  .sheet { margin: 0; box-shadow: none; width: 210mm; min-height: 0; }
 }
 /* Screen only: the sheet fits a phone. Print keeps the A4. */
 @media screen and (max-width: 52rem) {
