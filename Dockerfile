@@ -14,7 +14,7 @@ RUN wget -q https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/
 # ── Etape 1 : site Hugo + PDF du CV ──
 # Node ne sert qu'a scripts/generate-pdf.js, qui n'a aucune dependance :
 # pas de gestionnaire de paquets ni d'etape d'installation.
-FROM node:22-alpine AS builder
+FROM node:26-alpine AS builder
 
 COPY --from=hugo /usr/local/bin/hugo /usr/local/bin/hugo
 
