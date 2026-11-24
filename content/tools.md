@@ -1,7 +1,6 @@
 ---
-title: "Mes Outils"
-badge: "Stack Dev"
-subtitle: "Logiciels, langages et systèmes que j’utilise au quotidien."
+title: "Mes outils"
+description: "Logiciels, langages et systèmes que j’utilise au quotidien."
 
 categories:
   - name: "Logiciels"
@@ -17,6 +16,7 @@ categories:
         desc: "IDE polyvalent pour Java et d’autres langages JVM."
       - name: "HTTPie"
         icon: "/icons/httpie.svg"
+        plate: true
         desc: "Client HTTP moderne et intuitif."
       - name: "OnlyOffice"
         icon: "/icons/onlyoffice.svg"
