@@ -9,7 +9,7 @@ FROM node:22-alpine AS builder
 
 COPY --from=hugo /usr/bin/hugo /usr/local/bin/hugo
 
-# Chromium et ses polices, pour le rendu du PDF par Puppeteer.
+# Chromium et ses polices, pour le rendu du PDF du CV (scripts/generate-pdf.js).
 # font-noto-emoji n'est pas installe : les pages CV, seules rendues en PDF,
 # ne contiennent plus aucun emoji.
 RUN apk add --no-cache \
@@ -30,10 +30,8 @@ WORKDIR /app
 # sans quoi pnpm genere un wrapper sh pour tailwindcss que Hugo >= 0.165 refuse.
 COPY package.json pnpm-lock.yaml .npmrc ./
 
-# Defini AVANT l'install : sans SKIP_DOWNLOAD, le postinstall de puppeteer
-# telecharge un second Chromium (~150 Mo) inutile dans l'image.
-ENV PUPPETEER_SKIP_DOWNLOAD=1 \
-    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+# Chemin du navigateur lu par scripts/generate-pdf.js.
+ENV CHROMIUM_PATH=/usr/bin/chromium-browser
 
 RUN pnpm install --frozen-lockfile
 

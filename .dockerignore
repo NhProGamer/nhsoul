@@ -15,12 +15,6 @@ hugo_stats.json
 .hugo_build.lock
 themes/orion/static/js
 
-# Artefacts produits par build:cv
-static/images/cv.pdf
-static/images/cv-en.pdf
-static/images/cv.png
-static/images/cv-en.png
-
 # Ancien theme : remplace par orion, conserve en local pour le rollback.
 # Le retirer du contexte evite d'envoyer un second theme complet.
 themes/neoflux

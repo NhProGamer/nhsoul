@@ -1,261 +1,123 @@
 #!/usr/bin/env node
 
-// Genere le PDF imprimable du CV, dans chaque langue.
+// Prints each CV page of the built site (public/) to an A4 PDF.
 //
-// Le script demarre un serveur Hugo, ouvre les pages CV dans Chromium et
-// exporte un PDF A4. Les deux langues sont traitees en parallele.
+// Runs after `hugo --minify`: the built files are served over a local
+// HTTP server and printed by headless Chromium. No dependency: Node's
+// http module and the Chromium binary are enough.
 //
-//   node scripts/generate-pdf.js              toutes les pages
-//   node scripts/generate-pdf.js --page cv    une seule
-//   node scripts/generate-pdf.js --png        + capture PNG (debug visuel)
+//   node scripts/generate-pdf.js
+//
+// CHROMIUM_PATH overrides the browser binary.
 
-const puppeteer = require('puppeteer');
-const fs = require('fs').promises;
-const net = require('net');
+const http = require('http');
+const fs = require('fs');
+const os = require('os');
 const path = require('path');
-const { spawn } = require('child_process');
-const yargs = require('yargs');
-const chalk = require('chalk');
-const ora = require('ora');
+const { execFile } = require('child_process');
 
-const CONFIG = {
-    hugoPort: 1313,
-    get baseUrl() { return `http://localhost:${this.hugoPort}`; },
-    // static/images : source suivie par git, recopiee par Hugo au prochain build.
-    // public/images : sortie servie, alimentee directement pour eviter un second
-    // passage de `hugo --minify` dont c'etait le seul role.
-    outputDir: 'static/images',
-    publicOutputDir: 'public/images',
-    timeout: 30000,
+const ROOT = path.resolve(__dirname, '..', 'public');
 
-    // Chaque entree produit <name>.pdf dans outputDir et publicOutputDir.
-    pages: {
-        cv: { url: '/cv', name: 'cv', title: 'CV — Néo Huyghe' },
-        cv_en: { url: '/en/cv', name: 'cv-en', title: 'CV — Néo Huyghe (EN)' },
-    },
+// Each entry prints `url` to public/<out>.
+const PAGES = [
+    { url: '/cv/', out: 'images/cv.pdf' },
+    { url: '/en/cv/', out: 'images/cv-en.pdf' },
+];
+
+const TYPES = {
+    '.html': 'text/html; charset=utf-8',
+    '.css': 'text/css',
+    '.js': 'text/javascript',
+    '.woff2': 'font/woff2',
+    '.webp': 'image/webp',
+    '.jpg': 'image/jpeg',
+    '.png': 'image/png',
+    '.svg': 'image/svg+xml',
 };
 
-// Surcharge d'impression. Le theme orion definit deja `.no-print` et son bloc
-// @media print, que page.pdf() applique puisque Chromium emule le media print.
-// Ne reste ici que ce que le layout ne peut pas savoir : forcer la hauteur de
-// page exacte pour que le contenu ne parte pas sur une seconde feuille.
-const PRINT_CSS = `
-  html, body {
-    height: 297mm;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-`;
+function findChromium() {
+    const candidates = [
+        process.env.CHROMIUM_PATH,
+        '/usr/bin/chromium-browser',
+        '/usr/bin/chromium',
+        '/usr/bin/google-chrome',
+    ];
+    const found = candidates.find((p) => p && fs.existsSync(p));
+    if (!found) throw new Error('Chromium not found: set CHROMIUM_PATH');
+    return found;
+}
 
-/** Attend que le port accepte une connexion, au lieu d'un delai fixe. */
-function waitForPort(port, { timeout = 15000, interval = 60 } = {}) {
-    const deadline = Date.now() + timeout;
+function serve(root) {
+    const server = http.createServer((req, res) => {
+        let file = path.join(root, decodeURIComponent(new URL(req.url, 'http://x').pathname));
+        // Never serve outside public/, even on a crafted "../" path.
+        if (!file.startsWith(root + path.sep) && file !== root) {
+            res.writeHead(403).end();
+            return;
+        }
+        if (fs.existsSync(file) && fs.statSync(file).isDirectory()) file = path.join(file, 'index.html');
+        fs.readFile(file, (err, data) => {
+            if (err) {
+                res.writeHead(404).end();
+                return;
+            }
+            res.writeHead(200, { 'Content-Type': TYPES[path.extname(file)] || 'application/octet-stream' });
+            res.end(data);
+        });
+    });
+    return new Promise((resolve) => server.listen(0, '127.0.0.1', () => resolve(server)));
+}
 
+function print(chromium, url, out) {
+    // Parallel runs sharing the default profile abort on its lock file.
+    const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'cv-chromium-'));
+    const args = [
+        '--headless',
+        `--user-data-dir=${profile}`,
+        '--disable-gpu',
+        '--no-pdf-header-footer',
+        // Lets web fonts and images load before printing.
+        '--virtual-time-budget=10000',
+        `--print-to-pdf=${out}`,
+        url,
+    ];
+    // Chromium refuses to run as root with its sandbox on, as in the Docker build.
+    if (process.getuid && process.getuid() === 0) args.unshift('--no-sandbox');
     return new Promise((resolve, reject) => {
-        const attempt = () => {
-            const socket = net.connect({ port, host: '127.0.0.1' });
-            socket.once('connect', () => { socket.destroy(); resolve(); });
-            socket.once('error', () => {
-                socket.destroy();
-                if (Date.now() > deadline) {
-                    reject(new Error(`Port ${port} injoignable après ${timeout} ms`));
-                } else {
-                    setTimeout(attempt, interval);
-                }
-            });
-        };
-        attempt();
+        execFile(chromium, args, { timeout: 60000 }, (err, _stdout, stderr) => {
+            fs.rmSync(profile, { recursive: true, force: true });
+            if (err) reject(new Error(`${url}: ${err.message}\n${stderr}`));
+            else resolve();
+        });
     });
 }
 
-class PDFGenerator {
-    constructor({ withPng = false } = {}) {
-        this.browser = null;
-        this.hugoServer = null;
-        this.withPng = withPng;
-        this.startedHugo = false;
-    }
-
-    async init() {
-        await this.ensureOutputDir();
-        await this.startHugoServer();
-
-        const spinner = ora('Initialisation du navigateur...').start();
-        this.browser = await puppeteer.launch({
-            headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox'],
-        });
-        spinner.succeed('Navigateur initialisé');
-    }
-
-    async ensureOutputDir() {
-        for (const dir of [CONFIG.outputDir, CONFIG.publicOutputDir]) {
-            await fs.mkdir(dir, { recursive: true });
-        }
-    }
-
-    async startHugoServer() {
-        const spinner = ora('Démarrage du serveur Hugo...').start();
-
-        // Un serveur deja en ecoute (npm run dev) est reutilise tel quel.
-        try {
-            await waitForPort(CONFIG.hugoPort, { timeout: 300 });
-            spinner.succeed(`Serveur Hugo déjà actif sur le port ${CONFIG.hugoPort}`);
-            return;
-        } catch {
-            // Port libre : on lance notre propre serveur.
-        }
-
-        this.hugoServer = spawn('hugo', ['server', '-D', '--port', CONFIG.hugoPort], {
-            stdio: ['ignore', 'ignore', 'pipe'],
-        });
-        this.startedHugo = true;
-
-        let stderr = '';
-        this.hugoServer.stderr.on('data', (d) => { stderr += d.toString(); });
-
-        const exited = new Promise((_, reject) => {
-            this.hugoServer.once('error', reject);
-            this.hugoServer.once('exit', (code) => {
-                if (code !== 0) {
-                    reject(new Error(`Hugo s'est arrêté (code ${code})\n${stderr.trim()}`));
-                }
-            });
-        });
-
-        try {
-            await Promise.race([waitForPort(CONFIG.hugoPort), exited]);
-            spinner.succeed(`Serveur Hugo démarré sur le port ${CONFIG.hugoPort}`);
-        } catch (error) {
-            spinner.fail('Échec du démarrage de Hugo');
-            throw error;
-        }
-    }
-
-    /** Charge la page, polices comprises, et renvoie l'onglet pret a exporter. */
-    async openPage(pageConfig) {
-        const page = await this.browser.newPage();
-        await page.setViewport({ width: 794, height: 1123, deviceScaleFactor: 1 });
-
-        // La page CV n'a aucune ressource externe : `load` suffit et evite les
-        // 500 ms d'inactivite reseau qu'impose networkidle0.
-        await page.goto(`${CONFIG.baseUrl}${pageConfig.url}`, {
-            waitUntil: 'load',
-            timeout: CONFIG.timeout,
-        });
-
-        await page.addStyleTag({ content: PRINT_CSS });
-
-        // Les webfonts doivent etre pretes AVANT l'export : avec la police de
-        // repli, le texte se rompt differemment et deborde de l'A4.
-        await page.evaluate(() => document.fonts.ready);
-
-        return page;
-    }
-
-    async generate(pageConfig) {
-        const spinner = ora(`${pageConfig.title}...`).start();
-        const page = await this.openPage(pageConfig);
-
-        try {
-            const pdfPath = path.join(CONFIG.outputDir, `${pageConfig.name}.pdf`);
-            await page.pdf({
-                path: pdfPath,
-                format: 'A4',
-                printBackground: true,
-                preferCSSPageSize: true,
-                scale: 0.90,
-                margin: { top: 0, right: 0, bottom: 0, left: 0 },
-            });
-            await fs.copyFile(pdfPath, path.join(CONFIG.publicOutputDir, `${pageConfig.name}.pdf`));
-
-            const written = [`${pageConfig.name}.pdf`];
-
-            // Les PNG ne sont references par aucun layout : ils ne sont produits
-            // que sur demande explicite, pour verifier un rendu a l'oeil.
-            if (this.withPng) {
-                const pngPath = path.join(CONFIG.outputDir, `${pageConfig.name}.png`);
-                await page.screenshot({ path: pngPath, fullPage: true, type: 'png' });
-                await fs.copyFile(pngPath, path.join(CONFIG.publicOutputDir, `${pageConfig.name}.png`));
-                written.push(`${pageConfig.name}.png`);
-            }
-
-            const { size } = await fs.stat(pdfPath);
-            spinner.succeed(`${written.join(' + ')} — ${(size / 1024).toFixed(0)} Ko`);
-        } catch (error) {
-            spinner.fail(`Échec : ${pageConfig.title}`);
-            throw error;
-        } finally {
-            await page.close();
-        }
-    }
-
-    /** Les langues sont independantes : un onglet chacune, en parallele. */
-    async generateAll() {
-        const entries = Object.values(CONFIG.pages);
-        console.log(chalk.cyan(`\n${entries.length} document(s) à générer\n`));
-        await Promise.all(entries.map((c) => this.generate(c)));
-    }
-
-    async generateSingle(pageKey) {
-        const pageConfig = CONFIG.pages[pageKey];
-        if (!pageConfig) {
-            throw new Error(
-                `Page "${pageKey}" inconnue. Disponibles : ${Object.keys(CONFIG.pages).join(', ')}`
-            );
-        }
-        console.log(chalk.cyan(`\n${pageConfig.title}\n`));
-        await this.generate(pageConfig);
-    }
-
-    async cleanup() {
-        if (this.browser) {
-            await this.browser.close().catch(() => {});
-            this.browser = null;
-        }
-        // On ne tue que le serveur qu'on a demarre : un `npm run dev` deja en
-        // cours doit survivre au script.
-        if (this.startedHugo && this.hugoServer && !this.hugoServer.killed) {
-            this.hugoServer.kill('SIGTERM');
-            console.log(chalk.gray('Serveur Hugo arrêté'));
-        }
-    }
+// Chromium writes one "/Type /Page" object per page, uncompressed.
+function countPages(file) {
+    return (fs.readFileSync(file, 'latin1').match(/\/Type\s*\/Page(?!s)/g) || []).length;
 }
-
-const argv = yargs
-    .option('page', { alias: 'p', type: 'string', describe: 'Générer une seule page' })
-    .option('png', { type: 'boolean', default: false, describe: 'Produire aussi un PNG (debug)' })
-    .help()
-    .argv;
-
-let generator;
 
 async function main() {
-    const started = Date.now();
-    generator = new PDFGenerator({ withPng: argv.png });
-
+    if (!fs.existsSync(ROOT)) throw new Error('public/ not found: run hugo first');
+    const chromium = findChromium();
+    const server = await serve(ROOT);
+    const base = `http://127.0.0.1:${server.address().port}`;
     try {
-        await generator.init();
-        if (argv.page) {
-            await generator.generateSingle(argv.page);
-        } else {
-            await generator.generateAll();
-        }
-        console.log(chalk.green(`\n✓ Terminé en ${((Date.now() - started) / 1000).toFixed(1)} s`));
-    } catch (error) {
-        console.error(chalk.red(`\n✗ ${error.message}`));
-        process.exitCode = 1;
+        await Promise.all(PAGES.map(async ({ url, out }) => {
+            const file = path.join(ROOT, out);
+            fs.mkdirSync(path.dirname(file), { recursive: true });
+            await print(chromium, base + url, file);
+            const pages = countPages(file);
+            // The CV is designed for one sheet: a second page means content overflowed.
+            if (pages !== 1) throw new Error(`${out}: ${pages} pages, expected 1`);
+            console.log(`${out}: ${Math.round(fs.statSync(file).size / 1024)} KB`);
+        }));
     } finally {
-        await generator.cleanup();
+        server.close();
     }
 }
 
-for (const signal of ['SIGINT', 'SIGTERM']) {
-    process.on(signal, async () => {
-        if (generator) await generator.cleanup();
-        process.exit(130);
-    });
-}
-
-main();
+main().catch((err) => {
+    console.error(err.message);
+    process.exit(1);
+});
