@@ -185,3 +185,16 @@ a.tile:focus-visible { outline-offset: 4px; }
   .shot--phone .frame { aspect-ratio: 390 / 560; height: auto; }
   .tech { padding: var(--space-lg); }
 }
+
+/* ---- tools page ---- */
+.tools__head { display: flex; align-items: baseline; gap: var(--space-md); margin: var(--section-gap-s) 0 var(--space-xl); }
+.count { font: 400 var(--text-lg)/1 var(--font-body); color: var(--color-muted); font-variant-numeric: tabular-nums; }
+.tools__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 var(--gap-columns); margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--color-ink); }
+.tools__grid li { display: grid; align-content: start; gap: var(--space-xs); padding-block: var(--space-xl); border-bottom: 1px solid var(--color-rule); }
+.tools__grid img { width: 40px; height: 40px; object-fit: contain; margin-bottom: var(--space-sm); }
+/* A light logo (plate: true) gets a dark plate so it shows on paper. */
+.tools__grid img.plate { padding: var(--space-2xs); border-radius: 8px; background: var(--band-bg); }
+.tools__grid h3 { font-size: var(--text-2xl); line-height: 1.1; }
+.tools__grid p { color: var(--color-ink-2); }
+@media (max-width: 60rem) { .tools__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 40rem) { .tools__grid { grid-template-columns: minmax(0, 1fr); } }
