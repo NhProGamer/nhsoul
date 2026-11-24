@@ -233,7 +233,13 @@ a.tile:focus-visible { outline-offset: 4px; }
 .tools__grid h3 { font-size: var(--text-2xl); line-height: 1.1; }
 .tools__grid p { color: var(--color-ink-2); }
 @media (max-width: 60rem) { .tools__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 40rem) { .tools__grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 40rem) {
+  /* One compact row per tool on phones: the logo beside its name and line. */
+  .tools__grid { grid-template-columns: minmax(0, 1fr); }
+  .tools__grid li { grid-template-columns: 40px minmax(0, 1fr); column-gap: var(--space-md); row-gap: var(--space-2xs); padding-block: var(--space-lg); }
+  .tools__grid img { grid-row: span 2; margin-bottom: 0; }
+  .tools__grid h3 { align-self: end; font-size: var(--text-xl); }
+}
 
 /* ---- blog ---- */
 .posts { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--color-ink); }
