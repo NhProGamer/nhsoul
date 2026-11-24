@@ -8,11 +8,11 @@ hello: "Hello, I am"
 role: "Backend developer"
 role_note: "work-study at Elosi"
 contacts:
-  - { label: "contact@nhsoul.fr", url: "mailto:contact@nhsoul.fr" }
-  - { label: "Lens, France" }
-  - { label: "linkedin.com/in/neo-huyghe", url: "https://www.linkedin.com/in/neo-huyghe" }
-  - { label: "github.com/NhProGamer", url: "https://github.com/NhProGamer" }
-  - { label: "nhsoul.fr", url: "https://nhsoul.fr" }
+  - { label: "contact@nhsoul.fr", url: "mailto:contact@nhsoul.fr", icon: "mail" }
+  - { label: "Lens, France", icon: "map-pin" }
+  - { label: "linkedin.com/in/neo-huyghe", url: "https://www.linkedin.com/in/neo-huyghe", icon: "linkedin" }
+  - { label: "github.com/NhProGamer", url: "https://github.com/NhProGamer", icon: "github" }
+  - { label: "nhsoul.fr", url: "https://nhsoul.fr", icon: "globe" }
 motto: "Simplicity is the ultimate sophistication."
 experience:
   - title: "Developer internship: Odoo and generative AI"

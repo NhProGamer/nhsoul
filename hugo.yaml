@@ -25,9 +25,9 @@ languages:
         - { name: "CV", pageRef: "/cv", weight: 5, params: { side: "end" } }
         - { name: "Contact", url: "#contact", weight: 6, params: { side: "end", pin: true } }
       footer:
-        - { name: "GitHub", url: "https://github.com/NhProGamer", weight: 1 }
-        - { name: "Forgejo", url: "https://git.nhsoul.fr/nhpro", weight: 2 }
-        - { name: "LinkedIn", url: "https://www.linkedin.com/in/neo-huyghe", weight: 3 }
+        - { name: "GitHub", url: "https://github.com/NhProGamer", weight: 1, params: { icon: "github" } }
+        - { name: "Forgejo", url: "https://git.nhsoul.fr/nhpro", weight: 2, params: { icon: "forgejo" } }
+        - { name: "LinkedIn", url: "https://www.linkedin.com/in/neo-huyghe", weight: 3, params: { icon: "linkedin" } }
         - { name: "Projets", pageRef: "/projects", weight: 4 }
         - { name: "Blog", pageRef: "/blog", weight: 5 }
         - { name: "CV", pageRef: "/cv", weight: 6 }
@@ -50,9 +50,9 @@ languages:
         - { name: "CV", pageRef: "/cv", weight: 5, params: { side: "end" } }
         - { name: "Contact", url: "#contact", weight: 6, params: { side: "end", pin: true } }
       footer:
-        - { name: "GitHub", url: "https://github.com/NhProGamer", weight: 1 }
-        - { name: "Forgejo", url: "https://git.nhsoul.fr/nhpro", weight: 2 }
-        - { name: "LinkedIn", url: "https://www.linkedin.com/in/neo-huyghe", weight: 3 }
+        - { name: "GitHub", url: "https://github.com/NhProGamer", weight: 1, params: { icon: "github" } }
+        - { name: "Forgejo", url: "https://git.nhsoul.fr/nhpro", weight: 2, params: { icon: "forgejo" } }
+        - { name: "LinkedIn", url: "https://www.linkedin.com/in/neo-huyghe", weight: 3, params: { icon: "linkedin" } }
         - { name: "Projects", pageRef: "/projects", weight: 4 }
         - { name: "Blog", pageRef: "/blog", weight: 5 }
         - { name: "CV", pageRef: "/cv", weight: 6 }
