@@ -1,0 +1,1 @@
+{{- with site.Params.author }}{{ trim (printf "%s %s" (.first_name | default "") (.last_name | default "")) " " }}{{ else }}{{ site.Title }}{{ end -}}

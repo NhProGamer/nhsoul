@@ -1,0 +1,15 @@
+name = "Manchette"
+license = "GPL-3.0-only"
+licenselink = "https://github.com/NhProGamer/nhsoul/blob/main/themes/manchette/LICENSE"
+description = "Editorial portfolio theme: poster-size type, case-study project pages and a printable A4 CV"
+homepage = "https://github.com/NhProGamer/nhsoul"
+demosite = "https://nhsoul.fr"
+
+tags = ["portfolio", "personal", "blog", "resume", "editorial", "minimal", "dark mode", "multilingual"]
+features = ["dark mode", "printable CV", "case studies", "multilingual"]
+
+min_version = "0.146.0"
+
+[author]
+name = "Néo Huyghe"
+homepage = "https://nhsoul.fr"

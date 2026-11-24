@@ -1,0 +1,8 @@
+skipToContent: "Skip to content"
+navMain: "Main"
+navHome: "{{ .Name }}, home"
+themeDark: "Dark"
+themeLight: "Light"
+copyEmail: "Copy the address"
+copyDone: "Address copied."
+copyFail: "Copy failed: select the address by hand."

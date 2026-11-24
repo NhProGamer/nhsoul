@@ -1,0 +1,8 @@
+skipToContent: "Aller au contenu"
+navMain: "Principale"
+navHome: "{{ .Name }}, accueil"
+themeDark: "Sombre"
+themeLight: "Clair"
+copyEmail: "Copier l’adresse"
+copyDone: "Adresse copiée."
+copyFail: "La copie a échoué : sélectionnez l’adresse à la main."

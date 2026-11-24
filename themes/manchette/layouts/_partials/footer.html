@@ -1,0 +1,26 @@
+{{- $author := site.Params.author | default dict }}
+<footer class="foot" id="contact">
+  <div class="container">
+    {{- with site.Params.footer.closing }}
+    <p class="closing">{{ . }}</p>
+    {{- end }}
+    {{- with $author.email }}
+    <div class="reach">
+      <a class="mail" href="mailto:{{ . }}">{{ . }}</a>
+      <button class="btn btn--quiet" type="button" data-copy="{{ . }}" data-done="{{ T "copyDone" }}" data-fail="{{ T "copyFail" }}" hidden>{{ T "copyEmail" }}</button>
+      <span class="copied" aria-live="polite"></span>
+    </div>
+    {{- end }}
+    {{- with site.Menus.footer }}
+    <ul class="foot__links">
+      {{- range . }}
+      <li><a href="{{ .URL }}"{{ if strings.HasPrefix .URL "http" }} rel="me"{{ end }}>{{ .Name }}</a></li>
+      {{- end }}
+    </ul>
+    {{- end }}
+    <p class="legal">{{ delimit (slice (partial "author-name.html" .) $author.location (now.Format "2006")) ", " }}</p>
+  </div>
+</footer>
+{{- $js := resources.Get "js/main.js" }}
+{{- if hugo.IsProduction }}{{ $js = $js | minify | fingerprint }}{{ end }}
+<script src="{{ $js.RelPermalink }}" defer></script>

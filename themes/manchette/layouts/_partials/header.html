@@ -1,0 +1,19 @@
+{{- /* Masthead: menu entries with params.side = "end" sit right of the name.
+       Entries without params.pin are hidden on small screens. */}}
+{{- $start := slice }}{{ $end := slice }}
+{{- range site.Menus.main }}
+  {{- if eq .Params.side "end" }}{{ $end = $end | append . }}{{ else }}{{ $start = $start | append . }}{{ end }}
+{{- end }}
+<header class="mast">
+  <nav class="container" aria-label="{{ T "navMain" }}">
+    <ul>
+      {{- range $start }}{{ partial "menu-item.html" (dict "item" . "page" $) }}{{ end }}
+    </ul>
+    <a class="wordmark" href="{{ site.Home.RelPermalink }}" aria-label="{{ T "navHome" (dict "Name" (partial "author-name.html" .)) }}">{{ partial "author-name.html" . }}</a>
+    <ul>
+      {{- range $end }}{{ partial "menu-item.html" (dict "item" . "page" $) }}{{ end }}
+      {{- partial "lang-switch.html" . }}
+      <li><button class="theme" type="button" aria-pressed="false" data-light="{{ T "themeLight" }}" data-dark="{{ T "themeDark" }}">{{ T "themeDark" }}</button></li>
+    </ul>
+  </nav>
+</header>
