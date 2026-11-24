@@ -18,7 +18,7 @@ languages:
         closing: "Un logiciel à faire tourner ? Écrivez-moi."
     menus:
       main:
-        - { name: "Projets", url: "/#projets", weight: 1, params: { pin: true } }
+        - { name: "Projets", pageRef: "/projects", weight: 1, params: { pin: true } }
         - { name: "Parcours", url: "/#parcours", weight: 2 }
         - { name: "Blog", pageRef: "/blog", weight: 3 }
         - { name: "Ma stack", pageRef: "/tools", weight: 4, params: { side: "end" } }
@@ -28,9 +28,10 @@ languages:
         - { name: "GitHub", url: "https://github.com/NhProGamer", weight: 1 }
         - { name: "Forgejo", url: "https://git.nhsoul.fr/nhpro", weight: 2 }
         - { name: "LinkedIn", url: "https://www.linkedin.com/in/neo-huyghe", weight: 3 }
-        - { name: "Blog", pageRef: "/blog", weight: 4 }
-        - { name: "CV", pageRef: "/cv", weight: 5 }
-        - { name: "Ma stack", pageRef: "/tools", weight: 6 }
+        - { name: "Projets", pageRef: "/projects", weight: 4 }
+        - { name: "Blog", pageRef: "/blog", weight: 5 }
+        - { name: "CV", pageRef: "/cv", weight: 6 }
+        - { name: "Ma stack", pageRef: "/tools", weight: 7 }
   en:
     label: "English"
     locale: "en-US"
@@ -42,7 +43,7 @@ languages:
         closing: "Got software to run? Write to me."
     menus:
       main:
-        - { name: "Projects", url: "/en/#projects", weight: 1, params: { pin: true } }
+        - { name: "Projects", pageRef: "/projects", weight: 1, params: { pin: true } }
         - { name: "Path", url: "/en/#path", weight: 2 }
         - { name: "Blog", pageRef: "/blog", weight: 3 }
         - { name: "My stack", pageRef: "/tools", weight: 4, params: { side: "end" } }
@@ -52,9 +53,10 @@ languages:
         - { name: "GitHub", url: "https://github.com/NhProGamer", weight: 1 }
         - { name: "Forgejo", url: "https://git.nhsoul.fr/nhpro", weight: 2 }
         - { name: "LinkedIn", url: "https://www.linkedin.com/in/neo-huyghe", weight: 3 }
-        - { name: "Blog", pageRef: "/blog", weight: 4 }
-        - { name: "CV", pageRef: "/cv", weight: 5 }
-        - { name: "My stack", pageRef: "/tools", weight: 6 }
+        - { name: "Projects", pageRef: "/projects", weight: 4 }
+        - { name: "Blog", pageRef: "/blog", weight: 5 }
+        - { name: "CV", pageRef: "/cv", weight: 6 }
+        - { name: "My stack", pageRef: "/tools", weight: 7 }
 
 params:
   author:
