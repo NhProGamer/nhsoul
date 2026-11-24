@@ -1,0 +1,56 @@
+{{ define "main" }}
+<article class="proj">
+  <div class="container">
+    <a class="back" href="{{ .Parent.RelPermalink }}">{{ T "backToProjects" }}</a>
+    <h1 class="proj__name">{{ .Title }}</h1>
+    <div class="case__head">
+      <div class="case__ctx">{{ .Content }}</div>
+      {{- partial "facts.html" .Params.facts }}
+    </div>
+
+    {{- with .Params.shots }}
+    <div class="shots">
+      {{- range . }}
+        {{- $img := $.Resources.Get .image }}
+        {{- if not $img }}{{ errorf "manchette: shot %q not found in %s" .image $.File.Path }}{{ end }}
+        {{- $kind := .kind | default "wide" }}
+        {{- $sizes := cond (eq $kind "phone") "(min-width: 60rem) 30vw, 100vw" (cond (eq $kind "half") "(min-width: 60rem) 45vw, 100vw" "(min-width: 60rem) 62vw, 100vw") }}
+      <figure class="shot shot--{{ $kind }}">
+        <div class="frame{{ if .zoom }} zoom{{ end }}">{{ partial "picture.html" (dict "img" $img "alt" (.alt | default "") "sizes" $sizes) }}</div>
+        {{- with .caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+      </figure>
+      {{- end }}
+    </div>
+    {{- end }}
+
+    {{- with .Params.choices }}
+    <h2 class="sub">{{ T "choices" }}</h2>
+    <ul class="rows">
+      {{- range . }}
+      <li><h3>{{ .title }}</h3><p>{{ .text }}</p></li>
+      {{- end }}
+    </ul>
+    {{- end }}
+
+    {{- with .Params.now }}
+    <p class="now"><b>{{ T "now" }}</b> {{ . }}</p>
+    {{- end }}
+
+    {{- with .Params.tech }}
+    <section class="tech" aria-labelledby="tech-title">
+      <h2 id="tech-title">{{ T "forDevelopers" }}</h2>
+      {{- partial "facts.html" .facts }}
+      {{- with .text }}<p>{{ . }}</p>{{ end }}
+    </section>
+    {{- end }}
+
+    {{- /* Next project, looping back to the first: only pages that have their own URL. */}}
+    {{- $siblings := where (where .CurrentSection.RegularPages "Params.link" "==" nil) "RelPermalink" "!=" "" }}
+    {{- if gt (len $siblings) 1 }}
+      {{- $next := index $siblings 0 }}
+      {{- range $i, $p := $siblings }}{{ if and (eq $p $) (lt (add $i 1) (len $siblings)) }}{{ $next = index $siblings (add $i 1) }}{{ end }}{{ end }}
+    <a class="next" href="{{ $next.RelPermalink }}"><span>{{ T "nextProject" }}</span><b>{{ $next.Title }}</b></a>
+    {{- end }}
+  </div>
+</article>
+{{ end }}

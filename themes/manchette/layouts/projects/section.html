@@ -1,0 +1,11 @@
+{{ define "main" }}
+<div class="page page--flush">
+  <div class="container">
+    <header class="page__head">
+      <h1 class="page__title">{{ .Title }}</h1>
+      {{- with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+    </header>
+  </div>
+</div>
+{{- partial "sections/work.html" (dict "page" . "s" (merge (dict "id" "projects" "title" "" "section" .Section) (.Params.work | default dict)) "i" 0) }}
+{{ end }}

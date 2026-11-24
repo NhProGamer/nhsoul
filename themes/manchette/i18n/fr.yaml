@@ -9,3 +9,8 @@ copyFail: "La copie a échoué : sélectionnez l’adresse à la main."
 ageYears:
   one: "{{ .Count }} an"
   other: "{{ .Count }} ans"
+backToProjects: "Retour aux projets"
+choices: "Mes choix"
+now: "Aujourd’hui."
+forDevelopers: "Pour les développeurs"
+nextProject: "Projet suivant"

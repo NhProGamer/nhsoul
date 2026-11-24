@@ -9,3 +9,8 @@ copyFail: "Copy failed: select the address by hand."
 ageYears:
   one: "{{ .Count }} year old"
   other: "{{ .Count }} years old"
+backToProjects: "Back to projects"
+choices: "My choices"
+now: "Today."
+forDevelopers: "For developers"
+nextProject: "Next project"

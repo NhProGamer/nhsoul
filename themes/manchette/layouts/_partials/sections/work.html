@@ -5,9 +5,11 @@
 {{- $projects := where site.RegularPages "Section" (.s.section | default "projects") }}
 {{- $tiles := where $projects "Params.tile" "!=" nil }}
 {{- $index := where $projects "Params.tile" "==" nil }}
-<section class="work" id="{{ $s.id | default "work" }}" aria-labelledby="sec-{{ .i }}">
+<section class="work" id="{{ $s.id | default "work" }}" {{ if $s.title }} aria-labelledby="sec-{{ .i }}"{{ end }}>
   <div class="container">
-    <h2 id="sec-{{ .i }}">{{ $s.title }}</h2>
+    {{- with $s.title }}
+    <h2 id="sec-{{ $.i }}">{{ . }}</h2>
+    {{- end }}
     <div class="bento">
       {{- range $n, $p := $tiles }}
         {{- $t := $p.Params.tile }}
