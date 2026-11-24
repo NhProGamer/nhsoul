@@ -2,9 +2,18 @@
 {{- with .Params.hero }}
 <section class="hero" aria-labelledby="hero-title">
   <div class="container">
-    <h1 id="hero-title">
-      {{- with .hello }}<span class="h-hello">{{ . }}</span> {{ end -}}
-      <span class="h-name">{{ partial "avatar.html" (dict "size" 460 "class" "pill" "eager" true) }}{{ .name | default (printf "%s." (partial "author-name.html" $)) }}</span>
+    {{- $name := .name | default (printf "%s." (partial "author-name.html" $)) }}
+    {{- /* The name is split into letters for the entrance animation; the
+           heading keeps its whole text for screen readers. */}}
+    <h1 id="hero-title" aria-label="{{ with .hello }}{{ . }} {{ end }}{{ $name }}">
+      {{- with .hello }}<span class="h-hello" aria-hidden="true">{{ . }}</span> {{ end -}}
+      <span class="h-name">{{ partial "avatar.html" (dict "size" 460 "class" "pill" "eager" true) }}
+        {{- /* Letters are grouped by word so a line never breaks inside a word. */}}
+        {{- $k := 0 }}
+        {{- range $w, $word := split $name " " }}{{ if $w }} {{ end }}<span class="word">
+          {{- range split $word "" }}<span class="ch" aria-hidden="true" style="--k: {{ $k }}; --r: {{ cond (modBool $k 2) -11 9 }}deg">{{ . }}</span>{{ $k = add $k 1 }}{{ end -}}
+        </span>{{ end -}}
+      </span>
     </h1>
     <div class="hero__foot">
       {{- with .lead }}
