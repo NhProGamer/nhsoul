@@ -60,4 +60,7 @@
     still.addEventListener('change', setup);
     addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(place); } }, { passive: true });
   }
+
+  var print = document.querySelector('[data-print]');
+  if (print) print.addEventListener('click', function () { window.print(); });
 })();
