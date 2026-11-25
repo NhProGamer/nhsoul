@@ -187,8 +187,8 @@ clair et en sombre. Toutes les animations ont un repli
 Trois mouvements donnent vie au site :
 
 - **Entrée du hero** : les lettres du nom, découpées par Hugo au build,
-  tombent inclinées puis se posent. Le titre garde son texte entier en
-  `aria-label`.
+  tombent inclinées puis se posent, à la première visite de la session
+  seulement. Le titre garde son texte entier en `aria-label`.
 - **Index de l'accueil** : ses lignes entrent l'une après l'autre au premier
   passage à l'écran.
 - **Transitions de page** (`@view-transition`) : la capture et le titre d'un

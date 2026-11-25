@@ -18,8 +18,9 @@
 {{- with site.Params.manchette.hue }}
 <style>:root { --hue: {{ . | int }}; }</style>
 {{- end }}
-{{- /* Runs before first paint so a stored theme never flashes the other one. */}}
-<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('manchette-theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+{{- /* Runs before first paint so a stored theme never flashes the other one,
+       and the hero entrance plays only on the first home visit of a session. */}}
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('manchette-theme');if(t)document.documentElement.dataset.theme=t;if(sessionStorage.getItem('manchette-hero'))document.documentElement.classList.add('hero-seen');}catch(e){}</script>
 {{- with site.Params.favicon }}
 <link rel="icon" href="{{ . | relURL }}">
 {{- end }}

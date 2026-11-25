@@ -302,17 +302,18 @@ a.tile:focus-visible { outline-offset: 4px; }
 /* ---- motion: hero entrance ----
    The name's letters drop in tilted, one after the other, and settle, like
    the index word on hover. The photo turns in, the greeting comes out of a
-   blur, then the sentence and the buttons rise. */
+   blur, then the sentence and the buttons rise. It plays once a session:
+   a reader coming back to the home page gets the page at once. */
 :root { --ease-settle: cubic-bezier(0.34, 1.4, 0.64, 1); }
 .word, .ch { display: inline-block; }
 .word { white-space: nowrap; }
 @media (prefers-reduced-motion: no-preference) {
-  .hero .h-hello { animation: m-blur 900ms var(--ease-out) both; }
-  .hero .ch { animation: m-letter 1000ms var(--ease-settle) both; animation-delay: calc(300ms + var(--k) * 45ms); }
-  .hero .pill { animation: m-pop 1000ms var(--ease-settle) both 250ms; }
-  .hero .lead { animation: m-up 900ms var(--ease-out) both 1000ms; }
-  .hero__acts > * { animation: m-up 900ms var(--ease-out) both 1090ms; }
-  .hero__acts > * + * { animation-delay: 1180ms; }
+  html:not(.hero-seen) .hero .h-hello { animation: m-blur 900ms var(--ease-out) both; }
+  html:not(.hero-seen) .hero .ch { animation: m-letter 1000ms var(--ease-settle) both; animation-delay: calc(300ms + var(--k) * 45ms); }
+  html:not(.hero-seen) .hero .pill { animation: m-pop 1000ms var(--ease-settle) both 250ms; }
+  html:not(.hero-seen) .hero .lead { animation: m-up 900ms var(--ease-out) both 1000ms; }
+  html:not(.hero-seen) .hero__acts > * { animation: m-up 900ms var(--ease-out) both 1090ms; }
+  html:not(.hero-seen) .hero__acts > * + * { animation-delay: 1180ms; }
 }
 @keyframes m-letter { from { opacity: 0; transform: translateY(0.5em) rotate(var(--r)); } 60% { opacity: 1; } to { opacity: 1; transform: none; } }
 @keyframes m-pop { from { opacity: 0; scale: 0.3; rotate: -20deg; } to { opacity: 1; scale: 1; rotate: 0deg; } }

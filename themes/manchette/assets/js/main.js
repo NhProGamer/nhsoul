@@ -1,6 +1,9 @@
 (function () {
   var root = document.documentElement;
 
+  // The hero entrance has played: later visits in this session skip it.
+  if (document.querySelector('.hero')) { try { sessionStorage.setItem('manchette-hero', '1'); } catch (e) {} }
+
   var btn = document.querySelector('.theme');
   if (btn) {
     // The current theme: the stored choice, otherwise the system one.
