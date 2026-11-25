@@ -1,5 +1,5 @@
 ---
-title: Comptoir & Bleitsan
+title: Comptoir
 weight: 2
 summary: Le système de vente que j’ai conçu pour une marque de vêtements.
 status: En production depuis 2025
@@ -8,7 +8,7 @@ tile:
   alt: La boutique Bleitsan sur téléphone
 facts:
 - label: Pour
-  value: Baggydessine
+  value: Bleitsan (Baggydessine)
 - label: Période
   value: 2025 à 2026
 - label: Mon rôle
@@ -38,9 +38,8 @@ tech:
     value: Go, PostgreSQL, sqlc, Stripe, Vue 3, Tailwind, Mondial Relay, GoReleaser
   text: 'La boutique utilisait Stripe comme catalogue. Quand les drops, les promos et la logistique sont arrivés, j’ai conçu Comptoir : catalogue, stock, commandes et remboursements dans notre propre base, et Stripe ne sert plus qu’à encaisser. Le serveur calcule tous les prix, et le navigateur n’envoie que des identifiants.'
 cv:
-  title: Comptoir et Bleitsan
   kind: Pro, en production depuis 2025
-  text: 'Système de vente en Go et PostgreSQL : stock, commandes, paiement Stripe, Mondial Relay.'
+  text: 'Système de vente de la marque Bleitsan, en Go et PostgreSQL : stock, commandes, paiement Stripe, Mondial Relay.'
   url: https://bleitsan.fr
 ---
 La marque vendait via une page simple qui utilisait Stripe comme catalogue. Avec les collections limitées, les promos et l’envoi par un logisticien, ce modèle ne tenait plus.

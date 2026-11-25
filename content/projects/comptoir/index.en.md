@@ -1,5 +1,5 @@
 ---
-title: Comptoir & Bleitsan
+title: Comptoir
 weight: 2
 summary: The sales system I designed for a clothing brand.
 status: In production since 2025
@@ -8,7 +8,7 @@ tile:
   alt: The Bleitsan shop on a phone
 facts:
 - label: For
-  value: Baggydessine
+  value: Bleitsan (Baggydessine)
 - label: Period
   value: 2025 to 2026
 - label: My role
@@ -38,9 +38,8 @@ tech:
     value: Go, PostgreSQL, sqlc, Stripe, Vue 3, Tailwind, Mondial Relay, GoReleaser
   text: 'The shop used Stripe as its catalogue. When drops, promotions and logistics arrived, I designed Comptoir: catalogue, stock, orders and refunds in our own database, with Stripe only taking payments. The server computes every price, and the browser only sends identifiers.'
 cv:
-  title: Comptoir and Bleitsan
   kind: Client work, in production since 2025
-  text: 'Sales system in Go and PostgreSQL: stock, orders, Stripe payment, Mondial Relay.'
+  text: 'Sales system of the Bleitsan brand, in Go and PostgreSQL: stock, orders, Stripe payment, Mondial Relay.'
   url: https://bleitsan.fr
 ---
 The brand sold through a simple page that used Stripe as its catalogue. With limited collections, promotions and shipping through a logistics provider, that model no longer held up.

@@ -21,7 +21,7 @@ experience:
     text: "Sole developer of two Odoo 19 modules: a portal page builder (exposing any model with no code, auto-generating ir.rule and ACL security) and a multi-sheet Excel importer handling relational dependencies, with an SQL savepoint dry-run mode and unit tests. Also built a local generative AI POC on NVIDIA DGX Spark (vLLM, NVFP4 quantization, OpenAI-compatible API) and assessed the feasibility of AI-related tenders."
   - title: "Freelance developer, sole proprietorship"
     when: "Since 2024"
-    where: "Clown Art and Baggydessine"
+    where: "Clown Art and Bleitsan (Baggydessine)"
     text: "Sole developer of Clown School, Clown Art’s paid video course platform, and of Comptoir, the sales system of the Bleitsan brand. Design, deployment and maintenance in production."
 skills:
   - "Golang, Python, Node.js, Java, C#"

@@ -21,7 +21,7 @@ experience:
     text: "Développement seul de deux modules Odoo 19 : un générateur de pages portail (exposition de n’importe quel modèle sans code, avec génération automatique des ir.rule et ACL) et un importeur Excel multi-feuilles gérant les dépendances relationnelles, avec mode simulation par savepoint SQL et tests unitaires. En parallèle, POC d’IA générative locale sur NVIDIA DGX Spark (vLLM, quantification NVFP4, API compatible OpenAI) et analyse de faisabilité d’appels d’offres orientés IA."
   - title: "Développeur freelance, micro-entreprise"
     when: "Depuis 2024"
-    where: "Clown Art et Baggydessine"
+    where: "Clown Art et Bleitsan (Baggydessine)"
     text: "Seul développeur de Clown School, la plateforme de formations vidéo payantes de Clown Art, et de Comptoir, le système de vente de la marque Bleitsan. Conception, mise en ligne et maintenance en production."
 skills:
   - "Golang, Python, Node.js, Java, C#"
