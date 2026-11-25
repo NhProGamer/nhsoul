@@ -33,12 +33,16 @@
     });
   }
 
-  // The home index brings its rows in one after the other, and the index
-  // word strikes its pose, the first time each scrolls into view (see .index
-  // and .soft in main.css).
+  // The home index brings its rows in one after the other the first time it
+  // scrolls into view; the index word strikes its pose each time it comes
+  // back into view (see .index and .soft in main.css).
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      entries.forEach(function (e) {
+        var replay = e.target.classList.contains('soft');
+        if (e.isIntersecting) { e.target.classList.add('in'); if (!replay) io.unobserve(e.target); }
+        else if (replay) e.target.classList.remove('in');
+      });
     }, { rootMargin: '0px 0px -12% 0px' });
     document.querySelectorAll('.index, .soft').forEach(function (el) { io.observe(el); });
   }

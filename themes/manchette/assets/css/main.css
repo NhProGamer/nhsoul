@@ -118,8 +118,9 @@ a.tile:focus-visible { outline-offset: 4px; }
 .index span { color: var(--color-ink-2); }
 .index .y { text-align: right; font-size: var(--text-sm); color: var(--color-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
 
-/* The index word: the first time it scrolls into view, its letters tilt one
-   after another, like the typeface itself, and keep that pose. */
+/* The index word: each time it scrolls into view, its letters tilt one
+   after another, like the typeface itself, and hold that pose while it
+   stays on screen. */
 .soft { color: var(--color-accent); text-transform: uppercase; }
 .soft > span > span { display: inline-block; transition: transform var(--dur-short) var(--ease-out); transition-delay: calc(var(--i) * 40ms); }
 .soft.in > span > span { transform: translateY(-0.08em) rotate(-7deg); }

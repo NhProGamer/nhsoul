@@ -190,8 +190,8 @@ Trois mouvements donnent vie au site :
   tombent inclinées puis se posent, à la première visite de la session
   seulement. Le titre garde son texte entier en `aria-label`.
 - **Index de l'accueil** : au premier passage à l'écran, ses lignes entrent
-  l'une après l'autre, et le mot animé penche ses lettres, fait jaillir ses
-  traits façon Keith Haring, puis garde la pose.
+  l'une après l'autre. Le mot animé, lui, penche ses lettres et fait jaillir
+  ses traits façon Keith Haring à chaque fois qu'il revient à l'écran.
 - **Transitions de page** (`@view-transition`) : la capture et le titre d'un
   projet passent de sa tuile, de sa ligne d'index ou de la page Projets à
   l'en-tête de sa page. Les éléments sont appariés par
