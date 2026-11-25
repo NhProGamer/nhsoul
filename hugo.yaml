@@ -59,6 +59,7 @@ languages:
         - { name: "My tools", pageRef: "/tools", weight: 7 }
 
 params:
+  favicon: "/favicon.svg"
   author:
     first_name: "Néo"
     last_name: "Huyghe"

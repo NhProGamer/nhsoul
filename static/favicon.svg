@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .bg { fill: #f6f5fa; } .fg { fill: #16141f; }
+    @media (prefers-color-scheme: dark) { .bg { fill: #16141f; } .fg { fill: #f6f5fa; } }
+  </style>
+  <rect class="bg" width="32" height="32" rx="7"/>
+  <g class="fg">
+    <rect x="3" y="7" width="3.5" height="18"/>
+    <rect x="11.5" y="7" width="3.5" height="18"/>
+    <polygon points="3,7 6.5,7 15,25 11.5,25"/>
+    <rect x="17" y="7" width="3.5" height="18"/>
+    <rect x="25.5" y="7" width="3.5" height="18"/>
+    <rect x="17" y="14.5" width="12" height="3"/>
+  </g>
+</svg>
