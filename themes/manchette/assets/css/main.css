@@ -92,7 +92,7 @@ html:not(.js) .theme { display: none; }
 /* The photo, a circle the height of the letters, opens the name line. */
 .pill { display: inline-block; width: 0.84em; height: 0.84em; margin-right: 0.12em; vertical-align: -0.02em; border-radius: 50%; object-fit: cover; object-position: 50% 45%; outline: 1px solid var(--frame-line); outline-offset: -1px; }
 .hero__foot { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-lg) var(--gap-columns); align-items: end; margin-top: var(--space-xl); }
-.hero__foot .lead { grid-column: 1 / span 6; color: var(--color-ink); }
+.hero__foot .lead { grid-column: 1 / span 7; max-width: 34ch; font-size: var(--text-xl); line-height: 1.35; color: var(--color-ink); }
 .hero__acts { grid-column: 8 / -1; display: flex; gap: var(--space-sm); justify-content: flex-end; flex-wrap: wrap; }
 
 /* ---- home: work bento ---- */
@@ -183,6 +183,7 @@ a.tile:focus-visible { outline-offset: 4px; }
 @media (max-width: 60rem) {
   .hero { min-height: 0; padding-block: var(--space-2xl); }
   .hero__foot .lead, .hero__acts { grid-column: 1 / -1; justify-content: flex-start; }
+  .hero__foot .lead { font-size: var(--text-lg); }
   .tile--7, .tile--5 { grid-column: 1 / -1; }
   .verbs h3, .verbs p { grid-column: 1 / -1; }
 }
