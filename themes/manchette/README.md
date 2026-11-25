@@ -79,7 +79,7 @@ sections:
     id: projets
     title: "Des logiciels qui tournent pour de vrai."
     index_title: "Mes propres"
-    index_word: "soft"             # mot animé au survol
+    index_word: "soft"             # mot animé à son arrivée à l’écran
   - type: statement                # grande phrase sur fond teinté
     text: "…"
     note: "…"
@@ -189,8 +189,9 @@ Trois mouvements donnent vie au site :
 - **Entrée du hero** : les lettres du nom, découpées par Hugo au build,
   tombent inclinées puis se posent, à la première visite de la session
   seulement. Le titre garde son texte entier en `aria-label`.
-- **Index de l'accueil** : ses lignes entrent l'une après l'autre au premier
-  passage à l'écran.
+- **Index de l'accueil** : au premier passage à l'écran, ses lignes entrent
+  l'une après l'autre, et le mot animé penche ses lettres, fait jaillir ses
+  traits façon Keith Haring, puis garde la pose.
 - **Transitions de page** (`@view-transition`) : la capture et le titre d'un
   projet passent de sa tuile, de sa ligne d'index ou de la page Projets à
   l'en-tête de sa page. Les éléments sont appariés par

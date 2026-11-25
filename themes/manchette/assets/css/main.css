@@ -118,11 +118,12 @@ a.tile:focus-visible { outline-offset: 4px; }
 .index span { color: var(--color-ink-2); }
 .index .y { text-align: right; font-size: var(--text-sm); color: var(--color-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
 
-/* The index word: its letters tilt one after another on hover, like the typeface itself. */
+/* The index word: the first time it scrolls into view, its letters tilt one
+   after another, like the typeface itself, and keep that pose. */
 .soft { color: var(--color-accent); text-transform: uppercase; }
 .soft > span > span { display: inline-block; transition: transform var(--dur-short) var(--ease-out); transition-delay: calc(var(--i) * 40ms); }
-.tile--list:hover .soft > span > span, .tile--list:focus-within .soft > span > span { transform: translateY(-0.08em) rotate(-7deg); }
-.tile--list:hover .soft > span > span:nth-child(even), .tile--list:focus-within .soft > span > span:nth-child(even) { transform: translateY(0.05em) rotate(6deg); }
+.soft.in > span > span { transform: translateY(-0.08em) rotate(-7deg); }
+.soft.in > span > span:nth-child(even) { transform: translateY(0.05em) rotate(6deg); }
 /* Motion lines, after Keith Haring: once the letters have tilted, a burst
    of three short, thick strokes springs from each top corner of the word,
    like the lines at the corners of his dancing figures. Each burst is an
@@ -131,8 +132,8 @@ a.tile:focus-visible { outline-offset: 4px; }
 .soft::before, .soft::after { content: ""; position: absolute; top: -0.38em; width: 0.5em; height: 0.5em; background: var(--color-ink); -webkit-mask: var(--burst) center / contain no-repeat; mask: var(--burst) center / contain no-repeat; opacity: 0; transform: scale(0.2); transition: opacity 160ms var(--ease-out), transform 460ms var(--ease-settle); pointer-events: none; }
 .soft::before { --burst: var(--haring-left); left: -0.4em; transform-origin: 100% 100%; }
 .soft::after { --burst: var(--haring-right); right: -0.44em; transform-origin: 0% 100%; }
-.tile--list:hover .soft::before, .tile--list:focus-within .soft::before { opacity: 1; transform: none; transition-delay: 120ms; }
-.tile--list:hover .soft::after, .tile--list:focus-within .soft::after { opacity: 1; transform: none; transition-delay: 240ms; }
+.soft.in::before { opacity: 1; transform: none; transition-delay: 120ms; }
+.soft.in::after { opacity: 1; transform: none; transition-delay: 240ms; }
 :root {
   --haring-left: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M16 21H5'/%3E%3Cpath d='M15.5 15.5 7.5 7.5'/%3E%3Cpath d='M21 16V5'/%3E%3C/g%3E%3C/svg%3E");
   --haring-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M8 21h11'/%3E%3Cpath d='m8.5 15.5 8-8'/%3E%3Cpath d='M3 16V5'/%3E%3C/g%3E%3C/svg%3E");
