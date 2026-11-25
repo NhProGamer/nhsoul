@@ -30,7 +30,7 @@ params:
     email: "contact@nhsoul.fr"    # pied de page, avec un bouton « copier »
     location: "Lens"              # mention en bas de page
     birthdate: "2006-02-05"       # âges calculés au build, jamais périmés
-    coding_since: 2017            # « {since} » dans le texte du hero
+    coding_since: 2017            # « {since} » (âge) et « {years} » (années de pratique)
     photo: "images/pfp-min.jpg"   # chemin sous assets/, redimensionné par Hugo
   favicon: "/favicon.svg"         # optionnel
   manchette:
@@ -88,7 +88,7 @@ sections:
     items: [{ title: "Comprendre", text: "…" }]
   - type: timeline                 # règle graduée, une colonne par année
     id: parcours
-    title: "…"
+    title: "{years} ans de pratique"   # {age}, {since}, {years} acceptés
     items: [{ year: 2017, text: "…" }]   # text accepte du Markdown (liens)
 ```
 

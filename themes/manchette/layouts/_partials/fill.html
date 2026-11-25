@@ -1,6 +1,10 @@
-{{- /* Replaces {age} and {since} in a text: the author's age today and their
-       age in params.author.coding_since. */}}
+{{- /* Replaces {age}, {since} and {years} in a text: the author's age today,
+       their age in params.author.coding_since, and the years since then. */}}
 {{- $text := . }}
 {{- $since := 0 }}
-{{- with site.Params.author.birthdate }}{{ with site.Params.author.coding_since }}{{ $since = sub (int .) (time.AsTime site.Params.author.birthdate).Year }}{{ end }}{{ end }}
-{{- return replace (replace $text "{age}" (string (partial "age.html" dict))) "{since}" (string $since) }}
+{{- $years := 0 }}
+{{- with site.Params.author.coding_since }}
+  {{- $years = sub now.Year (int .) }}
+  {{- with site.Params.author.birthdate }}{{ $since = sub (int site.Params.author.coding_since) (time.AsTime .).Year }}{{ end }}
+{{- end }}
+{{- return replace (replace (replace $text "{age}" (string (partial "age.html" dict))) "{since}" (string $since)) "{years}" (string $years) }}
