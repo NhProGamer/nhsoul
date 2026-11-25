@@ -13,6 +13,8 @@ facts:
   value: 2025 à 2026
 - label: Mon rôle
   value: Conception et développement
+- label: Commandes
+  value: Environ 30 par mois
 shots:
 - image: images/screen-home-desktop.webp
   kind: wide
@@ -35,7 +37,7 @@ tech:
   text: 'La boutique utilisait Stripe comme catalogue. Quand les drops, les promos et la logistique sont arrivés, j’ai conçu Comptoir : catalogue, stock, commandes et remboursements dans notre propre base, et Stripe ne sert plus qu’à encaisser. Le serveur calcule tous les prix, et le navigateur n’envoie que des identifiants.'
 cv:
   kind: Pro, en production depuis 2025
-  text: 'Système de vente de la marque Bleitsan, en Go et PostgreSQL : stock, commandes, paiement Stripe, Mondial Relay.'
+  text: 'Système de vente de la marque Bleitsan, en Go et PostgreSQL : stock, commandes, paiement Stripe, Mondial Relay. Environ 30 commandes par mois.'
   url: https://bleitsan.fr
 ---
 La marque vendait via une page simple qui utilisait Stripe comme catalogue. Avec les collections limitées, les promos et l’envoi par un logisticien, ce modèle ne tenait plus.

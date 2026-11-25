@@ -14,6 +14,8 @@ facts:
   value: 2024 à 2026
 - label: Mon rôle
   value: Seul développeur, mise en ligne comprise
+- label: Utilisateurs
+  value: 1 200
 shots:
 - image: images/screen-home-desktop.webp
   kind: wide
@@ -37,7 +39,7 @@ tech:
   text: 'Clown School vend et diffuse les formations vidéo de Clown Art. J’ai tout construit et je l’exploite seul : l’API, le site, les codes d’accès, la diffusion vidéo et l’authentification. Trois versions en deux ans : des templates Go en 2024, une API avec une SPA Vue fin 2025, puis la migration vers mon propre serveur d’identité en 2026, sans qu’aucun élève ait à refaire son mot de passe.'
 cv:
   kind: Pro, en production depuis 2024
-  text: 'Plateforme de formations vidéo : API Go, application Vue, vidéo protégée, codes d’accès.'
+  text: 'Plateforme de formations vidéo, 1 200 utilisateurs : API Go, application Vue, vidéo protégée, codes d’accès.'
   url: https://clown.school
 ---
 Clown Art vend des formations vidéo à des élèves qui paient. Depuis 2024, je suis le seul développeur : je conçois, je mets en ligne et je réponds quand ça casse.

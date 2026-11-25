@@ -14,6 +14,8 @@ facts:
   value: 2024 to 2026
 - label: My role
   value: Sole developer, deployment included
+- label: Users
+  value: 1,200
 shots:
 - image: images/screen-home-desktop.webp
   kind: wide
@@ -37,7 +39,7 @@ tech:
   text: 'Clown School sells and streams Clown Art’s video courses. I built all of it and run it alone: the API, the site, access codes, video streaming and authentication. Three versions in two years: Go templates in 2024, an API with a Vue SPA in late 2025, then the move to my own identity server in 2026, without a single student having to reset their password.'
 cv:
   kind: Client work, in production since 2024
-  text: 'Video course platform: Go API, Vue app, protected video, access codes.'
+  text: 'Video course platform with 1,200 users: Go API, Vue app, protected video, access codes.'
   url: https://clown.school
 ---
 Clown Art sells video courses to paying students. Since 2024 I have been the only developer: I design, I ship, and I answer when it breaks.
