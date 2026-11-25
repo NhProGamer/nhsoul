@@ -1,8 +1,8 @@
-{{- /* A label/value list. Context: a list of dict "label" "value". */}}
+{{- /* A label/value list. Context: a list of dict "label" "value"; values accept inline Markdown, for links. */}}
 {{- with . }}
 <dl class="facts">
   {{- range . }}
-  <div><dt>{{ .label }}</dt><dd>{{ .value }}</dd></div>
+  <div><dt>{{ .label }}</dt><dd>{{ .value | markdownify }}</dd></div>
   {{- end }}
 </dl>
 {{- end }}

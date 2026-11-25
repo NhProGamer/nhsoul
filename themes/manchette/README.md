@@ -107,7 +107,7 @@ crée le fichier depuis l'archétype, qui documente chaque champ. En bref :
 | `tile` | `image`, `alt`, `zoom`, `size` : sans `tile`, le projet va dans l'index |
 | `year` | colonne de droite de l'index |
 | `link` + `build.render: never` | projet sans page, qui pointe ailleurs |
-| `facts` | liste `label` / `value` en tête de page |
+| `facts` | liste `label` / `value` en tête de page ; `value` accepte du Markdown (liens) |
 | `shots` | captures : `image`, `kind` (`wide`, `phone`, `half`), `alt`, `caption` |
 | `choices` | décisions et leur raison |
 | `now` | où en est le projet |
