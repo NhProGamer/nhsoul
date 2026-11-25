@@ -28,7 +28,7 @@ choices:
 - title: An invisible migration
   text: Old passwords are accepted, then strengthened at the next sign-in.
 - title: Attack my own system
-  text: Two security audit passes, to find the holes before an attacker does.
+  text: 'I read the server as an attacker would and fixed what I found: reusable tokens, privilege escalation, guessable accounts. Every fix is in the public history.'
 now: In production for Clown School, with a sign-in screen in each product’s colours.
 tech:
   facts:

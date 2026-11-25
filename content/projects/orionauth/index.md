@@ -28,7 +28,7 @@ choices:
 - title: Une migration invisible
   text: Les anciens mots de passe sont acceptés, puis renforcés à la connexion suivante.
 - title: Attaquer mon propre système
-  text: Deux passes d’audit de sécurité, pour trouver les failles avant un attaquant.
+  text: 'J’ai relu le serveur comme un attaquant et corrigé ce que j’ai trouvé : jetons réutilisables, élévation de droits, comptes devinables. Chaque correction est dans l’historique public.'
 now: En production pour Clown School, avec un écran de connexion aux couleurs de chaque produit.
 tech:
   facts:
