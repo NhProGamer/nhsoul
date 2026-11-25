@@ -223,7 +223,8 @@ a.tile:focus-visible { outline-offset: 4px; }
 .tech { margin-top: var(--section-gap-s); padding: var(--space-xl); background: var(--color-paper-2); border-radius: var(--radius-card); display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-lg) var(--gap-columns); }
 .tech h2 { grid-column: 1 / -1; font-size: var(--text-title); line-height: 1.15; }
 .tech .facts { grid-column: 1 / span 4; }
-.tech p { grid-column: 6 / -1; }
+.tech p { grid-column: 6 / -1; font-size: var(--text-lead); line-height: 1.5; }
+.tech .facts dt, .tech .facts dd { font-size: var(--text-md); }
 .next { display: block; margin-top: var(--section-gap-s); padding-top: var(--space-xl); border-top: 4px solid var(--color-ink); text-decoration: none; }
 .next span { display: block; font-size: var(--text-sm); color: var(--color-muted); }
 .next b { display: block; margin-top: var(--space-xs); font: var(--display-weight) var(--text-display)/1 var(--font-display); font-stretch: 88%; letter-spacing: var(--tracking-display); transition: color var(--dur-short) var(--ease-out); }
