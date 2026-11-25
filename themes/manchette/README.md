@@ -86,10 +86,10 @@ sections:
   - type: steps                    # verbes géants et leur phrase
     title: "…"
     items: [{ title: "Comprendre", text: "…" }]
-  - type: timeline                 # frise horizontale, âge calculé par année
+  - type: timeline                 # règle graduée, une colonne par année
     id: parcours
     title: "…"
-    items: [{ year: 2017, text: "…" }]
+    items: [{ year: 2017, text: "…" }]   # text accepte du Markdown (liens)
 ```
 
 Pour ajouter un type de section, créer `layouts/_partials/sections/<type>.html`
@@ -182,8 +182,7 @@ peut surcharger n'importe quelle clé dans son propre `i18n/`.
 
 Focus visible sur tous les contrôles, lien d'évitement, contrastes AA en
 clair et en sombre. Toutes les animations ont un repli
-`prefers-reduced-motion`, et le contenu reste lisible sans JavaScript : la
-frise redevient un simple défilement horizontal.
+`prefers-reduced-motion`, et le contenu reste lisible sans JavaScript.
 
 Trois mouvements donnent vie au site :
 

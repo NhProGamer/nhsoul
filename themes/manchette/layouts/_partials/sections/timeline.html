@@ -1,17 +1,29 @@
-{{- /* Horizontal timeline. On wide screens main.js pins it and scrolls it
-       sideways as the page scrolls down. */}}
+{{- /* Timeline as a graduated ruler: one column per year from the first
+       event to the last, so the gaps and the busy years show at their real
+       scale. Years without an event keep a tick and are hidden from screen
+       readers. Item text accepts inline Markdown, for links to projects. */}}
+{{- $items := .s.items }}
+{{- $first := 9999 }}{{ $last := 0 }}
+{{- range $items }}{{ $y := int .year }}{{ if lt $y $first }}{{ $first = $y }}{{ end }}{{ if gt $y $last }}{{ $last = $y }}{{ end }}{{ end }}
 <section class="path"{{ with .s.id }} id="{{ . }}"{{ end }} aria-labelledby="sec-{{ .i }}">
-  <div class="path__runway">
-    <div class="path__sticky">
-      <div class="container"><h2 id="sec-{{ .i }}">{{ partial "fill.html" .s.title }}</h2></div>
-      <div class="path__view" tabindex="0" aria-label="{{ .s.label | default .s.title }}">
-        <ol class="track">
-          {{- range .s.items }}
-            {{- $age := partial "age.html" (dict "at" (time.AsTime (printf "%d-12-31" (int .year)))) }}
-          <li><b>{{ .year }}</b>{{ if $age }}<small>{{ T "ageYears" $age }}</small>{{ end }}<p>{{ .text }}</p></li>
-          {{- end }}
-        </ol>
-      </div>
-    </div>
+  <div class="container">
+    <h2 id="sec-{{ .i }}">{{ partial "fill.html" .s.title }}</h2>
+    {{- if $last }}
+    <ol class="ruler" style="--years: {{ add (sub $last $first) 1 }}">
+      {{- range $y := seq $first $last }}
+        {{- $events := where $items "year" $y }}
+        {{- if $events }}
+          {{- $age := partial "age.html" (dict "at" (time.AsTime (printf "%d-12-31" $y))) }}
+      <li class="ruler__year is-event">
+        <b>{{ $y }}</b>
+        {{- if $age }}<small>{{ T "ageYears" $age }}</small>{{ end }}
+        {{- range $events }}<p>{{ .text | markdownify }}</p>{{ end }}
+      </li>
+        {{- else }}
+      <li class="ruler__year" aria-hidden="true"><span>{{ $y }}</span></li>
+        {{- end }}
+      {{- end }}
+    </ol>
+    {{- end }}
   </div>
 </section>

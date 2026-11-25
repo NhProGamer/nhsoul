@@ -30,37 +30,6 @@
     });
   }
 
-  // Timeline: on wide screens, without reduced motion, scrolling down moves it sideways.
-  var sec = document.querySelector('.path');
-  if (sec) {
-    var runway = sec.querySelector('.path__runway'), sticky = sec.querySelector('.path__sticky'),
-        view = sec.querySelector('.path__view'), track = sec.querySelector('.track'),
-        wide = matchMedia('(min-width: 60rem)'), still = matchMedia('(prefers-reduced-motion: reduce)'),
-        dist = 0, ticking = false;
-    var place = function () {
-      ticking = false;
-      if (!sec.classList.contains('is-pinned')) return;
-      var p = Math.min(1, Math.max(0, -runway.getBoundingClientRect().top / dist));
-      track.style.transform = 'translateX(' + (-p * dist) + 'px)';
-    };
-    var setup = function () {
-      var pin = wide.matches && !still.matches;
-      sec.classList.toggle('is-pinned', pin);
-      track.style.transform = '';
-      runway.style.height = '';
-      if (!pin) return;
-      dist = Math.max(0, track.scrollWidth - view.clientWidth);
-      // The runway is as tall as the sticky block plus the sideways distance.
-      runway.style.height = (sticky.offsetHeight + dist) + 'px';
-      place();
-    };
-    setup();
-    addEventListener('resize', setup);
-    wide.addEventListener('change', setup);
-    still.addEventListener('change', setup);
-    addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(place); } }, { passive: true });
-  }
-
   // The home index brings its rows in one after the other the first time
   // it scrolls into view (see .index in main.css).
   if ('IntersectionObserver' in window) {

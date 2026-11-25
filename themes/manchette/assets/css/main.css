@@ -154,24 +154,31 @@ a.tile:focus-visible { outline-offset: 4px; }
 .verbs li:hover h3 { transform: translateX(0.12em); color: var(--color-accent); }
 @media (prefers-reduced-motion: reduce) { .verbs li:hover h3 { transform: none; } }
 
-/* ---- home: timeline, a horizontal rail ---- */
+/* ---- home: timeline, a graduated ruler ----
+   One column per year on the axis, an accent dot on the years with an
+   event. Below 70rem the ruler turns vertical, one row per year. */
 .path { padding-block: var(--section-gap-s); }
 .path h2 { margin-bottom: var(--space-2xl); }
-/* The rail starts aligned with the container; scroll-padding keeps the snap
-   from scrolling that inset away. */
-.path { --rail-inset: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))); }
-.path__view { overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: var(--rail-inset); }
-.path__view:focus-visible { outline-offset: -2px; }
-.track { display: flex; gap: var(--gap-columns); width: max-content; margin: 0; padding: 0 0 var(--space-lg); list-style: none; padding-inline: var(--rail-inset); }
-.track li { flex: 0 0 clamp(16rem, 30vw, 26rem); display: grid; align-content: start; gap: var(--space-xs); padding-top: var(--space-lg); border-top: 2px solid var(--color-ink); scroll-snap-align: start; }
-.track b { font: var(--display-weight) var(--text-display)/1 var(--font-display); font-stretch: 88%; letter-spacing: var(--tracking-display); font-variant-numeric: tabular-nums; }
-.track li:last-child b { color: var(--color-accent); }
-.track small { font-size: var(--text-sm); color: var(--color-muted); }
-.track p { max-width: 28ch; font-size: var(--text-lead); }
-.path.is-pinned { padding-block: 0; }
-.path.is-pinned .path__sticky { position: sticky; top: 0; padding-block: var(--section-gap-s); }
-.path.is-pinned .path__view { overflow: hidden; scroll-snap-type: none; }
-.path.is-pinned .track { will-change: transform; }
+.ruler { position: relative; display: grid; grid-template-columns: repeat(var(--years), minmax(0, 1fr)); column-gap: var(--space-md); margin: 0; padding: var(--space-xl) 0 0; list-style: none; border-top: 2px solid var(--color-ink); }
+.ruler__year { position: relative; display: grid; align-content: start; gap: var(--space-2xs); min-width: 0; }
+/* The tick hangs from the axis; an event gets a dot on it instead. */
+.ruler__year::before { content: ""; position: absolute; left: 0; top: calc(-1 * var(--space-xl) - 2px); width: 2px; height: 12px; background: var(--color-ink); }
+.ruler__year.is-event::before { left: -7px; top: calc(-1 * var(--space-xl) - 9px); width: 16px; height: 16px; border-radius: 50%; background: var(--color-accent); box-shadow: 0 0 0 4px var(--color-paper); }
+.ruler__year span { font-size: var(--text-xs); color: var(--color-muted); font-variant-numeric: tabular-nums; }
+.ruler__year b { font: var(--display-weight) var(--text-3xl)/1 var(--font-display); font-stretch: 88%; letter-spacing: var(--tracking-display); font-variant-numeric: tabular-nums; }
+.ruler__year.is-event:last-child b { color: var(--color-accent); }
+.ruler__year small { font-size: var(--text-sm); color: var(--color-muted); }
+.ruler__year p { margin-top: var(--space-xs); font-size: var(--text-md); line-height: 1.4; overflow-wrap: break-word; }
+.ruler__year p a { color: var(--color-accent); text-underline-offset: 0.2em; }
+.ruler__year p a:hover { text-decoration-thickness: 2px; }
+@media (max-width: 70rem) {
+  .ruler { grid-template-columns: minmax(0, 1fr); padding: 0 0 0 var(--space-xl); border-top: 0; border-left: 2px solid var(--color-ink); }
+  .ruler__year { padding-block: var(--space-sm); }
+  .ruler__year.is-event { padding-block: var(--space-lg); }
+  .ruler__year::before { left: calc(-1 * var(--space-xl) - 2px); top: calc(var(--space-sm) + 0.45em); width: 12px; height: 2px; }
+  .ruler__year.is-event::before { left: calc(-1 * var(--space-xl) - 9px); top: calc(var(--space-lg) + 0.6em); }
+  .ruler__year p { max-width: 40ch; font-size: var(--text-lead); }
+}
 
 @media (max-width: 60rem) {
   .hero { min-height: 0; padding-block: var(--space-2xl); }
