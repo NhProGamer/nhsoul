@@ -1,63 +1,41 @@
 +++
 date = '2025-09-24T15:17:00+02:00'
 draft = false
-author = "NнPro"
-title = "Aurora : l’OS immuable “sous stéroïdes” pour un usage productif"
+author = "Néo Huyghe"
+title = "Pourquoi je développe sur Aurora, un Linux immuable"
+slug = "aurora-linux-immuable"
+aliases = ["/blog/aurora-los-immuable-sous-stéroïdes-pour-un-usage-productif/"]
 featured_image = "screenshare.png"
 +++
-Deuxième article de blog - On passe au Linux game !
+Après Ubuntu puis Arch Linux, je cherchais un poste qui ne casse pas après une mise à jour. Aurora, un Linux immuable basé sur Fedora, me l’a donné sans rien m’enlever.
 <!--more-->
 
-J’avais dit dans le dernier post qu’on parlerait probablement de backend.  
-Désolé… mais ça ne sera pas pour aujourd’hui. 😅
+## D’Ubuntu à Arch, puis à la maintenance
 
-## Le contexte
+Comme beaucoup, j’ai découvert Linux avec **Ubuntu** : facile à prendre en main, mais trop chargé à mon goût, avec beaucoup de paquets installés par défaut. Je suis ensuite passé sur **Arch Linux**, léger et entièrement configurable.
 
-Comme beaucoup de débutants, j’ai mis un premier pied dans le monde Linux avec **Ubuntu**. Facile à prendre en main, mais rapidement trop chargé à mon goût : beaucoup de paquets installés par défaut, parfois inutiles. Ensuite je suis passé sur **Arch Linux**. Là, révélation : un système léger, ultra flexible, une distro qui te donne vraiment les clés en main.
+Avec le temps, la maintenance m’a rattrapé. Arch est idéal pour bricoler, mais sur un poste de travail, je passais plus de temps à réparer qu’à produire. Un ami m’a alors parlé des systèmes immuables et conseillé **Aurora**.
 
-Sauf qu’à force, la **maintenance** m’a rattrapé. Arch, c’est génial quand tu aimes bricoler, mais quand tu veux un poste **stable pour travailler**, tu passes plus de temps à maintenir qu’à produire. Il me fallait autre chose.
+## Ce que je cherchais
 
-C’est là qu’un ami m’a parlé des **OS immuables** et m’a conseillé d’essayer **Aurora**.
+- **De la stabilité** : aucune mauvaise surprise après une mise à jour.
+- **De la simplicité** : ne plus passer deux heures à réparer une bibliothèque cassée.
+- **Du jeu, du développement et des machines virtuelles** sur la même machine.
 
-## Le problème
+## Ce qu’Aurora apporte
 
-Je voulais un système qui combine :
+Aurora est un système immuable basé sur Fedora Atomic, pensé pour le travail au quotidien.
 
-- **Stabilité** : pas de mauvaise surprise après une mise à jour
-- **Simplicité** : ne pas devoir repasser 2h à configurer une lib cassée
-- **Modernité** : support du gaming, du développement et des VM
+- **Des mises à jour atomiques** : la mise à jour s’applique en entier ou pas du tout, et je peux revenir à la version précédente si quelque chose casse.
+- **Trois sources de logiciels** : Flatpak pour les applications graphiques, Homebrew pour les outils en ligne de commande, rpm-ostree pour l’indispensable.
+- **Des scripts intégrés** (`ujust`) qui installent les outils pénibles à configurer : le jeu, JetBrains Toolbox, la virtualisation.
+- **La virtualisation prête à l’emploi**, jusqu’au passage d’une carte graphique à une machine virtuelle (VFIO).
 
-Aurora m’a alors intrigué : une version “sous stéroïdes” avec des scripts intégrés qui font gagner un temps fou.
+## Ses limites
 
-## La solution : Aurora
+- **Tout est automatisé** : changer de noyau ou appliquer un correctif comme l’ACS Override devient vite compliqué.
+- **Les permissions Flatpak** demandent parfois un réglage, mais Flatseal le règle en quelques clics.
 
-Aurora, c’est un OS immuable basé sur Fedora Atomic, pensé pour un usage quotidien productif.  
-Quelques points qui m’ont marqué :
+## Mon bilan
 
-- Les **mises à jour atomiques** et le rollback possible si quelque chose casse
-- Les applis gérées via **Flatpak** (graphique) + **Homebrew** (CLI) + **rpm-ostree** (pour l’indispensable)
-- Des scripts intégrés qui installent tout seul les outils pénibles (gaming, JetBrains Toolbox, etc.)
-- Le support de la virtualisation et même du **VFIO** pour le **passthrough PCI** clé en main
-
-Bref, une expérience pensée pour être simple sans être limitée.
-
-## Les points faibles
-
-Bien sûr, aucun OS n’est parfait. Voici ce que j’ai remarqué :
-
-- **Trop automatique** : si tu veux mettre les mains dans le cambouis (changer de kernel, appliquer un patch comme l’ACS Override), ça devient vite compliqué.
-- **Flatpak** : les permissions sont parfois à ajuster, mais honnêtement ce n’est pas un vrai problème. Avec **Flatseal** et les configs de base déjà bien faites (ex. thèmes), ça roule.
-
-Pour le reste (gaming, dev, VM), Aurora ne m’a pas déçu : l’outil **ujust** installe tout seul ce qu’il faut, et ça marche direct.
-
-## Mon retour
-
-Aurora, c’est exactement ce que je cherchais : **un OS immuable stable, moderne et utilisable au quotidien**.  
-Pas besoin de repatcher tous les 3 jours, et quand je veux jouer ou coder, tout est prêt.
-
-Seul bémol : si tu as un besoin très spécifique côté kernel, il faudra bricoler ailleurs.  
-Mais sinon, Aurora tient clairement sa promesse : un Silverblue ++ pour les développeurs, gamers et power users.
-
----
-
-*Deuxième post en poche ! Le prochain sera sûrement encore plus orienté technique…* 🚀
+Aurora est le poste que je cherchais : stable, à jour et prêt à l’emploi. Je ne répare plus rien tous les trois jours, et tout est prêt quand je veux coder ou jouer. Si vous avez un besoin très précis côté noyau, il faudra chercher ailleurs ; pour le reste, c’est un Fedora Silverblue plus complet, pensé pour les développeurs.
