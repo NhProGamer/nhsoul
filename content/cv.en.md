@@ -13,7 +13,6 @@ contacts:
   - { label: "linkedin.com/in/neo-huyghe", url: "https://www.linkedin.com/in/neo-huyghe", icon: "linkedin" }
   - { label: "github.com/NhProGamer", url: "https://github.com/NhProGamer", icon: "github" }
   - { label: "nhsoul.fr", url: "https://nhsoul.fr", icon: "globe" }
-motto: "Simplicity is the ultimate sophistication."
 experience:
   - title: "Developer internship: Odoo and generative AI"
     when: "Apr. to Jun. 2026"

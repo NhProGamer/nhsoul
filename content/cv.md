@@ -13,7 +13,6 @@ contacts:
   - { label: "linkedin.com/in/neo-huyghe", url: "https://www.linkedin.com/in/neo-huyghe", icon: "linkedin" }
   - { label: "github.com/NhProGamer", url: "https://github.com/NhProGamer", icon: "github" }
   - { label: "nhsoul.fr", url: "https://nhsoul.fr", icon: "globe" }
-motto: "La simplicité est la sophistication ultime."
 experience:
   - title: "Stage développeur : Odoo et IA générative"
     when: "Avr. à juin 2026"
