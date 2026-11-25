@@ -30,10 +30,6 @@ choices:
 now: La boutique Bleitsan tourne dessus, branchée à Mondial Relay et au logisticien eKAN.
 tech:
   facts:
-  - label: Commits
-    value: '147'
-  - label: Lignes
-    value: 21 000
   - label: Stack
     value: Go, PostgreSQL, sqlc, Stripe, Vue 3, Tailwind, Mondial Relay, GoReleaser
   text: 'La boutique utilisait Stripe comme catalogue. Quand les drops, les promos et la logistique sont arrivés, j’ai conçu Comptoir : catalogue, stock, commandes et remboursements dans notre propre base, et Stripe ne sert plus qu’à encaisser. Le serveur calcule tous les prix, et le navigateur n’envoie que des identifiants.'

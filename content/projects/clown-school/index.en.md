@@ -32,10 +32,6 @@ choices:
 now: Online since 2024, three versions in two years. No student had to reset their password during the migration.
 tech:
   facts:
-  - label: Commits
-    value: '453'
-  - label: Lines
-    value: 12,000
   - label: Stack
     value: Go, Gin, Vue 3, Pinia, HLS, Shaka Player, OpenStack Swift, OIDC, Docker
   text: 'Clown School sells and streams Clown Art’s video courses. I built all of it and run it alone: the API, the site, access codes, video streaming and authentication. Three versions in two years: Go templates in 2024, an API with a Vue SPA in late 2025, then the move to my own identity server in 2026, without a single student having to reset their password.'

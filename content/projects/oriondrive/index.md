@@ -20,10 +20,8 @@ choices:
 now: Connexion par OrionAuth, comme mes autres outils.
 tech:
   facts:
-  - label: Commits
-    value: '240'
-  - label: Lignes
-    value: 37 000
+  - label: Code
+    value: '[GitHub](https://github.com/NhProGamer/orion-drive)'
   - label: Stack
     value: Go, Vue 3, WebDAV, SFTP, WOPI, S3
   text: Partages, WebDAV avec synchronisation incrémentale (RFC 6578), SFTP, édition Office collaborative, miniatures RAW et PSD, déduplication par contenu, avec connexion uniquement par SSO.

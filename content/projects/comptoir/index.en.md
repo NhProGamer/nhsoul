@@ -30,10 +30,6 @@ choices:
 now: The Bleitsan shop runs on it, connected to Mondial Relay and to the eKAN logistics provider.
 tech:
   facts:
-  - label: Commits
-    value: '147'
-  - label: Lines
-    value: 21,000
   - label: Stack
     value: Go, PostgreSQL, sqlc, Stripe, Vue 3, Tailwind, Mondial Relay, GoReleaser
   text: 'The shop used Stripe as its catalogue. When drops, promotions and logistics arrived, I designed Comptoir: catalogue, stock, orders and refunds in our own database, with Stripe only taking payments. The server computes every price, and the browser only sends identifiers.'

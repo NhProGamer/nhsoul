@@ -20,10 +20,8 @@ choices:
 now: Sign-in through OrionAuth, like my other tools.
 tech:
   facts:
-  - label: Commits
-    value: '240'
-  - label: Lines
-    value: 37,000
+  - label: Code
+    value: '[GitHub](https://github.com/NhProGamer/orion-drive)'
   - label: Stack
     value: Go, Vue 3, WebDAV, SFTP, WOPI, S3
   text: Shares, WebDAV with incremental sync (RFC 6578), SFTP, collaborative Office editing, RAW and PSD thumbnails, content-based deduplication, with sign-in through SSO only.

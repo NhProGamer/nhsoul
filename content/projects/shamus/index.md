@@ -20,10 +20,8 @@ choices:
 now: Trois versions en six ans, chacune construite sur les erreurs de la précédente.
 tech:
   facts:
-  - label: Commits
-    value: '149'
-  - label: Lignes
-    value: 10 000
+  - label: Code
+    value: '[GitHub](https://github.com/NhProGamer/shamus-backend)'
   - label: Stack
     value: Go, WebSocket, PostgreSQL, Vue 3, TypeScript, vue-i18n
   text: En 2020, un bot Discord anime nos parties. En 2025, je réécris le jeu à la main, avec des verrous à trois niveaux et des rôles codés en dur. En 2026, j’adopte l’architecture que cet échec m’a fait comprendre.

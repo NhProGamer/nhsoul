@@ -32,10 +32,8 @@ choices:
 now: En production pour Clown School, avec un écran de connexion aux couleurs de chaque produit.
 tech:
   facts:
-  - label: Commits
-    value: '698'
-  - label: Lignes
-    value: 68 000
+  - label: Code
+    value: '[GitHub](https://github.com/NhProGamer/orion-auth-backend)'
   - label: Stack
     value: Go, PostgreSQL, OIDC, WebAuthn, OPA / Rego, Prometheus, Vue 3
   text: Ma première rencontre avec OAuth, c’était la connexion Microsoft de mon launcher Minecraft. Un an plus tard, j’ai écrit mon propre fournisseur d’identité pour remplacer Logto, avec deux SDK (TypeScript et Go).

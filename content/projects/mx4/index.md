@@ -20,10 +20,6 @@ choices:
 now: Boutons, gestes, profils par application et retour haptique fonctionnent sous KDE Plasma.
 tech:
   facts:
-  - label: Commits
-    value: '61'
-  - label: Lignes
-    value: 26 000
   - label: Stack
     value: Rust, HID++, uinput, Wayland, KDE Plasma, systemd
   text: Remappage, gestes, profils par application, un cercle d’actions avec retour haptique, une vibration dans la main à chaque notification. Le tout avec une configuration en TOML, sans compte et sans télémétrie.

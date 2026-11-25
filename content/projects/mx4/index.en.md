@@ -20,10 +20,6 @@ choices:
 now: Buttons, gestures, per-app profiles and haptic feedback work on KDE Plasma.
 tech:
   facts:
-  - label: Commits
-    value: '61'
-  - label: Lines
-    value: 26,000
   - label: Stack
     value: Rust, HID++, uinput, Wayland, KDE Plasma, systemd
   text: Remapping, gestures, per-app profiles, a ring of actions with haptic feedback, a buzz in the hand on every notification. All with a TOML configuration, no account and no telemetry.
