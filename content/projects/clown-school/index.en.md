@@ -42,4 +42,4 @@ cv:
   text: 'Video course platform with 1,200 users: Go API, Vue app, protected video, access codes.'
   url: https://clown.school
 ---
-Clown Art sells video courses to paying students. Since 2024 I have been the only developer: I design, I ship, and I answer when it breaks.
+Clown Art sells video courses to paying students. Since 2024 I have been its only developer, from design to day-to-day running.

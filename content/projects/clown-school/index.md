@@ -42,4 +42,4 @@ cv:
   text: 'Plateforme de formations vidéo, 1 200 utilisateurs : API Go, application Vue, vidéo protégée, codes d’accès.'
   url: https://clown.school
 ---
-Clown Art vend des formations vidéo à des élèves qui paient. Depuis 2024, je suis le seul développeur : je conçois, je mets en ligne et je réponds quand ça casse.
+Clown Art vend des formations vidéo à des élèves qui paient. Depuis 2024, j’en suis le seul développeur, de la conception à l’exploitation.

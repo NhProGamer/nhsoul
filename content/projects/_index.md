@@ -1,4 +1,4 @@
 ---
 title: "Projets"
-description: "Des logiciels qui tournent pour de vrai."
+description: "Ce que j’ai conçu et que je fais tourner, pour des clients et pour moi."
 ---

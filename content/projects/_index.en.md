@@ -1,4 +1,4 @@
 ---
 title: "Projects"
-description: "Software that runs for real."
+description: "What I designed and keep running, for clients and for myself."
 ---
