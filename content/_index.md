@@ -19,12 +19,12 @@ sections:
     note: "Des agents IA écrivent une partie du code, comme une équipe : je fixe l’architecture, je relis et je valide sur le vrai produit."
   - type: timeline
     id: parcours
-    title: "Neuf ans de pratique"
+    title: "{years} ans de pratique"
     items:
       - { year: 2017, text: "Premiers montages Arduino, fin du CM2" }
       - { year: 2020, text: "Mon réseau Minecraft et ses bots Discord" }
-      - { year: 2023, text: "Des serveurs qui se déclarent seuls" }
+      - { year: 2023, text: "[NatsBridge](https://github.com/NhProGamer/NatsBridge) relie mes serveurs Minecraft entre eux" }
       - { year: 2024, text: "[Clown School](/projects/clown-school/), mon premier client" }
-      - { year: 2025, text: "Ma première brique open source" }
+      - { year: 2025, text: "[dynamo](https://github.com/NhProGamer/dynamo), ma première brique open source" }
       - { year: 2026, text: "[OrionAuth](/projects/orionauth/), et [Comptoir](/projects/comptoir/) pour Bleitsan" }
 ---

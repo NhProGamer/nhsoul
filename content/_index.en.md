@@ -18,12 +18,12 @@ sections:
     note: "AI agents write part of the code, like a team: I set the architecture, review it and test it on the real product."
   - type: timeline
     id: path
-    title: "Nine years of practice"
+    title: "{years} years of practice"
     items:
       - { year: 2017, text: "First Arduino circuits, at the end of primary school" }
       - { year: 2020, text: "My Minecraft network and its Discord bots" }
-      - { year: 2023, text: "Servers that register themselves" }
+      - { year: 2023, text: "[NatsBridge](https://github.com/NhProGamer/NatsBridge) links my Minecraft servers together" }
       - { year: 2024, text: "[Clown School](/en/projects/clown-school/), my first client" }
-      - { year: 2025, text: "My first open source building block" }
+      - { year: 2025, text: "[dynamo](https://github.com/NhProGamer/dynamo), my first open source building block" }
       - { year: 2026, text: "[OrionAuth](/en/projects/orionauth/), and [Comptoir](/en/projects/comptoir/) for Bleitsan" }
 ---
