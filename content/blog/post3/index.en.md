@@ -1,15 +1,12 @@
 +++
 date = '2026-09-11T16:30:00+02:00'
 draft = false
-author = "NнPro"
+author = "Néo Huyghe"
 title = "OrionDrive: why I ended up writing my own cloud"
 featured_image = "oriondrive.png"
 +++
-Third blog post - This time, it really is backend!
+Nextcloud too slow, Cloudreve too paywalled, ownCloud too heavy, Seafile too minimal: no self-hosted drive suited me. So I wrote OrionDrive, a complete drive that fits in a single program.
 <!--more-->
-
-Two posts that I promised to talk about backend.
-This time, I swear, here we are. 😄
 
 ## The Context
 
@@ -17,7 +14,7 @@ For years, my files lived on **Google Drive**. Convenient, fast, zero maintenanc
 
 Getting off the **GAFAM** track isn't just a stance for me. It's deciding **where** my data lives, **who** can read it, and **how much** it costs. The answer came down to one word: at home. I have a server, it has **10 TB** of storage. My limit is my disk — not a monthly subscription.
 
-That left the software to pick. And that's where I went shopping.
+That left the software to pick. So I tried the main options.
 
 ## The Problem: nothing fit
 
@@ -25,11 +22,11 @@ That left the software to pick. And that's where I went shopping.
 
 First stop, the obvious one. Huge ecosystem, an app for absolutely everything… and that's exactly the issue: it's a **catch-all**. I wanted a drive, not an office suite with a calendar, a chat and a social network bolted on.
 
-But the real wall was **performance**. I was capped at **50 MB/s** on transfers, where every other solution I tested afterwards comfortably hit **100-110 MB/s**. I spent hours fiddling with the **PHP** executor and **OPcache** to claw back a few percent. Even tuned to death, Nextcloud stays slow.
+But the real wall was **performance**. I was capped at **50 MB/s** on transfers, where every other solution I tested afterwards comfortably hit **100-110 MB/s**. I spent hours tuning the **PHP** executor and **OPcache** to claw back a few percent. Even well tuned, Nextcloud stays slow.
 
 ### Cloudreve V3
 
-Visually, a punch in the face — in a good way. Clean, modern interface, and real feature density. Performance kept up too, since it's written in **Go**.
+Visually, it is excellent. Clean, modern interface, and real feature density. Performance kept up too, since it's written in **Go**.
 
 Except those weren't **my** features. Plenty of things I'd never use, and none of the ones I actually needed.
 
@@ -65,7 +62,7 @@ So I wrote my own.
 
 ## The Solution: OrionDrive
 
-**OrionDrive** is a self-hosted drive that fits in **a single binary**. A **Go** backend that embeds the **Vue 3** SPA directly — no web server to configure alongside, no PHP-FPM to tune, no microservice stack to orchestrate. You run the binary, you're done.
+**OrionDrive** is a self-hosted drive that fits in **a single binary**. A **Go** backend that embeds the **Vue 3** SPA directly — no web server to configure alongside, no PHP-FPM to tune, no microservice stack to orchestrate. You run the binary and that is it.
 
 ### What it does
 
@@ -83,7 +80,7 @@ Go 1.26 with **Gin** and **GORM**, on **SQLite**, **PostgreSQL** or **MySQL** as
 
 On the frontend: Vue 3, Vite, TypeScript, Pinia, an installable PWA, light and dark themes, and full internationalisation in French and English.
 
-A small nod along the way: the interface uses **Orion**, the design system I built, which also dresses this very site. Same **oklch** tokens, same violet. My drive and my portfolio are family.
+The interface uses **Orion**, the design system I built for my tools: the same OKLCH colours and the same violet as this site.
 
 ## The Weak Points
 
@@ -93,11 +90,11 @@ No project is perfect, and mine less than most — it's young.
 - **No native sync client.** WebDAV and SFTP cover the essentials, and I wrote `kio-orion` for native KDE integration, but we're far from the comfort of the Seafile client.
 - **The ecosystem is me.** No community, no extension marketplace. A bug means I don't depend on anyone to fix it — but nobody will fix it for me either.
 
-## What About AI?
+## What about AI?
 
-Like in my previous posts, I won't lie: **Claude Opus 5** helped me a lot in building this project.
+**Claude Opus 5** wrote a good part of this project's code.
 
-But let's be clear, this project was **not vibe-coded**. Every line committed and pushed was read, understood and thought through. The architecture, the layering, the storage choices, the permission model: all of that came out of my own head. AI speeds up the writing, it doesn't decide for me.
+That does not mean it was written blind. Every line committed and pushed was read, understood and thought through. The architecture, the layering, the storage choices, the permission model: all of that came out of my own head. AI speeds up the writing, it doesn't decide for me.
 
 That distinction matters, especially on a project that handles someone's personal files.
 
@@ -109,8 +106,4 @@ It's licensed under **MIT**. Free, and it will stay that way.
 
 My only limit today is the **10 TB** on my server. Safe to say I have room.
 
-The code lives here: **[git.nhsoul.fr/nhpro/orion-drive](https://git.nhsoul.fr/nhpro/orion-drive)**
-
----
-
-*Third post, and this time I kept my word on the backend! The next one will probably be about OrionAuth, because writing your own OIDC server is a whole other story…* 🚀
+The code is on [git.nhsoul.fr/nhpro/orion-drive](https://git.nhsoul.fr/nhpro/orion-drive).
