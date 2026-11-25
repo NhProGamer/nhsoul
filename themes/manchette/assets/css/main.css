@@ -159,7 +159,7 @@ a.tile:focus-visible { outline-offset: 4px; }
    event. Below 70rem the ruler turns vertical, one row per year. */
 .path { padding-block: var(--section-gap-s); }
 .path h2 { margin-bottom: var(--space-2xl); }
-.ruler { position: relative; display: grid; grid-template-columns: repeat(var(--years), minmax(0, 1fr)); column-gap: var(--space-md); margin: 0; padding: var(--space-xl) 0 0; list-style: none; border-top: 2px solid var(--color-ink); }
+.ruler { position: relative; display: grid; grid-template-columns: var(--cols); column-gap: var(--space-md); margin: 0; padding: var(--space-xl) 0 0; list-style: none; border-top: 2px solid var(--color-ink); }
 .ruler__year { position: relative; display: grid; align-content: start; gap: var(--space-2xs); min-width: 0; }
 /* The tick hangs from the axis; an event gets a dot on it instead. */
 .ruler__year::before { content: ""; position: absolute; left: 0; top: calc(-1 * var(--space-xl) - 2px); width: 2px; height: 12px; background: var(--color-ink); }

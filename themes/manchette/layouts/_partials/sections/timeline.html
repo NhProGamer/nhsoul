@@ -5,11 +5,15 @@
 {{- $items := .s.items }}
 {{- $first := 9999 }}{{ $last := 0 }}
 {{- range $items }}{{ $y := int .year }}{{ if lt $y $first }}{{ $first = $y }}{{ end }}{{ if gt $y $last }}{{ $last = $y }}{{ end }}{{ end }}
+{{- /* Years with an event get two shares of the width, empty years one:
+       the scale stays readable and event texts get room to wrap. */}}
+{{- $cols := slice }}
+{{- if $last }}{{ range $y := seq $first $last }}{{ $cols = $cols | append (cond (gt (len (where $items "year" $y)) 0) "minmax(0, 2fr)" "minmax(0, 1fr)") }}{{ end }}{{ end }}
 <section class="path"{{ with .s.id }} id="{{ . }}"{{ end }} aria-labelledby="sec-{{ .i }}">
   <div class="container">
     <h2 id="sec-{{ .i }}">{{ partial "fill.html" .s.title }}</h2>
     {{- if $last }}
-    <ol class="ruler" style="--years: {{ add (sub $last $first) 1 }}">
+    <ol class="ruler" style="{{ printf "--cols: %s" (delimit $cols " ") | safeCSS }}">
       {{- range $y := seq $first $last }}
         {{- $events := where $items "year" $y }}
         {{- if $events }}
