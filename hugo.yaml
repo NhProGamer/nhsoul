@@ -11,7 +11,7 @@ languages:
     label: "Français"
     locale: "fr-FR"
     weight: 1
-    title: "Néo Huyghe, développeur à Lens"
+    title: "Néo Huyghe, développeur backend à Lens"
     params:
       description: "Néo Huyghe, développeur backend à Lens : des sites et des logiciels en production pour de vrais clients."
       footer:
@@ -36,7 +36,7 @@ languages:
     label: "English"
     locale: "en-US"
     weight: 2
-    title: "Néo Huyghe, developer in Lens"
+    title: "Néo Huyghe, backend developer in Lens"
     params:
       description: "Néo Huyghe, backend developer in Lens, France: websites and software running in production for real clients."
       footer:

@@ -3,8 +3,7 @@ title: "Home"
 aliases: ["/about/"]
 hero:
   hello: "Hello, I am"
-  # {age} and {since} are computed from params.author.
-  lead: "A {age}-year-old developer in Lens, France, coding since I was {since}."
+  lead: "Backend developer on a work-study contract at Elosi, running software in production since 2024."
   actions:
     - { label: "See the projects", url: "#projects" }
     - { label: "My CV", url: "/cv/", style: "quiet" }

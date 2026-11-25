@@ -4,8 +4,7 @@ title: "Accueil"
 aliases: ["/about/"]
 hero:
   hello: "Bonjour, je suis"
-  # {age} et {since} sont calculés depuis params.author.
-  lead: "Développeur de {age} ans à Lens, je code depuis mes {since} ans."
+  lead: "Développeur backend en alternance chez Elosi, je fais tourner des logiciels en production depuis 2024."
   actions:
     - { label: "Voir les projets", url: "#projets" }
     - { label: "Mon CV", url: "/cv/", style: "quiet" }
