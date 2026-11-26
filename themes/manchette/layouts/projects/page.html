@@ -14,7 +14,7 @@
         {{- $img := $.Resources.Get .image }}
         {{- if not $img }}{{ errorf "manchette: shot %q not found in %s" .image $.File.Path }}{{ end }}
         {{- $kind := .kind | default "wide" }}
-        {{- $sizes := cond (eq $kind "phone") "(min-width: 60rem) 30vw, 100vw" (cond (eq $kind "half") "(min-width: 60rem) 45vw, 100vw" "(min-width: 60rem) 62vw, 100vw") }}
+        {{- $sizes := cond (eq $kind "phone") "(min-width: 60rem) 30vw, 100vw" (cond (eq $kind "half") "(min-width: 60rem) 45vw, 100vw" (cond (eq (len $.Params.shots) 1) "(min-width: 60rem) 92vw, 100vw" "(min-width: 60rem) 62vw, 100vw")) }}
       <figure class="shot shot--{{ $kind }}">
         <div class="frame{{ if .zoom }} zoom{{ end }}"{{ if eq $n 0 }} style="{{ partial "vt.html" (dict "page" $ "kind" "shot") }}"{{ end }}>{{ partial "picture.html" (dict "img" $img "alt" (.alt | default "") "sizes" $sizes) }}</div>
         {{- with .caption }}<figcaption>{{ . }}</figcaption>{{ end }}

@@ -208,6 +208,11 @@ a.tile:focus-visible { outline-offset: 4px; }
 .shots { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap-columns); margin-top: var(--space-2xl); }
 .shot { margin: 0; }
 .shot--wide { grid-column: span 8; } .shot--wide .frame { aspect-ratio: 16 / 10; height: 100%; }
+/* A wide shot on its own takes the whole row instead of leaving a third
+   empty, and keeps its own proportions: nothing beside it to line up with. */
+.shot--wide:only-child { grid-column: 1 / -1; }
+.shot--wide:only-child .frame { aspect-ratio: auto; height: auto; }
+.shot--wide:only-child .frame > img { position: static; display: block; height: auto; }
 .shot--phone { grid-column: span 4; } .shot--phone .frame { height: 100%; min-height: 320px; }
 .shot--half { grid-column: span 6; } .shot--half .frame { aspect-ratio: 16 / 10; }
 .shots figcaption { margin-top: var(--space-sm); font-size: var(--text-sm); color: var(--color-ink-2); }
