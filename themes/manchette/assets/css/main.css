@@ -6,10 +6,12 @@
 .mast__links a { font-size: var(--text-sm); text-decoration: none; white-space: nowrap; display: inline-flex; align-items: center; min-height: 44px; transition: color var(--dur-short) var(--ease-out); }
 .mast__links a:hover, .mast__links a[aria-current] { color: var(--color-accent); }
 .wordmark { font: var(--display-weight) var(--text-xl)/1 var(--font-display); font-stretch: 88%; letter-spacing: var(--tracking-display); text-decoration: none; white-space: nowrap; }
-.theme { display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--space-sm); border: 1px solid var(--color-rule); border-radius: var(--radius-pill); background: transparent; color: var(--color-ink); font-size: var(--text-sm); white-space: nowrap; cursor: pointer; transition: background-color var(--dur-short) var(--ease-out); }
+.theme { display: inline-flex; align-items: center; justify-content: center; width: 44px; min-height: 44px; padding: 0; border: 1px solid var(--color-rule); border-radius: var(--radius-pill); background: transparent; color: var(--color-ink); font-size: var(--text-sm); white-space: nowrap; cursor: pointer; transition: background-color var(--dur-short) var(--ease-out); }
 .theme:hover { background: var(--color-paper-2); }
 .theme:active { background: var(--color-paper-3); }
 html:not(.js) .theme { display: none; }
+/* Icon only: the label stays for screen readers and as a tooltip. */
+.theme__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* The Menu disclosure replaces the link groups on small screens. */
 .menu { display: none; }
@@ -33,11 +35,6 @@ html:not(.js) .theme { display: none; }
   .mast__links { display: none; }
   .mast__end { gap: var(--space-xs); }
   .menu { display: block; }
-}
-@media (max-width: 40rem) {
-  /* Icon only: the label stays for screen readers. */
-  .theme { padding: 0; width: 44px; justify-content: center; }
-  .theme__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 }
 
 /* ---- footer: statement ---- */

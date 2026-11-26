@@ -10,7 +10,7 @@
     var current = function () { return root.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); };
     var label = function () {
       var dark = current() === 'dark';
-      btn.querySelector('.theme__label').textContent = dark ? btn.dataset.light : btn.dataset.dark;
+      btn.querySelector('.theme__label').textContent = btn.title = dark ? btn.dataset.light : btn.dataset.dark;
       btn.setAttribute('aria-pressed', String(dark));
     };
     btn.addEventListener('click', function () {
