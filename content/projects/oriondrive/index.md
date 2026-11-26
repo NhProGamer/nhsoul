@@ -10,6 +10,11 @@ facts:
   value: '2026'
 - label: Mon rôle
   value: Conception et développement
+shots:
+- image: images/screen-drive.png
+  kind: wide
+  alt: L’explorateur d’OrionDrive, avec ses dossiers, ses fichiers et le menu d’actions d’une archive ouvert
+  caption: Le menu d’un fichier, du partage à la décompression
 choices:
 - title: Un seul programme
   text: Le serveur et son interface s’installent en un seul fichier.

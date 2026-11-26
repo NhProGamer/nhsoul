@@ -10,6 +10,11 @@ facts:
   value: '2026'
 - label: My role
   value: Design and development
+shots:
+- image: images/screen-drive.png
+  kind: wide
+  alt: The OrionDrive file explorer, with its folders, files and the action menu of an archive open
+  caption: A file's menu, from sharing to extracting
 choices:
 - title: One program
   text: The server and its interface install as a single file.
