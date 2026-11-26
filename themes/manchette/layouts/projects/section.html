@@ -19,8 +19,11 @@
             {{- with $p.Params.summary }}<p>{{ . }}</p>{{ end }}
             {{- with $meta }}<small>{{ delimit . ", " }}</small>{{ end }}
           </div>
-          {{- with $p.Params.tile }}{{ with $p.Resources.Get .image }}
-          <figure class="frame{{ if $p.Params.tile.zoom }} zoom{{ end }}"{{ if not $link }} style="{{ partial "vt.html" (dict "page" $p "kind" "shot") }}"{{ end }}>{{ partial "picture.html" (dict "img" . "alt" "" "sizes" "(min-width: 60rem) 22vw, 100vw") }}</figure>
+          {{- /* The tile picture, or else the first case-study shot, so a project
+                 kept in the home index still shows its screen here. */}}
+          {{- $pic := $p.Params.tile | default (index ($p.Params.shots | default slice) 0) }}
+          {{- with $pic }}{{ with $p.Resources.Get .image }}
+          <figure class="frame{{ if $pic.zoom }} zoom{{ end }}"{{ if not $link }} style="{{ partial "vt.html" (dict "page" $p "kind" "shot") }}"{{ end }}>{{ partial "picture.html" (dict "img" . "alt" "" "sizes" "(min-width: 60rem) 22vw, 100vw") }}</figure>
           {{- end }}{{ end }}
         </a>
       </li>
