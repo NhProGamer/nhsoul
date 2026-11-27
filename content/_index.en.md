@@ -14,8 +14,14 @@ sections:
     index_title: "My own"
     index_word: "soft"
   - type: statement
-    text: "I design, I ship, and I answer when it breaks."
-    note: "AI agents write part of the code, like a team: I set the architecture, review it and test it on the real product."
+    tone: ink
+    text: ["Code can come from an AI.", "Responsibility can’t."]
+    signature:
+      - { key: "Co-authored-by", values: ["Claude", "GPT", "Gemini", "Mistral"] }
+      - { key: "Reviewed-by", value: "Néo Huyghe" }
+      - { key: "Tested-by", value: "Néo Huyghe" }
+      - { key: "Deployed-by", value: "Néo Huyghe" }
+      - { key: "On-call", value: "Néo Huyghe" }
   - type: timeline
     id: path
     title: "{years} years of practice"

@@ -15,8 +15,14 @@ sections:
     index_title: "Mes propres"
     index_word: "soft"
   - type: statement
-    text: "Je conçois, je livre, et je réponds quand ça casse."
-    note: "Des agents IA écrivent une partie du code, comme une équipe : je fixe l’architecture, je relis et je valide sur le vrai produit."
+    tone: ink
+    text: ["Le code peut venir d’une IA.", "La responsabilité, non."]
+    signature:
+      - { key: "Co-authored-by", values: ["Claude", "GPT", "Gemini", "Mistral"] }
+      - { key: "Reviewed-by", value: "Néo Huyghe" }
+      - { key: "Tested-by", value: "Néo Huyghe" }
+      - { key: "Deployed-by", value: "Néo Huyghe" }
+      - { key: "On-call", value: "Néo Huyghe" }
   - type: timeline
     id: parcours
     title: "{years} ans de pratique"
