@@ -47,6 +47,24 @@
     document.querySelectorAll('.index, .soft').forEach(function (el) { io.observe(el); });
   }
 
+  // Signature lines with several values type them in turn, like a terminal:
+  // erase the current one, type the next, hold it. Skipped for reduced motion.
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('[data-cycle]').forEach(function (el) {
+      var words = JSON.parse(el.dataset.cycle), i = 0;
+      if (words.length < 2) return;
+      var step = function () {
+        var text = el.textContent;
+        if (text && text !== words[(i + 1) % words.length].slice(0, text.length)) { el.textContent = text.slice(0, -1); return setTimeout(step, 45); }
+        var next = words[(i + 1) % words.length];
+        if (text.length < next.length) { el.textContent = next.slice(0, text.length + 1); return setTimeout(step, 85); }
+        i = (i + 1) % words.length;
+        setTimeout(step, 1800);
+      };
+      setTimeout(step, 1800);
+    });
+  }
+
   // The small-screen menu closes after a choice, on Escape and on a click outside.
   var menu = document.querySelector('.menu');
   if (menu) {

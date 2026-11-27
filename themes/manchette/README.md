@@ -81,8 +81,12 @@ sections:
     index_title: "Mes propres"
     index_word: "soft"             # mot animé à son arrivée à l’écran
   - type: statement                # grande phrase sur fond teinté
-    text: "…"
-    note: "…"
+    tone: ink                      # optionnel : fond sombre
+    text: ["…", "…"]               # une phrase, ou une liste de lignes
+    note: "…"                      # optionnel
+    signature:                     # optionnel : signature de commit
+      - { key: "Co-authored-by", values: ["Claude", "GPT"] }  # tapées tour à tour
+      - { key: "Reviewed-by", value: "…" }
   - type: steps                    # verbes géants et leur phrase
     title: "…"
     items: [{ title: "Comprendre", text: "…" }]

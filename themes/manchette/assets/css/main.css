@@ -142,6 +142,18 @@ a.tile:focus-visible { outline-offset: 4px; }
 .band { background: var(--color-paper-2); color: var(--color-ink); padding-block: var(--section-gap-s); }
 .statement { max-width: 22ch; font: var(--display-weight) var(--text-display)/1.02 var(--font-display); font-stretch: 88%; letter-spacing: var(--tracking-display); text-wrap: balance; }
 .band__note { margin-top: var(--space-xl); color: var(--color-ink-2); }
+.statement--lines { max-width: none; }
+.statement--lines span { display: block; }
+.band--ink { --color-focus: var(--band-focus); background: var(--band-bg); color: var(--band-ink); }
+.band--ink .band__note { color: var(--band-muted); }
+/* The signature reads as a commit trailer, so it is set in monospace: here
+   the code is the material. */
+.trailer { width: fit-content; max-width: 100%; margin: var(--space-xl) 0 0; padding: var(--space-md) var(--space-lg); overflow-x: auto; border-left: 3px solid var(--band-focus); background: color-mix(in oklab, currentColor 6%, transparent); font: 400 clamp(0.875rem, 0.4vw + 0.8rem, 1.0625rem)/1.75 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; color: var(--band-muted); }
+.trailer b { font-weight: 600; color: var(--band-ink); }
+.trailer__k, .trailer__cycle { color: var(--band-focus); }
+.trailer__cycle::after { content: ""; display: inline-block; width: 0.55em; height: 1.1em; margin-left: 0.1em; vertical-align: -0.2em; background: currentColor; }
+@media (prefers-reduced-motion: no-preference) { .trailer__cycle::after { animation: m-caret 1s steps(1) infinite; } }
+@keyframes m-caret { 50% { opacity: 0; } }
 
 /* ---- home: steps, giant verbs ---- */
 .does { padding-block: var(--section-gap) var(--section-gap-s); }

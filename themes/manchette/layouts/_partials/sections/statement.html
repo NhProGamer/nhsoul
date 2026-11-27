@@ -1,8 +1,22 @@
-<section class="band" aria-label="{{ .s.label | default .s.text }}">
+{{- /* text is a sentence, or a list of lines to keep apart. */}}
+{{- $lines := cond (reflect.IsSlice .s.text) .s.text (slice .s.text) }}
+<section class="band{{ with .s.tone }} band--{{ . }}{{ end }}" aria-label="{{ .s.label | default (delimit $lines " ") }}">
   <div class="container">
-    <p class="statement">{{ .s.text }}</p>
+    <p class="statement{{ if gt (len $lines) 1 }} statement--lines{{ end }}">{{ range $lines }}<span>{{ . }}</span> {{ end }}</p>
     {{- with .s.note }}
     <p class="lead band__note">{{ . }}</p>
+    {{- end }}
+    {{- /* A commit trailer: one "key: value" line per role. A line with
+           several values shows the first, and main.js types the others
+           in turn; screen readers get the whole list at once. */}}
+    {{- with .s.signature }}
+    {{- $w := 0 }}{{ range . }}{{ $w = math.Max $w (len .key) }}{{ end }}
+    <pre class="trailer">
+      {{- range $n, $l := . }}{{ if $n }}{{ "\n" }}{{ end }}<span class="trailer__k">{{ printf "%s:" $l.key }}</span>{{ strings.Repeat (int (add (sub $w (len $l.key)) 2)) " " }}
+        {{- with $l.values }}<span class="visually-hidden">{{ delimit . ", " }}</span><span class="trailer__cycle" aria-hidden="true" data-cycle="{{ jsonify . }}">{{ index . 0 }}</span>
+        {{- else }}<b>{{ $l.value }}</b>{{ end }}
+      {{- end -}}
+    </pre>
     {{- end }}
   </div>
 </section>
